@@ -75,8 +75,8 @@ function envia(){
  function sele(){
   var cond= $("#condi").val();
   if (cond==1) {
-     window.location="http://localhost/siccif/vistas/CuentasC/RegistroCliente.blade.php";
-  }else{window.location="http://localhost/siccif/vistas/CuentasC/RegistroClienteInactivo.blade.php";}
+     window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.blade.php";
+  }else{window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroClienteInactivo.blade.php";}
 
 }
  //funcion para que la tabla se llene dinamicamente

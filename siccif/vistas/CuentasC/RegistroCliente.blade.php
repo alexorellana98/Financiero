@@ -70,24 +70,24 @@ require 'conexion.php';
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <script language="javascript">
 function envia(){
-   window.location="http://localhost/fina/siccif/vistas/CuentasC/DatosCliente.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/CuentasC/DatosCliente.blade.php";
   }
  function sele(){
   var cond= $("#condi").val();
   if (cond==1) {
-     window.location="http://localhost/fina/siccif/vistas/CuentasC/RegistroCliente.blade.php";
-  }else{window.location="http://localhost/fina/siccif/vistas/CuentasC/RegistroClienteInactivo.blade.php";}
+     window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.blade.php";
+  }else{window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroClienteInactivo.blade.php";}
 
 }
 function sele2(){
   var cond2= $("#condi2").val();
   if (cond2==0) {
-     window.location="http://localhost/fina/siccif/vistas/CuentasC/RegistroCliente.blade.php";
+     window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.blade.php";
   }else
   if (cond2==1) {
-window.location="http://localhost/fina/siccif/vistas/CuentasC/RegistroCliente2.blade.php";
+window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente2.blade.php";
   }
-  else if (cond2==2) {window.location="http://localhost/fina/siccif/vistas/CuentasC/RegistroCliente3.blade.php";}
+  else if (cond2==2) {window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente3.blade.php";}
   else{window.location="http://localhost/fina/siccif/vistas/CuentasC/TodosClientes.blade.php";}
 
 }

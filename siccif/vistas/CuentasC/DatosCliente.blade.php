@@ -92,7 +92,7 @@ ini_set('date.timezone', 'America/El_Salvador');
  
  
 function envia(){
-   window.location="http://localhost/fina/siccif/vistas/CuentasC/RegistroCliente.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.blade.php";
   }
 </script>
 <header class="main-header">

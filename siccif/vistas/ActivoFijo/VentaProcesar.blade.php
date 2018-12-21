@@ -72,7 +72,7 @@ ini_set('date.timezone', 'America/El_Salvador');
  
  
 function envia(){
-   window.location="http://localhost/fina/siccif/vistas/ActivoFijo/Vender.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Vender.blade.php";
   }
 </script>
 <header class="main-header">

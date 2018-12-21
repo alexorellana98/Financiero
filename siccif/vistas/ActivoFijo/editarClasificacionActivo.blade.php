@@ -1,6 +1,6 @@
 <?php
-
-$con=mysqli_connect('localhost','root','','finanzas');
+require 'conexion.php';
+//$con=mysqli_connect('localhost','root','','finanzas');
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +72,7 @@ $con=mysqli_connect('localhost','root','','finanzas');
 
 
 function envia(){
-   window.location="http://localhost/siccif/vistas/ActivoFijo/clasificacionActivo.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/clasificacionActivo.blade.php";
   }
 
 
@@ -107,7 +107,7 @@ function envia(){
 <?php 
    $aux=$_POST['btnEditar'];
    $sentencia = "SELECT * FROM clasificaactivo WHERE idClas=$aux"; 
-   $ejecutar=mysqli_query($con,$sentencia);
+   $ejecutar=mysqli_query($mysqli,$sentencia);
    $fila = mysqli_fetch_assoc($ejecutar);
     ?>   
 

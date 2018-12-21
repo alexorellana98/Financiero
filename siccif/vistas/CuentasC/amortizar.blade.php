@@ -75,7 +75,7 @@ require 'conexion.php';
   function sele(){
   var cond= $("#condi").val();
   if (cond==1) {
-     window.location="http://localhost/siccif/vistas/CuentasC/creditos.blade.php";
+     window.location="http://localhost/Financiero/siccif/vistas/CuentasC/creditos.blade.php";
   }
 
 }

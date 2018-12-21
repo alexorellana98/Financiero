@@ -71,12 +71,12 @@ require 'conexion.php';
  
  
 function envia(){
-   window.location="http://localhost/siccif/vistas/ActivoFijo/Comprar.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Comprar.blade.php";
 
 
   }
 function limpia(){
-   window.location="http://localhost/siccif/vistas/ActivoFijo/compraNueva2.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/compraNueva2.blade.php";
 
 
   }

@@ -72,7 +72,7 @@ require 'conexion.php';
 
 
 function envia(){
-   window.location="http://localhost/fina/siccif/vistas/ActivoFijo/subcategoria.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/subcategoria.blade.php";
   }
 
 

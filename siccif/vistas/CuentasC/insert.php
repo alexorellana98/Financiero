@@ -19,7 +19,7 @@ $ejecutar=mysqli_query($mysqli,$insertar);
 print '<script language="JavaScript">'; 
 print 'alert("Datos correctos");'; 
 print '</script>';
-header('Location: http://localhost/fina/siccif/vistas/CuentasC/RegistroCliente.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.blade.php');
 
 }
 else{
@@ -33,7 +33,7 @@ if (!empty($_POST['nombcre']) && !empty($_POST['minip']) && !empty($_POST['inter
 $insertar="INSERT INTO creditos (tipo,plazom,cmax,cmin,garantia,interes) VALUES ('$_POST[nombcre]','$_POST[pmax]','$_POST[maxp]','$_POST[minip]','$_POST[gara]','$_POST[inter]')";
 $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/fina/siccif/vistas/CuentasC/creditos.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/CuentasC/creditos.blade.php');
 }else{
 print '<script language="JavaScript">'; 
 print 'alert("Datos incorrectos");'; 
@@ -51,7 +51,7 @@ if (!empty($_POST['tipo']) && !empty($_POST['plazo']) && !empty($_POST['monto'])
   $insertar="INSERT INTO prestamo (monto,plazo,fechafinan,cuota,saldo,estado,idCli,idCre) VALUES ('$mon','$pla','$_POST[fecha]','$cuota','$saldo','$esta','$ideC','$_POST[tipo]')";
   $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/fina/siccif/vistas/CuentasC/RegistroCliente.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.blade.php');
 }else{
 print '<script language="JavaScript">'; 
 print 'alert("Datos incorrectos");'; 
@@ -74,7 +74,7 @@ print '</script>';
   $insertar="INSERT INTO pagos (saldo,tipo,numero,fechapa,atraso,mora,total,idPre,cuota) VALUES ('$saldo','$tipo','$numero','$fechapa','$atraso','$mora','$total','idPre','$cuota')";
   $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/fina/siccif/vistas/CuentasC/RegistroCliente.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.blade.php');
 }else{
 print '<script language="JavaScript">'; 
 print 'alert("Datos incorrectos");'; 

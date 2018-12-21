@@ -75,8 +75,8 @@ require 'conexion.php';
   function sele(){
   var cond= $("#condi").val();
   if (cond==1) {
-     window.location="http://localhost/siccif/vistas/ActivoFijo/Marcas.blade.php";
-  }else{window.location="http://localhost/siccif/vistas/ActivoFijo/MarcasInactivo.blade.php";}
+     window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Marcas.blade.php";
+  }else{window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/MarcasInactivo.blade.php";}
 
 }
     $(document).ready(function () {

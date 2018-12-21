@@ -76,8 +76,8 @@ require 'conexion.php';
  function sele(){
   var cond= $("#condi").val();
   if (cond==1) {
-     window.location="http://localhost/fina/siccif/vistas/ActivoFijo/Ubicacion.blade.php";
-  }else{window.location="http://localhost/fina/siccif/vistas/ActivoFijo/UbicacionInactivo.blade.php";}
+     window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Ubicacion.blade.php";
+  }else{window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/UbicacionInactivo.blade.php";}
 
 }
   

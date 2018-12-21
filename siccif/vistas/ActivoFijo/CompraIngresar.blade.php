@@ -76,7 +76,7 @@ var val= $("#prec").val();
 $('#tot').val((cant*val));
  }
 function envia(){
-   window.location="http://localhost/fina/siccif/vistas/ActivoFijo/Comprar.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Comprar.blade.php";
   }
 </script>
 

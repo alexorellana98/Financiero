@@ -74,11 +74,11 @@ require 'conexion.php';
 
 
 function envia(){
-   window.location="http://localhost/fina/siccif/vistas/ActivoFijo/VistaActivo.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/VistaActivo.blade.php";
   }
 
 function envia1(){
-   window.location="http://localhost/fina/siccif/vistas/ActivoFijo/depreciar.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/depreciar.blade.php";
   }
  //funcion para que la tabla se llene dinamicamente
   

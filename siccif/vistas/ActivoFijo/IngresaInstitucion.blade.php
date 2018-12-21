@@ -77,7 +77,7 @@ $('#nombCo').val(" ");
 }
 
 function envia(){
-   window.location="http://localhost/siccif/vistas/ActivoFijo/IngresaInstitucion.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/IngresaInstitucion.blade.php";
   }
 
 

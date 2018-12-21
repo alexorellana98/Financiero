@@ -1,6 +1,6 @@
 <?php
 require 'conexion.php';
-$con=mysqli_connect('localhost','root','','finanzas');
+//$con=mysqli_connect('localhost','root','','finanzas');
 
 ?>
 
@@ -72,8 +72,8 @@ $con=mysqli_connect('localhost','root','','finanzas');
   function sele(){
   var cond= $("#condi").val();
   if (cond==1) {
-     window.location="http://localhost/siccif/vistas/ActivoFijo/Departamento.blade.php";
-  }else{window.location="http://localhost/siccif/vistas/ActivoFijo/DepartamentoInactivo.blade.php";}
+     window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Departamento.blade.php";
+  }else{window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/DepartamentoInactivo.blade.php";}
 
 }
     $(document).ready(function () {
@@ -193,8 +193,8 @@ $cont=0;
 <?php
 $extraer="SELECT * FROM departamento";
 
- $base=mysqli_select_db($con,'finanzas');
-$ejecutar=mysqli_query($con,$extraer);
+ //$base=mysqli_select_db($con,'finanzas');
+$ejecutar=mysqli_query($mysqli,$extraer);
 
 
 while($ejecuta=mysqli_fetch_array($ejecutar))
@@ -282,8 +282,8 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
                      <?php
 $extraer="SELECT * FROM categoria";
 
- $base=mysqli_select_db($con,'finanzas');
-$ejecutar=mysqli_query($con,$extraer);
+ //$base=mysqli_select_db($con,'finanzas');
+$ejecutar=mysqli_query($mysqli,$extraer);
 $cont=$cont+1;
 
 while($ejecuta=mysqli_fetch_array($ejecutar))

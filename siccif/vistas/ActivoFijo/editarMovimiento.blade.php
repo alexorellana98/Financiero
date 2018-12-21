@@ -73,7 +73,7 @@ require 'conexion.php';
  
 
 function envia(){
-   window.location="http://localhost/siccif/vistas/ActivoFijo/Movimiento.blade.php";
+   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Movimiento.blade.php";
   }
 
 </script>
