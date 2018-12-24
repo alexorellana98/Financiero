@@ -12,7 +12,7 @@ $sql = " UPDATE ubicacion set nombre='$nombeditUb',codU='$codi' WHERE idUb='$ide
 	$resultado = $mysqli->query($sql);
 //$insertar="INSERT INTO ubicacion (nombre) VALUES ('$_POST[nombeditUb]') WHERE $idUb='$_POST[ideU]'";
 //$ejecutar=mysqli_query($con,$insertar);
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Ubicacion.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Ubicacion.php');
 
 }
 //edita proveedor
@@ -28,7 +28,7 @@ $ob=$_POST['obs2'];
 $sql ="UPDATE proveedor set nombre='$nombre',direccion='$direc',nit='$nit',contacto='$cont',telefono='$tel',correo='$corre',observacion='$ob' WHERE ide='$ideU'";
 $resultado = $mysqli->query($sql);
 
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/RegistroProveedor.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/RegistroProveedor.php');
 
 }
 //editar marca
@@ -42,7 +42,7 @@ $ideU = $_POST['ideU'];
 $sql = " UPDATE marca set nombre='$nombeditUb' WHERE idMarca='$ideU'";
 	$resultado = $mysqli->query($sql);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Marcas.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Marcas.php');
 
 }
 
@@ -56,7 +56,7 @@ $sql = " UPDATE movimiento set nombre='$nombMo' WHERE idMov='$ideU'";
 	$resultado = $mysqli->query($sql);
 //$insertar="INSERT INTO ubicacion (nombre) VALUES ('$_POST[nombeditUb]') WHERE $idUb='$_POST[ideU]'";
 //$ejecutar=mysqli_query($con,$insertar);
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Movimiento.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Movimiento.php');
 
 }
 
@@ -71,7 +71,7 @@ $ideU = $_POST['ideU'];
 $sql = " UPDATE clasificaactivo set nombre='$nombe',vida='$vida' WHERE idClas='$ideU'";
 	$resultado = $mysqli->query($sql);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/clasificacionActivo.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/clasificacionActivo.php');
 
 }
 
@@ -87,7 +87,7 @@ $ide = $_POST['idCat'];
 $sql = " UPDATE categoria set nombre='$nombe',cod='$cod',val='$val' WHERE idCat='$ide'";
 	$resultado = $mysqli->query($sql);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Categoria.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Categoria.php');
 
 }
 
@@ -103,7 +103,7 @@ $ide = $_POST['nomsubcatego'];
 $sql = " UPDATE subcategoria set nombre='$nombe',idcat='$ide',codigo='$cod' WHERE idSub='$aux'";
 	$resultado = $mysqli->query($sql);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/subcategoria.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/subcategoria.php');
 
 }
 
@@ -120,7 +120,7 @@ $nombI = $_POST['nombI'];
 $sql = " UPDATE institucion set codigo='$nomCo',Nombre='$nombI' WHERE idIn='$aux'";
 	$resultado = $mysqli->query($sql);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/IngresaInstitucion.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/IngresaInstitucion.php');
 
 }
 
@@ -137,7 +137,7 @@ if (!empty($_POST['nombDe2']) && !empty($_POST['cod2']) )  {
 $sql = " UPDATE departamento set nombre='$nomb',codigo='$cod' WHERE idDep='$aux'";
 	$resultado = $mysqli->query($sql);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Departamento.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Departamento.php');
 }
 else{
 print '<script language="JavaScript">'; 
