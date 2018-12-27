@@ -145,7 +145,7 @@ $resultado = $mysqli->query($sql);
                                   
                                   <td>
                                   
-                                  <form  action="editarMarcas.blade.php" method="post" class="form-register" > 
+                                  <form  action="editarMarcas.php" method="post" class="form-register" > 
                                     <button  type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idMarca']?>" >Editar</button>
                                     </form>
 

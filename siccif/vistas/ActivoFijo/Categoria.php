@@ -131,7 +131,7 @@ $resultado = $mysqli->query($sql);
 														    <td> <?php echo $ejecuta['cod']?></td>
 														    <td> <?php echo $ejecuta['val']?></td>
 														    <td>
-														      <form   action="editarCategoria.blade.php" method="post" class="form-register" > 
+														      <form   action="editarCategoria.php" method="post" class="form-register" > 
 														      	<button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idCat']?>" >Editar</button>
 														    	</form>
 														      

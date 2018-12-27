@@ -123,7 +123,7 @@
 							<a href="../ActivoFijo/Reevaluar.php">Reevaluar</a>
 						</li>
 						<li>
-							<a href="../ActivoFijo/depreciar.php">Depreciar</a>
+							<a href="../ActivoFijo/VistaActivo.php">Depreciar</a>
 						</li>
 						<li>
 							<a href="../ActivoFijo/Vender.php">Vender</a>

@@ -94,7 +94,7 @@ function envia(){
                   <br> 
                   <div class="button-group">
                     <button type="submit" class="btn btn-success">Guardar</button>
-                    <button type="button"  class="btn btn-success" data-dismiss="modal" onclick="envia()">Cancelar</button>
+                    <button type="button"  class="btn btn-warning" data-dismiss="modal" onclick="envia()">Cancelar</button>
                   </div>
                   <br>
                 </div>
