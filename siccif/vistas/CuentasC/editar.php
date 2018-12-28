@@ -15,7 +15,7 @@ $ide = $_POST['idCre'];
 $sql = " UPDATE creditos set tipo='$nombe',plazom='$plazo',cmax='$maxp',cmin='$mini',garantia='$ga',interes='$inte' WHERE idCre='$ide'";
 	$resultado = $mysqli->query($sql);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/CuentasC/creditos.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/CuentasC/creditos.php');
 
 }
 
@@ -38,7 +38,7 @@ $resultado = $mysqli->query($sql);
 print '<script language="JavaScript">'; 
 print 'alert("Datos correctos");'; 
 print '</script>';
-header('Location: http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.blade.php');
+header('Location: http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.php');
 
 }
 
