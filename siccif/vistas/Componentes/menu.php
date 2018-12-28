@@ -138,7 +138,7 @@
 							<a  href="../CuentasC/creditos.php">Creditos</a>
 						</li>
 						<li>
-							<a  href="index2.html">Todos los Clientes</a>
+							<a  href="../CuentasC/TodosClientes.php">Todos los Clientes</a>
 						</li>
 					</ul>
 				</li>

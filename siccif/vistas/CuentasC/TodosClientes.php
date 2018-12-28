@@ -79,11 +79,7 @@ $resultado = $mysqli->query($sql);
     <div class="page-wrapper">
             <div class="container-fluid">
         <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h5 align="center" class="txt-dark">Gestionar Categorias</h5>
-            </div>
-          </div>
+          
           <!-- /Title -->
       
                 <div class="col-md-3">
@@ -163,16 +159,16 @@ $resultado = $mysqli->query($sql);
                                  <?php } ?> 
                                     <?php ?> 
                                 <td>
-                                 <form   action="verDetalleCliente.blade.php" method="get" class="form-register" > 
+                                 <form   action="verDetalleCliente.php" method="get" class="form-register" > 
                                  <button  type="submit" title="Ver Cliente" style="display: inline-block; " class="glyphicon glyphicon-eye-open btn-success " id="btndetalle" name="btndetalle" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idCliente'] ?>></button>
                                  </form>
-                                 <form style=" margin-left: 30px; margin-top:-22px;" action="editarCliente.blade.php" method="post" class="form-register" > 
+                                 <form style=" margin-left: 30px; margin-top:-22px;" action="editarCliente.php" method="post" class="form-register" > 
                                   <button  type="submit" title="Modificar Cliente"  class="glyphicon glyphicon-cog btn-info" id="btnEditar" name="btnEditar" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idCliente']?>" ></button>
                                    </form>
-                                  <form style=" margin-left: 60px; margin-top:-22px;"  action="prestamo.blade.php" method="get" class="form-register">
+                                  <form style=" margin-left: 60px; margin-top:-22px;"  action="prestamo.php" method="get" class="form-register">
                                  <button  type="submit" title="Realizar Prestamo" class="glyphicon glyphicon-usd btn-warning" id="btnEditar1" name="btnEditar1" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idCliente'] ?>></button>
                                  </form>
-                                 <form  style=" margin-left: 90px; margin-top:-22px;" action="RegistroProveedor.blade.php" method="get" class="form-register" > 
+                                 <form  style=" margin-left: 90px; margin-top:-22px;" action="RegistroProveedor.php" method="get" class="form-register" > 
                                  <button  type="submit" title="Dar de baja Cliente" class="glyphicon glyphicon-arrow-down btn-danger" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idCliente'] ?>></button>
                                  </form>
                                 </td>
