@@ -13,7 +13,7 @@ require 'conexion.php';
   <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
   <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
   <meta name="author" content="hencework"/>
-  
+
   <?php
       include "../Componentes/estilos.php";
   ?>
@@ -30,7 +30,7 @@ function envia(){
 
 }
  //funcion para que la tabla se llene dinamicamente
-  
+
     $(document).ready(function () {
    $('#entradafilter').keyup(function () {
       var rex = new RegExp($(this).val(), 'i');
@@ -50,10 +50,10 @@ if (!empty($_GET['btnalta1']))  {
 $est=1;
 $var=$_GET['btnalta1'];
 $sql = " UPDATE cliente set estado='$est' WHERE idCliente='$var'";
-$resultado = $mysqli->query($sql); 
+$resultado = $mysqli->query($sql);
 }
 ?>
-<body>  
+<body>
   <!--Preloader-->
   <div class="preloader-it">
     <div class="la-anim-1"></div>
@@ -62,7 +62,7 @@ $resultado = $mysqli->query($sql);
     <div class="wrapper theme-1-active box-layout pimary-color-red">
   <?php
   include "../Componentes/menu.php";
-  ?>  
+  ?>
 
     <!-- Main Content -->
     <div class="page-wrapper">
@@ -74,9 +74,9 @@ $resultado = $mysqli->query($sql);
             </div>
           </div>
           <!-- /Title -->
-      
-                
-                 
+
+
+
                     <?php
 
                     $cont=0;
@@ -85,7 +85,7 @@ $resultado = $mysqli->query($sql);
         <div class="row">
           <div class="col-sm-12">
             <div class="panel panel-default card-view">
-              
+
               <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                   <div class="table-wrap">
@@ -101,11 +101,11 @@ $resultado = $mysqli->query($sql);
                               <th >Monto</th>
                               <th >Cuota</th>
                               <th >Fecha de financiamiento</th>
-                              
+
                               <th  WIDTH="180" HEIGHT='9'>Opciones</th>
                             </tr>
                         </thead>
-                        
+
                         <tbody >
                          <?php
   $var=$_GET['btnPre'];
@@ -120,10 +120,10 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 
 
  $aux2=$_GET['btnPre'];
-   $sentencia2 = "SELECT * FROM cliente WHERE idCliente=$aux2"; 
+   $sentencia2 = "SELECT * FROM cliente WHERE idCliente=$aux2";
    $ejecutar2=mysqli_query($mysqli,$sentencia2);
    $fila1 = mysqli_fetch_assoc($ejecutar2);
-    ?>  
+    ?>
   <tr>
     <td><?php  echo $cont ?> </td>
     <td><?php  echo $fila1['nombre'] ?> </td>
@@ -133,58 +133,58 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
     <td> <?php echo $ejecuta['monto']?></td>
     <td> <?php echo $ejecuta['cuota']?></td>
     <td> <?php echo $ejecuta['fechafinan']?></td>
-    
+
     <td>
-     <form   action="vistaDetallePrestamo.php" method="get" class="form-register" > 
+     <form   action="vistaDetallePrestamo.php" method="get" class="form-register" >
      <button  type="submit" class="btn btn-danger" id="btndetalle" title="Ver Prestamo" name="btndetalle" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idPres'] ?>>Ver</button>
      </form>
-      <form  style=" margin-left: 100px; margin-top:-43px;" action="amortizar.php" method="get" class="form-register" > 
-    <button  type="submit" class="btn btn-warning" title="Ver Amortizacion de prestamo" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idCli'] ?>>Amortización</button>
+     <form  style=" margin-left: 100px; margin-top:-43px;" action="amortizar.php" method="get" class="form-register" >
+       <!--Aqui tengo que modificar-->
+       <button  type="submit" class="btn btn-warning" title="Ver Amortizacion de prestamo" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal" value="<?php echo $var." ".$ejecuta['idPres'] ?>">Amortización</button>
      </form>
-     
     </td>
   </tr>
 
-<input  type="hidden" class="form-control" id="idCli" name="idCli" placeholder="Nombre" value="<?php echo $ejecuta['idCli'];?>">
+<input  type="hidden" class="form-control" id="idCli" name="idCli" placeholder="Nombre" value="<?php echo $var." ".$ejecuta['idPres'];?>">
 <?php
 
 }
-?> 
+?>
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>  
+            </div>
           </div>
         </div>
         <!-- /Row -->
-                    
-                  
 
- 
+
+
+
         <div class="col-lg-12 col-md-offset-8">
 
  <?php
 $aux2=$_GET['btnPre'];
-   $sentencia2 = "SELECT * FROM cliente WHERE idCliente=$aux2"; 
+   $sentencia2 = "SELECT * FROM cliente WHERE idCliente=$aux2";
    $ejecutar2=mysqli_query($mysqli,$sentencia2);
    $fila1 = mysqli_fetch_assoc($ejecutar2);
-    ?>  
+    ?>
 <br>
-<br> 
+<br>
 <div class="button-group">
-<form  action="verDetalleCliente.blade.php" method="get" class="form-register" > 
+<form  action="verDetalleCliente.blade.php" method="get" class="form-register" >
 <button type="submit"  class="btn btn-success" data-dismiss="modal" id="btndetalle" name="btndetalle" value=<?php echo $fila1['idCliente'] ?>>Atras</button>
 </form>
 </div>
 </div>
-        
+
         <div class="col-md-1"></div>
 
 
-        
+
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
@@ -202,16 +202,12 @@ $aux2=$_GET['btnPre'];
 
     </div>
     <!-- /#wrapper -->
-  
-  
+
+
   <?php
 include "../Componentes/scripts.php";
 ?>
-  
+
 </body>
 
 </html>
-
-
-    
-        
