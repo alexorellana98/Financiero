@@ -147,19 +147,19 @@
 					<a href="javascript:void(0);" data-toggle="collapse" data-target="#chart_dr"><div class="pull-left"><i class="zmdi zmdi-chart-donut mr-20"></i><span class="right-nav-text">Reportes </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="chart_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
-							<a  href="index.html">Activos</a>
+							<a  href="../ActivoFijo/ReporteActivo.php">Activos</a>
 						</li>
 						<li>
-							<a  href="index2.html">Activos Inactivos</a>
+							<a  href="../ActivoFijo/ReporteActivoInactivo.php">Activos Inactivos</a>
 						</li>
 						<li>
-							<a href="index3.html">Proveedores</a>
+							<a href="../ActivoFijo/ReporteProveedores.php">Proveedores</a>
 						</li>
 						<li>
-							<a href="profile.html">Proveedores Inactivos</a>
+							<a href="../ActivoFijo/ReporteProveedoresInac.php">Proveedores Inactivos</a>
 						</li>
 						<li>
-							<a href="profile.html">Ventas</a>
+							<a href="../ActivoFijo/ReporteVentas.php">Ventas</a>
 						</li>
 					</ul>
 				</li>

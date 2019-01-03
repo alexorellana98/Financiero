@@ -175,7 +175,7 @@ $aux2=$_GET['btnPre'];
 <br>
 <br>
 <div class="button-group">
-<form  action="verDetalleCliente.blade.php" method="get" class="form-register" >
+<form  action="verDetalleCliente.php" method="get" class="form-register" >
 <button type="submit"  class="btn btn-success" data-dismiss="modal" id="btndetalle" name="btndetalle" value=<?php echo $fila1['idCliente'] ?>>Atras</button>
 </form>
 </div>

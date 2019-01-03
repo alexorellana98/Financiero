@@ -25,7 +25,7 @@ require 'conexion.php';
 		}
 
 		function envia(){
-		   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/IngresaInstitucion.blade.php";
+		   window.location="http://localhost/Financiero/vistas/ActivoFijo/IngresaInstitucion.php";
 		}
 
 	</script>

@@ -264,7 +264,7 @@ var fe=<?php echo json_encode($fideal); ?>;
 </div>
 </form>
 <div class="button-group">
-<form  action="amortizar.blade.php" method="get" class="form-register" > 
+<form  action="amortizar.php" method="get" class="form-register" > 
 <button type="submit"  class="btn btn-success" data-dismiss="modal" id="btnbaja" name="btnbaja" value=<?php echo $fila['idCli'] ?>>Atras</button>
 </form>
 </div>
