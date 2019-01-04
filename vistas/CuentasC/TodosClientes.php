@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +14,7 @@ require 'conexion.php';
   <?php
       include "../Componentes/estilos.php";
   ?>
-
+  <script src="../../asset/js/cuentasXcobrar.js"></script>
   <script language="javascript">
 function envia(){
    window.location="http://localhost/Financiero/siccif/vistas/CuentasC/DatosCliente.php";

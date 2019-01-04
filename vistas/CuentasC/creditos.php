@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +10,6 @@ require 'conexion.php';
   <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
   <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
   <meta name="author" content="hencework"/>
-  
   <?php
       include "../Componentes/estilos.php";
   ?>
@@ -123,9 +120,9 @@ $resultado = $mysqli->query($sql);
                                 <td> <?php echo $ejecuta['cmax']?></td>
                                 <td> <?php echo $ejecuta['interes']?>%</td>
                                 <td> <?php echo $ejecuta['plazom']?> meses</td>
-                                <td>
+                                <td class="text-center">
                                   <form   action="../CuentasC/editarCreditos.php" method="post" class="form-register" > 
-                                  <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idCre']?>" >Editar</button>
+                                  <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idCre']?>" ><i class="fa fa-edit"></i></button>
                                 </form>
 
                                 </td>

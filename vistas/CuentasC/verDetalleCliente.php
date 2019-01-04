@@ -1,8 +1,6 @@
 
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,17 +17,10 @@ require 'conexion.php';
   ?>
 
   <script language="javascript">
-
-
-
 function envia(){
    window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.php";
   }
 
-
- //funcion para que la tabla se llene dinamicamente
-  
-   
 </script>
 </head>
 

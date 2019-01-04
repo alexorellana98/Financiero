@@ -17,6 +17,8 @@
         $sql = " UPDATE movimiento set estado='$est' WHERE idMov='$id'";
     if($opcion=='ubicacion')
         $sql = " UPDATE ubicacion set estado='$est' WHERE idUb='$id'";
+    if($opcion=='cliente')
+        $sql = " UPDATE cliente set estado='$est' WHERE idCliente='$id'";
 
     $resultado = $mysqli->query($sql); 
 ?>

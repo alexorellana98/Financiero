@@ -1,6 +1,4 @@
 ////  Activo Fijo
-
-///// Categorias
 function ajax_act(str,tbld, estado) {
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -20,7 +18,6 @@ function ajax_act(str,tbld, estado) {
 }
 
 function ajax_baja_alta(str,id, estado,tbld) {
-
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     }

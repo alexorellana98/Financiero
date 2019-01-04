@@ -12,7 +12,6 @@ require 'conexion.php';
 	<meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
 	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
 	<meta name="author" content="hencework"/>
-	
 	<?php
 	  	include "../Componentes/estilos.php";
 	?>
@@ -20,22 +19,12 @@ require 'conexion.php';
 	<script language="javascript">
 	  function sele(){
 	  var cond= $("#condi").val();
-	  if (cond==1) {
 	     ajax_act('','categoria',cond);
-	  }else if(cond==0){ajax_act('','categoria',cond);}
-
 	}
-	    $(document).ready(function () {
-	   $('#entradafilter').keyup(function () {
-	      var rex = new RegExp($(this).val(), 'i');
-	        $('.contenidobusqueda tr').hide();
-	        $('.contenidobusqueda tr').filter(function () {
-	            return rex.test($(this).text());
-	        }).show();
-
-	        })
-
-	});
+    window.onload = function() {
+        $("#condi").val('1');
+        $("#condi").change();
+    };
 	</script>
 </head>
 <body>  
@@ -70,7 +59,6 @@ require 'conexion.php';
 
 							  			<label for="condi">Estado :</label>
 							 			<select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
-											<option>Seleccione</option> 
 											<option value="1" >Activo</option>											 
 											<option value="0">Inactivo </option>
 										</select>
@@ -89,49 +77,7 @@ require 'conexion.php';
 								<div class="panel-body">
 									<div class="table-wrap">
 										<div class="table-responsive" id="actualizar">
-											<table id="datable_1" class="table table-hover display  pb-30" >
-												<thead>
-													<tr >
-													    <th  >N°</th>
-													    <th >Nombre</th>
-													    <th >Código</th>
-													    <th >Valor residual(%)</th>
-													    <th >Opciones</th>
-												  	</tr>
-												</thead>
-												
-												<tbody >
-													<?php
-													$extraer="SELECT * FROM categoria";
-													 //$base=mysqli_select_db($con,'finanzas');
-													$ejecutar=mysqli_query($mysqli,$extraer);
-													while($ejecuta=mysqli_fetch_array($ejecutar)){
-														if (($ejecuta['estado'])==1) {
-														  	$cont=$cont+1;
-														?>  
-														  <tr>
-														    <td><?php  echo $cont ?> </td>
-														    <td><?php echo $ejecuta['nombre']?></td>
-														    <td> <?php echo $ejecuta['cod']?></td>
-														    <td> <?php echo $ejecuta['val']?></td>
-														    <td>
-                                                          <div class="col-md-8 text-center">
-                                                              <form   action="editarCategoria.php" method="post" class="form-register" > 
-														      	<button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idCat']?>" ><i class="fa fa-edit"></i></button>
-														    	</form>	
-                                                          </div>
-														  <div class="col-md-4 text-left">
-														      <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idCat']; ?>','Desea dar de baja a la Categoria','categoria','0')"><i class="fa fa-arrow-circle-down"></i> </button>
-														  </div>  
-														    </td>
-														  </tr>
-
-														<?php
-														}
-													}
-													?> 
-												</tbody>
-											</table>
+											
 										</div>
 									</div>
 								</div>
