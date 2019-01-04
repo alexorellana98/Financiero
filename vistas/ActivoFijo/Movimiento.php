@@ -7,7 +7,7 @@ require 'conexion.php';
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Doodle I Fast build Admin dashboard for any platform</title>
+  <title>Gestionar Movimientos</title>
   <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
   <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
   <meta name="author" content="hencework"/>
@@ -39,18 +39,6 @@ function sele(){
 });
 </script>
 </head>
-<?php
-if (!empty($_GET['btnalta1']))  {
-//activa el activo 
-$est=1;
-$var=$_GET['btnalta1'];
-$sql = " UPDATE movimiento set estado='$est' WHERE idMov='$var'";
-$resultado = $mysqli->query($sql); 
-
-}
-
-
-?>
 <body>  
   <!--Preloader-->
   <div class="preloader-it">
@@ -68,7 +56,7 @@ $resultado = $mysqli->query($sql);
         <!-- Title -->
           <div class="row heading-bg">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h5 align="center" class="txt-dark">Movimientos</h5>
+              <h5 align="center" class="txt-dark">Gestionar Movimientos</h5>
             </div>
           </div>
           <!-- /Title -->
@@ -122,18 +110,14 @@ $resultado = $mysqli->query($sql);
                           <tr >
                               <th  >N°</th>
                               <th >Nombre</th>
-                              <th >Opciones</th>
+                              <th class="text-center">Opciones</th>
                             </tr>
                         </thead>
                         
                         <tbody >
                           <?php
                             $extraer="SELECT * FROM movimiento";
-
-                            // $base=mysqli_select_db($con,'finanzas');
                             $ejecutar=mysqli_query($mysqli,$extraer);
-
-
                             while($ejecuta=mysqli_fetch_array($ejecutar))
                             {if (($ejecuta['estado'])==1) {
                             $cont=$cont+1;
@@ -142,13 +126,14 @@ $resultado = $mysqli->query($sql);
                                 <td><?php  echo $cont ?> </td>
                                 <td><?php echo $ejecuta['nombre']?></td>
                                 <td>
-                                  <form  action="editarMovimiento.php" method="post" class="form-register" > 
-
-                                    <button  type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idMov']?>" >Editar</button>
-                                  </form>
-                                  <form style=" margin-left: 100px; margin-top:-43px;" action="MovimientoInactivo.php" method="get" class="form-register" > 
-                                    <button  type="submit" class="btn btn-warning" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idMov'] ?>">Baja</button>
-                                  </form>
+                                 <div class="col-md-6 text-right">
+                                  <form   action="editarMovimiento.php" method="post" class="form-register" > 
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idMov']?>" ><i class="fa fa-edit"></i></button>
+                                    </form>	
+                              </div>
+                              <div class="col-md-6 text-left">
+                                  <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idMov']; ?>','Desea dar de baja al Movimiento','movimiento','0')"><i class="fa fa-arrow-circle-down"></i> </button>
+                              </div>
                                 </td>
                               </tr>
 

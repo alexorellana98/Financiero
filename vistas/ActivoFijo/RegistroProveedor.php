@@ -8,7 +8,7 @@ require 'conexion.php';
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Registrar Proveedor</title>
+  <title>Gestionar Proveedores</title>
   <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
   <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
   <meta name="author" content="hencework"/>
@@ -33,13 +33,13 @@ require 'conexion.php';
             });
         });
     </script>
-<script language="javascript">
-
- function sele(){
-  var cond= $("#condi").val();
-  if (cond==1) {
-     window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/RegistroProveedor.php";
-  }else{window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/RegistroProveedorInactivo.php";}
+<script src="../../asset/js/activoFijo.js"></script>
+	<script language="javascript">
+	  function sele(){
+	  var cond= $("#condi").val();
+	  if (cond==1) {
+	     ajax_act('','proveedor',cond);
+	  }else if(cond==0){ajax_act('','proveedor',cond);}
 
 }
  //funcion para que la tabla se llene dinamicamente
@@ -57,15 +57,6 @@ require 'conexion.php';
 });
 </script>
 </head>
-<?php
-if (!empty($_GET['btnalta1']))  {
-//activa el activo 
-$est=1;
-$var=$_GET['btnalta1'];
-$sql = " UPDATE proveedor set estado='$est' WHERE ide='$var'";
-$resultado = $mysqli->query($sql); 
-}
-?>
 <body>  
   <!--Preloader-->
   <div class="preloader-it">
@@ -83,7 +74,7 @@ $resultado = $mysqli->query($sql);
         <!-- Title -->
           <div class="row heading-bg">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-             <h3 align="center" >Registrar Proveedor</h3>
+             <h3 align="center" >Gestionar Proveedores</h3>
             </div>
           </div>
           <!-- /Title -->
@@ -106,10 +97,9 @@ $resultado = $mysqli->query($sql);
                   <div class="form-group">
 
                       <label for="condi">Estado :</label>
-                    <select class="form-control" data-live-search="true" id="condi" name="condi" onchange="sele()">
-                      <option></option> 
+                    <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
+                      <option>Seleccione</option> 
                       <option value="1" >Activo</option>
-                       
                       <option value="0">Inactivo </option>
                     </select>
                   </div>
@@ -131,7 +121,7 @@ $resultado = $mysqli->query($sql);
               <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                   <div class="table-wrap">
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="actualizar">
                       <table id="datable_1" class="table table-hover display  pb-30" >
                         <thead>
                          <tr >
@@ -143,7 +133,7 @@ $resultado = $mysqli->query($sql);
                             <th >Telefono</th>
                             <th >Correo</th>
                             <th >Observacion</th>
-                          <th >Opciones</th>
+                          <th WIDTH="130">Opciones</th>
                         </tr>
                         </thead>
                         
@@ -170,12 +160,14 @@ $resultado = $mysqli->query($sql);
                                 <td> <?php echo $ejecuta['correo']?></td>
                                 <td> <?php echo $ejecuta['observacion']?></td>
                                 <td>
-                                 <form  action="editarProveedor.php" method="post" class="form-register" > 
-                                  <button  type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['ide']?>" >Editar</button>
-                                  </form>
-                                  <form  style=" margin-left: 100px; margin-top:-43px;" action="RegistroProveedorInactivo.php" method="get" class="form-register" > 
-                                <button  type="submit" class="btn btn-warning" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['ide'] ?>>Baja</button>
-                                 </form>
+                                <div class="col-md-6" style="margin-right:0px; padding-left:0px; padding-right: 0px;">
+                                  <form   action="editarProveedor.php" method="post" class="form-register" > 
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['ide']?>" ><i class="fa fa-edit"></i></button>
+                                    </form>	
+                              </div>
+                              <div class="col-md-6">
+                                  <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['ide']; ?>','Desea dar de baja al Proveedor','proveedor','0')"><i class="fa fa-arrow-circle-down"></i> </button>
+                              </div>
                                 </td>
                               </tr>
 
@@ -350,7 +342,11 @@ $resultado = $mysqli->query($sql);
   <?php
 include "../Componentes/scripts.php";
 ?>
-  
+  <script>
+        $(function () {
+            $('.SEstado').select2()
+        });
+    </script>
 </body>
 
 </html>

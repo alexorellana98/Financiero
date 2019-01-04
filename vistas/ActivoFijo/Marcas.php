@@ -1,15 +1,13 @@
-
 <?php
 require 'conexion.php';
 //$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Doodle I Fast build Admin dashboard for any platform</title>
+  <title>Gestionar Marcas</title>
   <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
   <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
   <meta name="author" content="hencework"/>
@@ -41,18 +39,6 @@ require 'conexion.php';
 });
 </script>
 </head>
-<?php
-if (!empty($_GET['btnalta1']))  {
-//activa el activo 
-$est=1;
-$var=$_GET['btnalta1'];
-$sql = " UPDATE marca set estado='$est' WHERE idMarca='$var'";
-$resultado = $mysqli->query($sql); 
-
-}
-
-
-?>
 <body>  
   <!--Preloader-->
   <div class="preloader-it">
@@ -74,13 +60,8 @@ $resultado = $mysqli->query($sql);
             </div>
           </div>
           <!-- /Title -->
-        
-
         <!-- Row -->
             <div class="row">
-
-            
-                
                 <div class="col-md-3">
                   <br>
                   <div class="form-group">
@@ -119,38 +100,35 @@ $resultado = $mysqli->query($sql);
                 <div class="panel-body">
                   <div class="table-wrap">
                     <div class="table-responsive" id="actualizar">
-                      <table id="datable_1" class="table table-hover display  pb-30" >
-                        <thead>
+                      <table id="datable_1" class="table table-hover display  pb-30">
+                        <thead >
                           <tr >
-                            <th >N°</th>
-                            <th >Nombre</th>
-                            <th >Opciones</th>
+                            <th class="text-center">N°</th>
+                            <th class="text-center">Nombre</th>
+                            <th class="text-center">Opciones</th>
                           </tr>
                         </thead>
                         
-                        <tbody >
+                        <tbody class="text-center">
                           <?php
                               $extraer="SELECT * FROM marca";
                               $ejecutar=mysqli_query($mysqli,$extraer);
                               while($ejecuta=mysqli_fetch_array($ejecutar))
                               {if (($ejecuta['estado'])==1) {
                                 $cont=$cont+1;
-
                                   ?>  
                                 <tr>
                                   <td><?php  echo $cont ?> </td>
                                   <td><?php echo $ejecuta['nombre']?></td>
-                                  
                                   <td>
-                                  
-                                  <form  action="editarMarcas.php" method="post" class="form-register" > 
-                                    <button  type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idMarca']?>" >Editar</button>
-                                    </form>
-
-                                  <form style=" margin-left: 100px; margin-top:-43px;" action="MarcasInactivo.php" method="get" class="form-register" > 
-                                   <button  type="submit" class="btn btn-warning" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idMarca'] ?>>Baja</button>
-                                   </form>
-                               
+                                  <div class="col-md-6 text-right">
+                                  <form   action="editarMarcas.php" method="post" class="form-register" > 
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idMarca']?>" ><i class="fa fa-edit"></i></button>
+                                    </form>	
+                                  </div>
+                                  <div class="col-md-6 text-left">
+                                      <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idMarca']; ?>','Desea dar de baja la Marca','marca','0')"><i class="fa fa-arrow-circle-down"></i> </button>
+                                  </div>
                                  </td>
                                 </tr>
 

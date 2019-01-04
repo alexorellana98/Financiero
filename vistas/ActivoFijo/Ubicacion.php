@@ -1,14 +1,12 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Ubicacion</title>
+  <title>Gestionar Ubicaciones</title>
   <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
   <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
   <meta name="author" content="hencework"/>
@@ -16,19 +14,16 @@ require 'conexion.php';
   <?php
       include "../Componentes/estilos.php";
   ?>
-
+	<script src="../../asset/js/activoFijo.js"></script>
   <script language="javascript">
- 
  
  function sele(){
   var cond= $("#condi").val();
-  if (cond==1) {
-     window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Ubicacion.php";
-  }else{window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/UbicacionInactivo.php";}
+	  if (cond==1) {
+	     ajax_act('','ubicacion',cond);
+	  }else if(cond==0){ajax_act('','ubicacion',cond);}
 
 }
-  
-
     $(document).ready(function () {
    $('#entradafilter').keyup(function () {
       var rex = new RegExp($(this).val(), 'i');
@@ -42,15 +37,6 @@ require 'conexion.php';
 });
 </script>
 </head>
-<?php
-if (!empty($_GET['btnalta1']))  {
-//activa el activo 
-$est=1;
-$var=$_GET['btnalta1'];
-$sql = " UPDATE ubicacion set estado='$est' WHERE idUb='$var'";
-$resultado = $mysqli->query($sql); 
-}
-?>
 <body>  
   <!--Preloader-->
   <div class="preloader-it">
@@ -68,7 +54,7 @@ $resultado = $mysqli->query($sql);
         <!-- Title -->
           <div class="row heading-bg">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Ingresar Ubicación</h3>
+              <h3 align="center" >Gestionar Ubicaciones</h3>
             </div>
           </div>
           <!-- /Title -->
@@ -76,9 +62,6 @@ $resultado = $mysqli->query($sql);
 
         <!-- Row -->
             <div class="row">
-
-            
-                
                 <div class="col-md-3">
                   <br>
                   <div class="form-group">
@@ -91,10 +74,9 @@ $resultado = $mysqli->query($sql);
                   <div class="form-group">
 
                       <label for="condi">Estado :</label>
-                    <select class="form-control" data-live-search="true" id="condi" name="condi" onchange="sele()">
-                      <option></option> 
+                    <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
+                      <option>Seleccione</option> 
                       <option value="1" >Activo</option>
-                       
                       <option value="0">Inactivo </option>
                     </select>
                   </div>
@@ -116,46 +98,37 @@ $resultado = $mysqli->query($sql);
               <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                   <div class="table-wrap">
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="actualizar">
                       <table id="datable_1" class="table table-hover display  pb-30" >
                         <thead>
                           <tr >
                               <th  WIDTH="50" HEIGHT='9' >N°</th>
                               <th >Código</th>
                               <th >Nombre</th>
-                              <th  WIDTH="40" HEIGHT='9'>Opciones</th>
+                              <th  WIDTH="170" HEIGHT='9'>Opciones</th>
                             </tr>
                         </thead>
-                        
                         <tbody >
                           <?php
                             $extraer="SELECT * FROM ubicacion";
-
-                             //$base=mysqli_select_db($con,'finanzas');
                             $ejecutar=mysqli_query($mysqli,$extraer);
-
-
                             while($ejecuta=mysqli_fetch_array($ejecutar))
                             { if (($ejecuta['estado'])==1) {
                               $cont=$cont+1;
-                              
-
                                 ?>  
                               <tr>
                                 <td><?php  echo $cont ?> </td>
                                 <td><?php echo $ejecuta['codU']?></td>
-                              
                                 <td id="nam" name="nam"><?php echo $ejecuta['nombre']?></td>
-                              
-
                                 <td>
-                                <form  action="editarUbicacion.php" method="post" class="form-register" > 
-                                  <button  type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idUb']?>" >Editar</button>
-                                </form>
-                                  
-                                 <form style="margin-left: 100px; margin-top:-43px;" action="UbicacionInactivo.php" method="get" class="form-register" > 
-                                 <button  type="submit" class="btn btn-warning" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idUb'] ?>>Baja</button>
-                                 </form>
+                                 <div class="col-md-6 text-right">
+                                  <form   action="editarUbicacion.php" method="post" class="form-register" > 
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idUb']?>" ><i class="fa fa-edit"></i></button>
+                                    </form>	
+                              </div>
+                              <div class="col-md-6 text-left">
+                                  <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idUb']; ?>','Desea dar de baja a la Ubicación','ubicacion','0')"><i class="fa fa-arrow-circle-down"></i> </button>
+                              </div>
                                 </td>
                               </tr>
 
@@ -273,7 +246,11 @@ $resultado = $mysqli->query($sql);
   <?php
 include "../Componentes/scripts.php";
 ?>
-  
+  <script>
+        $(function () {
+            $('.SEstado').select2()
+        });
+    </script>
 </body>
 
 </html>
