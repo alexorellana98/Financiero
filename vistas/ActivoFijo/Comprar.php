@@ -1,9 +1,6 @@
-
-
 <?php
 require 'conexion.php';
 //$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,14 +15,15 @@ require 'conexion.php';
   <?php
       include "../Componentes/estilos.php";
   ?>
+	<script src="../../asset/js/activoFijo.js"></script>
 
   <script language="javascript">
 
 function sele(){
   var cond= $("#condi").val();
-  if (cond==1) {
-     window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Comprar.php";
-  }else{window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/comprarInactivo.php";}
+	  if (cond==1) {
+	     ajax_act('','compraactivo',cond);
+	  }else if(cond==0){ajax_act('','compraactivo',cond);}
 
 }
 
@@ -49,22 +47,6 @@ f
 });
 </script>
 </head>
-<?php
-if (!empty($_GET['btnalta1']))  {
-//activa el activo 
-$est=1;
-$var=$_GET['btnalta1'];
-$sql = " UPDATE activo set estado='$est' WHERE idAc='$var'";
-$resultado = $mysqli->query($sql); 
-
-
-$est2=1;
-$var2=$_GET['btnalta1'];
-$sql2 = " UPDATE compras set estado='$est2' WHERE codAct='$var2'";
-$resultado2 = $mysqli->query($sql2); 
-}  
-
-?>
 <body>  
   <!--Preloader-->
   <div class="preloader-it">
@@ -86,11 +68,6 @@ $resultado2 = $mysqli->query($sql2);
             </div>
           </div>
           <!-- /Title -->
-        
-
-
-        
-                
                 <div class="col-md-3">
                   <br>
                   <div class="form-group">
@@ -103,8 +80,8 @@ $resultado2 = $mysqli->query($sql2);
                   <div class="form-group">
 
                       <label for="condi">Estado :</label>
-                    <select class="form-control" data-live-search="true" id="condi" name="condi" onchange="sele()">
-                      <option></option> 
+                    <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
+                      <option>Seleccione</option> 
                       <option value="1" >Activo</option>
                        
                       <option value="0">Inactivo </option>
@@ -124,16 +101,16 @@ $resultado2 = $mysqli->query($sql2);
               <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                   <div class="table-wrap">
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="actualizar">
                       <table id="datable_1" class="table table-hover display  pb-30" >
                         <thead>
                           <tr >
-                              <th  WIDTH="50" HEIGHT='9' >N°</th>
+                              <th  WIDTH="30" HEIGHT='9' >N°</th>
                               <th >Código</th>
                               <th >Descripción</th>
                               <th >Categoria</th>
                               <th >Subcategoria</th>
-                              <th  WIDTH="40" HEIGHT='9'>Opciones</th>
+                              <th >Opciones</th>
                             </tr>
                         </thead>
                         
@@ -171,34 +148,15 @@ $resultado2 = $mysqli->query($sql2);
                                  
                                  ?>
                                   <td> <?php echo $fila1['nombre'];?></td>
-                                  
-                                  <td>
-                                  <?php
-
-                              if ($ejecuta['estadoBoton'] ==1) {
-                                
-                                  ?>
-                                 
-                                    <form  action="vistaDetalleCompra.php" method="get" class="form-register" > 
-                                   <button  type="submit" class="btn btn-danger" id="btnId" name="btnId" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idAc'] ?>>Ver</button>
+                                  <td class="text-center">
+                                  <div class="col-md-6 text-center">
+                                     <form  action="vistaDetalleCompra.php" method="get" class="form-register" > 
+                                   <button  type="submit" class="btn btn-danger" id="btnId" name="btnId" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idAc'] ?>" ><i class="fa fa-info"></i></button>
                                    </form>
-                                   <form style=" margin-left: 100px; margin-top:-43px;"  action="ComprarInactivo.php" method="get" class="form-register" > 
-                                   <button  type="submit" class="btn btn-warning" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idAc'] ?>>Baja</button>
-                                   </form>
-
-                                   <?php 
-                              }else{
-                                   ?>
-                                    
-                              <form  action="vistaDetalleCompra.php" method="get" class="form-register" > 
-                                   <button  type="submit" class="btn btn-danger" id="btnId" name="btnId" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idAc'] ?>>Ver</button>
-                                   </form>
-                                    <form  style=" margin-left: 100px; margin-top:-43px;" action="ComprarInactivo.php" method="get" class="form-register" > 
-                                   <button  type="submit" class="btn btn-warning" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idAc'] ?>>Baja</button>
-                                   </form>
-
-                                   <?php }?>
-
+                                  </div>
+                                  <div class="col-md-6 text-center">
+                                      <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idAc']; ?>','Desea dar de baja al Activo','compraactivo','0')"><i class="fa fa-arrow-circle-down"></i> </button>
+                                  </div>  
                                   </td>
                                 </tr>
 
@@ -341,7 +299,11 @@ $resultado2 = $mysqli->query($sql2);
   <?php
 include "../Componentes/scripts.php";
 ?>
-  
+  <script>
+        $(function () {
+            $('.SEstado').select2()
+        });
+    </script>
 </body>
 
 </html>

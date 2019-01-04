@@ -20,6 +20,7 @@ function ajax_act(str,tbld, estado) {
 }
 
 function ajax_baja_alta(str,id, estado,tbld) {
+
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
     }
@@ -34,7 +35,7 @@ function ajax_baja_alta(str,id, estado,tbld) {
             ajax_act('',tbld,estado);
         }
     }
-    xmlhttp.open("post", "../../asset/ajax/darBajaAlta.php?estado=" + estado+"&id="+id, true);
+    xmlhttp.open("post", "../../asset/ajax/darBajaAlta.php?estado=" + estado+"&id="+id+"&tbld="+tbld, true);
     xmlhttp.send();
 }
 

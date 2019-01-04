@@ -39,15 +39,6 @@ require 'conexion.php';
 });
 </script>
 </head>
-<?php
-if (!empty($_GET['btnalta1']))  {
-//activa el activo 
-$est=1;
-$var=$_GET['btnalta1'];
-$sql = " UPDATE subcategoria set estado='$est' WHERE idSub='$var'";
-$resultado = $mysqli->query($sql); 
-}
-?>
 <body>  
   <!--Preloader-->
   <div class="preloader-it">
@@ -69,13 +60,8 @@ $resultado = $mysqli->query($sql);
             </div>
           </div>
           <!-- /Title -->
-        
-
         <!-- Row -->
             <div class="row">
-
-            
-                
                 <div class="col-md-3">
                   <br>
                   <div class="form-group">
@@ -91,7 +77,6 @@ $resultado = $mysqli->query($sql);
                     <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
                       <option>Seleccione</option> 
                       <option value="1" >Activo</option>
-                       
                       <option value="0">Inactivo </option>
                     </select>
                   </div>
@@ -147,16 +132,15 @@ $resultado = $mysqli->query($sql);
                               <td><?php echo $ejecuta['codigo']?></td>
                               <td><?php echo $ejecuta['nombre']?></td>
                            
-                              <td>
-                                 <form  action="editarSubcategoria.php" method="post" class="form-register" > 
-                               &nbsp;
-                          &nbsp; <button  type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idSub']?>" >Editar</button>
-                                </form>
-                           
-                              <form style="margin-left: 100px; margin-top:-43px;" action="subcategoriaInactivo.php" method="get" class="form-register" > 
-                               &nbsp;
-                          &nbsp;<button  type="submit" class="btn btn-warning" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idSub'] ?>>Baja</button>
-                               </form>
+                              <td class="text-center">
+                                <div class="col-md-6 text-center">
+                                  <form   action="editarSubcategoria.php" method="post" class="form-register" > 
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idSub']?>" ><i class="fa fa-edit"></i></button>
+                                    </form>	
+                              </div>
+                              <div class="col-md-6 text-right">
+                                  <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idSub']; ?>','Desea dar de baja a la Sub-Categoria','subcategoria','0')"><i class="fa fa-arrow-circle-down"></i> </button>
+                              </div>                            
                               </td>
                             </tr>
 

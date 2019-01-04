@@ -81,18 +81,20 @@ if($opcion==="categoria"){
 		  <td><?php  echo $cont ?> </td>
 		  <td><?php echo $ejecuta['codigo']?></td>
 		  <td><?php echo $ejecuta['nombre']?></td>
-
-		  <td>
-			 <form  action="editarSubcategoria.php" method="post" class="form-register" > 
-		   &nbsp;
-	  &nbsp; <button  type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idSub']?>" >Editar</button>
-			</form>
-
-		  <form style="margin-left: 100px; margin-top:-43px;" action="subcategoriaInactivo.php" method="get" class="form-register" > 
-		   &nbsp;
-	  &nbsp;<button  type="submit" class="btn btn-warning" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idSub'] ?>>Baja</button>
-		   </form>
-		  </td>
+            <td class="text-center">
+             <?php if($est==='1'){ ?>
+            <div class="col-md-6 text-center">
+              <form   action="editarSubcategoria.php" method="post" class="form-register" > 
+                <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idSub']?>" ><i class="fa fa-edit"></i></button>
+                </form>	
+          </div>
+          <div class="col-md-6 text-right">
+              <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idSub']; ?>','Desea dar de baja a la Sub-Categoria','subcategoria','0')"><i class="fa fa-arrow-circle-down"></i> </button>
+          </div>
+          <?php }else if($est==='0'){ ?>
+             <button  type="submit" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idSub']; ?>','Desea dar de baja a la Sub-Categoria','subcategoria','1')"><i class="fa fa-arrow-circle-up"></i>  </button>
+        <?php } ?>                           
+          </td>
 		</tr>
 
 	  <?php
@@ -179,5 +181,70 @@ if($opcion==="categoria"){
                           }
                           ?> 
                         </tbody>
-	<?php } ?>
+	<?php } if($opcion=="compraactivo"){ ?>
+	 <thead>
+                          <tr >
+                              <th  WIDTH="50" HEIGHT='9' >N°</th>
+                              <th >Código</th>
+                              <th >Descripción</th>
+                              <th >Categoria</th>
+                              <th >Subcategoria</th>
+                              <th >Opciones</th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody >
+                            <?php
+                              $extraer="SELECT * FROM activo";
+                              $ejecutar=mysqli_query($mysqli,$extraer);
+                              while($ejecuta=mysqli_fetch_array($ejecutar))
+                              {
+                               if (($ejecuta['estado'])==$est) {
+                                $cont1=$cont1+1;
+                                  ?>  
+                                <tr>
+                                  <td><?php  echo $cont1 ?> </td>
+                                  <td><?php  echo $ejecuta['codAct'] ?> </td>
+                                  <td><?php echo $ejecuta['descrip']?></td>
+                              <?php
+                                  $aux=$ejecuta['idCat'];
+                                 $sentencia1 = "SELECT * FROM categoria WHERE idCat=$aux"; 
+                                 $ejecutar1=mysqli_query($mysqli,$sentencia1);
+                                 $fila = mysqli_fetch_assoc($ejecutar1);
+                                 
+                                 ?>
+                                  <td><?php echo $fila['nombre'];?></td>
+                                  <?php
+                                  $aux2=$ejecuta['idSub'];
+                                 $sentencia2 = "SELECT * FROM subcategoria WHERE idSub=$aux2"; 
+                                 $ejecutar2=mysqli_query($mysqli,$sentencia2);
+                                 $fila1 = mysqli_fetch_assoc($ejecutar2);
+                                 
+                                 ?>
+                                  <td> <?php echo $fila1['nombre'];?></td>
+                                  
+                                <td class="text-center">
+                                 <?php if($est==="1"){ ?>
+                                  <div class="col-md-6 text-center">
+                                     <form  action="vistaDetalleCompra.php" method="get" class="form-register" > 
+                                   <button  type="submit" class="btn btn-danger" id="btnId" name="btnId" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idAc'] ?>" ><i class="fa fa-info"></i></button>
+                                   </form>
+                                  </div>
+                                  <div class="col-md-6 text-center">
+                                      <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idAc']; ?>','Desea dar de baja al Activo','compraactivo','0')"><i class="fa fa-arrow-circle-down"></i> </button>
+                                  </div> 
+                                  <?php }else if($est==='0'){ ?>
+                                      <div class="col-md-12 text-center">
+                                      <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idAc']; ?>','Desea dar de alta al Activo','compraactivo','1')"><i class="fa fa-arrow-circle-up"></i> </button>
+                                  </div> 
+                                  <?php } ?> 
+                                  </td>
+                                </tr>
+
+                              <?php
+                              }
+                              }
+                              ?> 
+                        </tbody>
+            <?php } ?>
 	</table>

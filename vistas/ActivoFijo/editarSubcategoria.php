@@ -79,7 +79,7 @@ function envia(){
               <div class="col-lg-8 col-md-offset-3">
                  <label for="nomsubcatego" >Elija una categoria:</label>
               <br>
-               <select class="form-control" data-live-search="true" id=" nomsubcatego" name="nomsubcatego">
+               <select class="form-control SCategoria" data-live-search="true" id=" nomsubcatego" name="nomsubcatego" style="padding-bottom: 25px;">
                <option></option>
 
                                    <?php
@@ -105,7 +105,7 @@ function envia(){
               </select>                 
 
               </div>
-              <div class="col-lg-8 col-md-offset-3">
+              <div class="col-lg-8 col-md-offset-3" style="padding-top:20px;">
                 <label for="codsub2" >Código:</label>
                 <div class="input-group">
                 <input type="text" class="form-control" id="codsub2" name="codsub2" placeholder="Ejemplo : 0001" value="<?php echo $fila['codigo'];?>">
@@ -162,7 +162,11 @@ function envia(){
   <?php
 include "../Componentes/scripts.php";
 ?>
-  
+ <script>
+        $(function () {
+            $('.SCategoria').select2()
+        });
+    </script> 
 </body>
 
 </html>
