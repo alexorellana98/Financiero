@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +66,6 @@ function envia(){
             <div class="panel panel-default card-view">
               
                <form  action="editar.php" method="post" class="form-register" > 
-       <div class="input-group">
    
  <div class="col-lg-12 col-md-offset-2">
  
@@ -236,7 +233,6 @@ function envia(){
 
 
 <input  type="hidden" class="form-control" id="ideC" name="ideC" placeholder="Nombre" value="<?php echo $_POST['btnEditar'];?>"> 
-
   <div class="col-lg-12 col-md-offset-5">
 <br>
 <br> 
@@ -244,8 +240,6 @@ function envia(){
 <button type="submit" class="btn btn-success">Guardar</button>
 <button type="button" class="btn btn-success" data-dismiss="modal" onclick="envia()">Cancelar</button>
 </div>
-</div>
-
 </div>
 </form>
             </div>  

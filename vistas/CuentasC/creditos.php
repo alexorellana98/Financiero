@@ -21,29 +21,8 @@ require 'conexion.php';
         window.location="http://localhost/Financiero/siccif/vistas/CuentasC/creditos.php";
       }
     }
-    
-    $(document).ready(function () {
-      $('#entradafilter').keyup(function () {
-        var rex = new RegExp($(this).val(), 'i');
-          $('.contenidobusqueda tr').hide();
-          $('.contenidobusqueda tr').filter(function () {
-              return rex.test($(this).text());
-          }).show();
-
-          })
-
-  });
   </script>
 </head>
-<?php
-if (!empty($_GET['btnalta1']))  {
-//activa el activo 
-$est=1;
-$var=$_GET['btnalta1'];
-$sql = " UPDATE categoria set estado='$est' WHERE idCat='$var'";
-$resultado = $mysqli->query($sql); 
-}
-?>
 <body>  
   <!--Preloader-->
   <div class="preloader-it">
@@ -69,7 +48,7 @@ $resultado = $mysqli->query($sql);
                 <div class="col-md-3">
                   <br>
                   <div class="form-group">
-                    <button type="button"  class="btn btn-success" data-toggle="modal" data-target="#ModalRegistarCredito"  >Ingresar Credito</button>
+                    <button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalRegistarCredito"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Ingresar Credito</span></button>
                   </div>
                 </div>
 
@@ -156,18 +135,25 @@ $resultado = $mysqli->query($sql);
     <div class="color-moduloInventario">
       <div class="modal-header" >
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <div class="col-md-offset-5">
-        <h4 class="modal-title">Registrar Credito</h4>
-      </div>
+    </div>
        <div class="modal-body">
-
- <div class="row">
+<div class="panel panel-success card-view">
+       
+								<div class="panel-heading text-center">
+									<div class="pull-center" >
+										<h2 class="panel-title panel-center txt-light">Registrar Credito</h2>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="panel-wrapper collapse in">
+									<div class="panel-body">
+									<div class="row">
   <div class="col-md-12">
 
 
 <div class="col-md-3 ">
 
-<img src="img/proveedor.png" class="img-rounded" alt="Cinque Terre" width="300" height="250">
+<img src="../../img/credito.png" class="img-rounded" alt="Cinque Terre" width="300" height="250">
 </div>
 
 <div class="col-md-8 col-md-offset-1">
@@ -224,7 +210,7 @@ $resultado = $mysqli->query($sql);
 <div class="form-group ">
   <label for="gara">Tipo de Garantía:</label>
   <br>
-  <select class="form-control" data-live-search="true" name="gara" id="gara" >
+  <select class="form-control STipoGarantia" data-live-search="true" name="gara" id="gara" >
     <option value="Aval">Aval</option>
     <option value="Hipotecaria">Hipotecaria</option>
   </select>  
@@ -235,16 +221,20 @@ $resultado = $mysqli->query($sql);
 </div>
 </div> 
  </div>
+									</div>
+								</div>
+							</div>
+		
+ 
   
  <div class="modal-footer">
-
-        <button type="submit" class="btn btn-success" >Guardar</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+        <button type="submit"  class="btn btn-info btn-lable-wrap left-label"> <span class="btn-label"><i class="fa fa-save"></i> </span><span class="btn-text">Guardar</span></button>
+        <button type="button"  class="btn btn-warning btn-lable-wrap left-label" data-dismiss="modal"> <span class="btn-label"><i class="fa fa-ban"></i> </span><span class="btn-text">Cerrar</span></button>
         </div>
       </div>
-      </form>
       </div>
  </div>
+ </form>
  </div>
 
 <!--Fin modal Registrar Proveedor-->
@@ -256,13 +246,6 @@ $resultado = $mysqli->query($sql);
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
         <!-- /Footer -->
       </div>
     </div>
@@ -275,7 +258,11 @@ $resultado = $mysqli->query($sql);
   <?php
 include "../Componentes/scripts.php";
 ?>
-  
+  <script>
+        $(function () {
+            $('.STipoGarantia').select2()
+        });
+    </script>
 </body>
 
 </html>

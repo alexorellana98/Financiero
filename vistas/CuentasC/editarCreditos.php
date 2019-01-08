@@ -1,7 +1,6 @@
 <?php
 require 'conexion.php';
 //$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,23 +8,14 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Creditos</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
   
   <?php
       include "../Componentes/estilos.php";
   ?>
-
   <script language="javascript">
- 
-
-
 function envia(){
    window.location="http://localhost/Financiero/siccif/vistas/CuentasC/creditos.php";
   }
-
-
 </script>
 </head>
 <?php 
@@ -46,27 +36,19 @@ function envia(){
   <?php
   include "../Componentes/menu.php";
   ?>  
-
     <!-- Main Content -->
     <div class="page-wrapper">
-            <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Editar Credito</h3>
-            </div>
-          </div>
-          <!-- /Title -->
-      
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-               <form  action="editar.php" method="post" class="form-register" > 
+       <div class="panel panel-warning card-view">
+       
+								<div class="panel-heading text-center">
+									<div class="pull-center" >
+										<h3 class="panel-title panel-center txt-light">Editar Credito</h3>
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								<div class="panel-wrapper collapse in">
+									<div class="panel-body">
+										 <form  action="editar.php" method="post" class="form-register" > 
                 <div class="col-md-8 col-md-offset-1">
                   <div class="col-md-6 ">
                     <div class="form-group">
@@ -78,8 +60,6 @@ function envia(){
                         </div>
                       </div>
                     </div>
-
-
                     <div class="form-group">
                       <label for="minip" >Mínimo a Prestar:</label>
                       <div class="input-group">
@@ -88,8 +68,6 @@ function envia(){
                         </div>
                       </div>
                     </div>
-
-
                     <div class="form-group">
                       <label for="inter">Interes Anual(%):</label>
                       <div class="input-group">
@@ -100,7 +78,6 @@ function envia(){
                   </div>
                   
                   <div class="col-md-6">
-
                     <div class="form-group">
                       <label for="pmax" >Plazo Máximo:</label>
                       <div class="input-group">
@@ -108,8 +85,6 @@ function envia(){
                         <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
                       </div>
                     </div>
-
-
                     <div class="form-group">
                       <label for="maxp">Máximo a Prestar:</label>
                       <div class="input-group">
@@ -117,11 +92,10 @@ function envia(){
                         <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
                       </div>
                     </div>
-
                     <div class="form-group ">
                       <label for="gara">Tipo de Garantía:</label>
                       <br>
-                      <select class="form-control" data-live-search="true" name="gara" id="gara" value="<?php echo $fila['garantia'];?>">
+                      <select class="form-control STipoGarantia" data-live-search="true" name="gara" id="gara" value="<?php echo $fila['garantia'];?>">
                         <option ></option>
                         <option value="Aval">Aval</option>
                         <option value="Hipotecaria">Hipotecaria</option>
@@ -144,44 +118,29 @@ function envia(){
                   </div>
                 </div>
               </form>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-                    
-       <script>
+									</div>
+								</div>
+							</div>
+							
+        <!-- Footer -->
+        <!-- /Footer -->
+      </div>
+    </div>
+  <?php
+include "../Componentes/scripts.php";
+?>
+ <script>
         window.onload=function(){
           var de=<?php echo json_encode($garanti); ?>;
           document.getElementById('gara').value=de;
         }
       </script>
-
-
-        
-      </div>
-    <!-- /#wrapper -->
-        <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
-        <!-- /Footer -->
-      </div>
-    </div>
-        <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
-  
-  
-  <?php
-include "../Componentes/scripts.php";
-?>
 <script src="../dist/js/pages/privilegios.js"></script>
-  
+  <script>
+        $(function () {
+            $('.STipoGarantia').select2()
+        });
+    </script>
 </body>
 
 </html>

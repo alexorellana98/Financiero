@@ -44,27 +44,18 @@ function envia(){
   <?php
   include "../Componentes/menu.php";
   ?>  
-
     <!-- Main Content -->
     <div class="page-wrapper">
-            <div class="container-fluid">
+        <div class="container-fluid">
         <!-- Title -->
           <div class="row heading-bg">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <h3 align="center" >Editar Categoria</h3>
             </div>
           </div>
-          <!-- /Title -->
-
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
         <div class="row">
           <div class="col-sm-12">
             <div class="panel panel-default card-view">
-              
                <form  action="editar.php" method="post" class="form-register" > 
        <div class="input-group">
    
@@ -105,36 +96,18 @@ function envia(){
 
 </div>
 </form>
-
             </div>  
           </div>
         </div>
         <!-- /Row -->
-                    
-                  
-
-        
-        <div class="col-md-1"></div>
-
-
         
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
   
   
   <?php
