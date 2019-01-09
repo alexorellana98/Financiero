@@ -18,9 +18,8 @@ require 'conexion.php';
 
   <script language="javascript">
 function envia(){
-   window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.php";
+   window.location="RegistroCliente.php";
   }
-
 </script>
 </head>
 
@@ -38,27 +37,20 @@ function envia(){
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Detalles</h3>
+            <div class="panel panel-info card-view" style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title txt-light"><i class="fa fa-info-circle"></i>   Detalles</h3>
+                </div>
+                <div class="clearfix"></div>
             </div>
-          </div>
-          <!-- /Title -->
-      
-                
-
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              
-              <div class="panel-wrapper collapse in">
+            <div class="panel-wrapper collapse in">
                 <div class="panel-body">
+                <div class="row text-center">
+                    <div class="button-group">
+<button type="submit"  class="btn btn-danger" onclick="envia()"><i class="fa fa-mail-reply"></i>  Atras</button>
+</div>
+                </div>
                   <div class="table-wrap">
                     <div class="table-responsive">
                       <table id="datable_1" class="table table-hover display  pb-30" >
@@ -146,44 +138,30 @@ function envia(){
 
   <tr>
     <td>Ver prestamos:</td>
-    <td><form   action="verPrestamosCliente.php" method="get" class="form-register" > 
-     <button  type="submit" class="btn btn-danger" id="btnPre" name="btnPre" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $fila1['idCliente'] ?>>Ver</button>
-     </form></td>
+    <td>
+    <div class="col-md-2">
+        <form action="verPrestamosCliente.php" method="get" class="form-register">
+                <button type="submit"  class="btn btn-success " id="btnPre" name="btnPre" value="<?php echo $fila1['idCliente']; ?>" style="width: 110%;"><i class="glyphicon glyphicon-eye-open"> </i>    Ver</button>
+            </form>
+    </div>
+    </td>
   </tr>
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>  
-          </div>
+            </div>
         </div>
-        <!-- /Row -->
-                    
-                  
-
-        
-        <div class="col-md-1"></div>
-
-
-        
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
 
-    </div>
     <!-- /#wrapper -->
   
   

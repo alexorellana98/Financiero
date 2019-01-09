@@ -38,11 +38,12 @@ function envia(){
   ?>  
     <!-- Main Content -->
     <div class="page-wrapper">
-       <div class="panel panel-warning card-view">
+      <div class="container-fluid">
+       <div class="panel panel-warning card-view" style="margin-top: 20px;">
        
 								<div class="panel-heading text-center">
 									<div class="pull-center" >
-										<h3 class="panel-title panel-center txt-light">Editar Credito</h3>
+										<h3 class="panel-title panel-center txt-light"><i class="fa fa-edit"></i>  Editar Credito</h3>
 									</div>
 									<div class="clearfix"></div>
 								</div>
@@ -112,8 +113,9 @@ function envia(){
                     <br>
                     <br> 
                     <div class="button-group">
-                      <button type="submit" class="btn btn-success">Guardar</button>
-                      <button type="button"  class="btn btn-success" data-dismiss="modal" onclick="envia()">Cancelar</button>
+                     <button type="submit"  class="btn btn-info btn-lable-wrap left-label"> <span class="btn-label"><i class="fa fa-save"></i> </span><span class="btn-text">Guardar</span></button>
+                        <button type="button"  class="btn btn-danger btn-lable-wrap left-label" data-dismiss="modal" onclick="envia()"> <span class="btn-label"><i class="fa fa-ban"></i> </span><span class="btn-text">Cerrar</span></button>
+                        
                     </div>
                   </div>
                 </div>
@@ -123,7 +125,9 @@ function envia(){
 							</div>
 							
         <!-- Footer -->
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
+        </div>
       </div>
     </div>
   <?php

@@ -7,10 +7,6 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Clientes</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
-  
   <?php
       include "../Componentes/estilos.php";
   ?>
@@ -45,44 +41,50 @@ function envia(){
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" id="titulo">Clientes</h3>
+            <div class="panel panel-primary card-view" style="margin-top: 20px;">
+                <div class="panel-heading text-center">
+                    <div class="pull-center">
+                        <h3 class="panel-title txt-light" id="titulo">Clientes</h3>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-2">
+    <div class="col-md-4">
+        <br>
+        <div class="form-group">
+           <button class="btn btn-primary btn-lable-wrap left-label" onclick="envia()"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Ingresar Nuevo Cliente</span></button>
+        </div>
+    </div>
+    <div class="col-md-2 ">
+        <div class="form-group">
+            <label for="condi">Estado :</label>
+            <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+                <option value="2">Todos</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="condi">Cartera:</label>
+            <select class="form-control SCartera" data-live-search="true" id="condi2" name="condi2" onchange="sele()" style="width: 100%;">
+                <option value="0">Normales</option>
+                <option value="1">Morosos</option>
+                <option value="2">Incobrables</option>
+                <option value="3">Todos los clientes</option>
+            </select>
+        </div>
+    </div>
+</div>
+                    </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- /Title -->
-          <div class="col-md-10 col-md-offset-2">
- <div class="col-md-3">
-<br>
- <div class="form-group">  
-<button type="button"  class="btn btn-success " onclick="envia()">Registrar Nuevo Cliente</button>
-</div>
-</div>
-
-<div class="col-md-2 ">
-<div class="form-group">
-<label for="condi">Estado :</label>
-<select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
-<option value="1" >Activo</option>
-<option value="0">Inactivo</option>
-<option value="2">Todos</option>
-</select>
-</div>
-</div> 
-<div class="col-md-4">
-<div class="form-group">
-
-  <label for="condi">Cartera:</label>
- <select class="form-control SCartera" data-live-search="true" id="condi2" name="condi2" onchange="sele()" style="width: 100%;">
-<option value="0" >Normales</option>
-<option value="1">Morosos</option>
-<option value="2">Incobrables</option>
-<option value="3">Todos los clientes</option>
-</select>
-</div>
-</div> 
-</div>
+          
                     <?php
 
                     $cont=0;
@@ -105,7 +107,6 @@ function envia(){
           </div>
         </div>
         <!-- /Row -->
-        <div class="col-md-1"></div> 
       </div>
     <!-- /#wrapper -->
        
@@ -138,15 +139,9 @@ function envia(){
         
         
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+       <?php  include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
-      </div>
+        
     </div>
     </div>
   <?php

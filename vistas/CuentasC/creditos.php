@@ -7,9 +7,6 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Creditos</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
   <?php
       include "../Componentes/estilos.php";
   ?>
@@ -18,7 +15,7 @@ require 'conexion.php';
     function sele(){
       var cond= $("#condi").val();
       if (cond==1) {
-        window.location="http://localhost/Financiero/siccif/vistas/CuentasC/creditos.php";
+        window.location="creditos.php";
       }
     }
   </script>
@@ -37,33 +34,27 @@ require 'conexion.php';
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Gestionar Creditos</h3>
+            <div class="panel panel-primary card-view " style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i>  Gestionar  Credito</h3>
+                </div>
+                <div class="clearfix"></div>
             </div>
-          </div>
-          <!-- /Title -->
-      
-                <div class="col-md-3">
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                 <?php
+                    $cont=0;
+                    ?>
+                <div class="row">
+                    <div class="col-md-3">
                   <br>
                   <div class="form-group">
                     <button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalRegistarCredito"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Ingresar Credito</span></button>
                   </div>
                 </div>
-
-                
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              
-              <div class="panel-wrapper collapse in">
-                <div class="panel-body">
+                    </div>
+                    <div class="row">
                   <div class="table-wrap">
                     <div class="table-responsive">
                       <table id="datable_1" class="table table-hover display  pb-30" >
@@ -115,16 +106,12 @@ require 'conexion.php';
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>  
-          </div>
+                </div>
+            </div>
         </div>
-        <!-- /Row -->
-                    
-                  
+           
 
- 
-       <!--Modal  Registrar Proveedor-->
+       <!--Modal  Registrar -->
 
 <div id="ModalRegistarCredito" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
@@ -133,14 +120,12 @@ require 'conexion.php';
 <form  action="insert.php" method="post" class="form-register" > 
     <div class="modal-content">
     <div class="color-moduloInventario">
-      <div class="modal-header" >
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-    </div>
        <div class="modal-body">
 <div class="panel panel-success card-view">
        
 								<div class="panel-heading text-center">
 									<div class="pull-center" >
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
 										<h2 class="panel-title panel-center txt-light">Registrar Credito</h2>
 									</div>
 									<div class="clearfix"></div>
@@ -229,7 +214,7 @@ require 'conexion.php';
   
  <div class="modal-footer">
         <button type="submit"  class="btn btn-info btn-lable-wrap left-label"> <span class="btn-label"><i class="fa fa-save"></i> </span><span class="btn-text">Guardar</span></button>
-        <button type="button"  class="btn btn-warning btn-lable-wrap left-label" data-dismiss="modal"> <span class="btn-label"><i class="fa fa-ban"></i> </span><span class="btn-text">Cerrar</span></button>
+        <button type="button"  class="btn btn-danger btn-lable-wrap left-label" data-dismiss="modal"> <span class="btn-label"><i class="fa fa-ban"></i> </span><span class="btn-text">Cerrar</span></button>
         </div>
       </div>
       </div>
@@ -246,6 +231,7 @@ require 'conexion.php';
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>

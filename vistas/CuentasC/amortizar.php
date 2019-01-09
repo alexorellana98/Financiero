@@ -9,9 +9,6 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Amortizar</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
 
   <?php
       include "../Componentes/estilos.php";
@@ -71,42 +68,25 @@ require 'conexion.php';
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-
-          <!-- /Title -->
-                <div class="">
-                  <div class="container">
-                    <div class="col-md-12">
-                      <div class="row">
-                        <div class="col-xs-12 col-sm-8 col-md-9 col-lg-12 page-header">
-                          <h3 align="center" style="color:#000" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amortización de Prestamo</h3>
-                          <h3 align="center" >&nbsp;&nbsp;Cliente: <?php echo $fila1['nombre']." ".$fila1['apellido'] ?></h3>
-                          <h3 align="center" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tipo de Prestamo: <?php echo $fila2['tipo']?></h3>
-                        </div>
-                        <div style="text-align: right;">
-                        <form  action="verPrestamosCliente.php" method="get" class="form-register" >
-                          <button type="submit"  class="btn btn-success" data-dismiss="modal" id="btnPre" name="btnPre" value=<?php echo $fila['idCli'] ?>>Atras</button>
-                        </form>
-                      </div>
-                      </div>
-
-                    </div>
-                  </div>
+                <div class="panel panel-primary card-view" style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title txt-light"><i class="fa fa-usd"></i>   Amortización de Prestamo</h3>
+                    <h3 class="panel-title txt-light">Cliente: <?php echo $fila1['nombre']." ".$fila1['apellido'] ?></h3>
+                    <h3 class="panel-title txt-light">Tipo de Prestamo: <?php echo $fila2['tipo']?></h3>
                 </div>
-
-
-
-
-                    <?php
-                      $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-
-              <div class="panel-wrapper collapse in">
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
                 <div class="panel-body">
+                <div class="row text-center">
+                    <form  action="verPrestamosCliente.php" method="get" class="form-register" >
+                          <button type="submit"  class="btn btn-danger" data-dismiss="modal" id="btnPre" name="btnPre" value="<?php echo $fila['idCli']; ?>"> <i class="fa fa-mail-reply"> </i>  Atras</button>
+                        </form>
+                </div>
+                <?php $cont=0;   ?>
+                <div class="row">
+                    
                   <div class="table-wrap">
                     <div class="table-responsive">
                       <table id="datable_1" class="table table-hover display  pb-30" >
@@ -192,9 +172,9 @@ for ($i=1; $i <= $fila['plazo']; $i++) {
                         <td>Pendiente</td>
                         <td>
                         <form style=""  action="pagarcu.php" method="get" class="form-register">
-                        <input type="hidden" class="form-control" name="num" id="num" value=<?php echo $i ?>>
-                        <input type="hidden" class="form-control" name="mon1" id="mon1" value=<?php echo round($monto,2) ?>>
-               <button  type="submit" title="Pagar Cuota" class="btn btn-danger" id="btnEditar1" name="btnEditar1" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $fila['idPres'] ?>>Pagar Cuota</button>
+                        <input type="hidden" class="form-control" name="num" id="num" value="<?php echo $i; ?>">
+                        <input type="hidden" class="form-control" name="mon1" id="mon1" value="<?php echo round($monto,2); ?>">
+               <button  type="submit" title="Pagar Cuota" class="btn btn-success" id="btnEditar1" name="btnEditar1" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $fila['idPres'] ?>" > <i class="fa fa-usd"></i>  Pagar Cuota</button>
                </form>
                            <?php
                         }
@@ -210,129 +190,29 @@ $monto=$monto-$capital;
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- /Row -->
-
-
-
-
-        <!--Modal  Registrar Proveedor-->
-
-        <div id="ModalRegistarProveedor" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
-
-            <!-- Modal content-->
-            <form  action="insert.php" method="post" class="form-register" >
-                <div class="modal-content">
-                  <div class="color-moduloInventario">
-                      <div class="modal-header" >
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <div class="col-md-offset-5">
-                          <h4 class="modal-title">Ingresar Categoria </h4>
-                        </div>
-                        <div class="modal-body">
-                      <div class="row">
-                          <div class="col-md-12">
-                          <div class="col-md-3 ">
-
-                            <img src="../Imagen/categoria.jpg" class="img-rounded" alt="Cinque Terre" width="300" height="250">
-                          </div>
-
-                          <div class="col-md-7 col-md-offset-2">
-
-                            <div class="col-md-6 ">
-                              <div class="input-group">
-
-                                  <label for="nombcat" >Nombre:</label>
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="nombcat" name="nombcat" placeholder="Nombre" required>
-                                    <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
-                                </div>
-                              </div>
-
-
-                              <div class="input-group">
-                                  <label for="cod" >Código:</label>
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="cod" name="cod" placeholder="Ejemplo : H001" required>
-                                    <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
-                                </div>
-                              </div>
-
-
-                              <div class="input-group">
-                                  <label for="val">Valor residual(%):</label>
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="val" name="val" required>
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
-                                  </div>
-                              </div>
-                            </div>
-
-                            <div class="col-md-6">
-                              <div class="input-group">
-
-                                <label for="vidU" >Vida Util:</label>
-                                <div class="input-group">
-                                  <input type="text" class="form-control" id="vidU" name="vidU" required>
-                                  <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
-                                </div>
-                              </div>
-
-
-                              <div class="input-group">
-                                  <label for="vidE">Vida economica:</label>
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="vidE" name="vidE" required>
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
-                                  </div>
-                              </div>
-
-
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
+                </div>
                     </div>
-
-                    <div class="modal-footer">
-
-                      <button type="submit" class="btn btn-success" >Guardar</button>
-                      <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
+                </div>
 
 
-        <!--Fin modal Registrar Proveedor-->
 
-        <div class="col-md-1"></div>
+
+                    
+                   
+
+
 
 
 
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
 
-    </div>
-    <!-- /#wrapper -->
 
 
   <?php

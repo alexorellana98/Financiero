@@ -104,6 +104,7 @@ function envia(){
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
