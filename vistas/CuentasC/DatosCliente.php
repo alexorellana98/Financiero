@@ -9,9 +9,6 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Registrar Cliente</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
   
   <?php
       include "../Componentes/estilos.php";
@@ -32,16 +29,14 @@ require 'conexion.php';
         $(this).unmask();
       });
     });
-
     function envia(){
-    window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.php";
+    window.location="RegistroCliente.php";
   }
 </script>
 </head>
   <?php 
   $bandera=0;
   ?>                               
-
 <body>  
   <!--Preloader-->
   <div class="preloader-it">
@@ -56,32 +51,21 @@ require 'conexion.php';
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Ingresar Datos del Cliente</h3>
-            </div>
-          </div>
-          <!-- /Title -->
-
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              <form  action="insert.php" method="post" class="form-register" > 
-       <div class="input-group">
-   
+             <div class="panel panel-success card-view" style="margin-top:20px;">
+                <div class="panel-heading text-center">
+                    <div class="pull-center">
+                        <h6 class="panel-title txt-light"><i class="fa fa-male"></i>  Registro de Cliente</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                    <?php     $cont=0;          ?>
+                    <form  action="insert.php" method="post" class="form-register" > 
  <div class="col-lg-12 col-md-offset-2">
- 
-
-
 <div class="col-md-6">
 <div class="form-group">
-  <select class="form-control" name="persona" id="persona" onchange="per(this.value)">
+  <select class="form-control STipoPersona" name="persona" id="persona" onchange="per(this.value)">
   <option value="0">Persona Natural</option>
   <option value="1">Persona Juridica</option>
 </select>
@@ -183,7 +167,7 @@ require 'conexion.php';
 <div class="form-group" style="width:220px;">
 
   <label for="depa">Departamento:</label>
- <select class="form-control" data-live-search="true" id="depa" name="depa" >
+ <select class="form-control SDepartamento" data-live-search="true" id="depa" name="depa" >
 <option></option> 
 <option value="San Salvador" >San Salvador</option>
  <option value="San Vicente" >San Vicente</option>
@@ -213,52 +197,29 @@ require 'conexion.php';
 </div>
 
 </div>
-  <div class="col-lg-12 col-md-offset-5">
-<br>
-<br> 
-<div class="button-group">
-<button type="submit" class="btn btn-success">Guardar</button>
-<button type="button" class="btn btn-success" data-dismiss="modal" onclick="envia()">Cancelar</button>
-</div>
-</div>
 
+</div>
+<div class="button-group text-center">
+<button type="submit"  class="btn btn-info btn-lable-wrap left-label"> <span class="btn-label"><i class="fa fa-save"></i> </span><span class="btn-text">Guardar</span></button>
+        <button type="button"  class="btn btn-danger btn-lable-wrap left-label" data-dismiss="modal" onclick="envia()"> <span class="btn-label"><i class="fa fa-close"></i> </span><span class="btn-text">Cerrar</span></button>
 </div>
 </form>
-              
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-                    
-                  
+                    </div>
+                 </div>
+                </div>
 
- 
-
-        
-        <div class="col-md-1"></div>
-
-
-        
+                 
       </div>
 
 
 
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
   
   <script language="javascript">
     function per(val){
@@ -283,11 +244,18 @@ require 'conexion.php';
 
     }
   </script>
+   
   <?php
     include "../Componentes/scripts.php";
   ?>
+  <script>
+        $(function () {
+            $('.STipoPersona').select2()
+            $('.SDepartamento').select2()
+        });
+</script>
   <script src="../dist/js/pages/privilegios.js"></script>
-  
+ 
 </body>
 
 </html>

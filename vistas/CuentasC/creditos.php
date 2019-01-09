@@ -122,17 +122,16 @@ require 'conexion.php';
     <div class="color-moduloInventario">
        <div class="modal-body">
 <div class="panel panel-success card-view">
-       
-								<div class="panel-heading text-center">
-									<div class="pull-center" >
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-										<h2 class="panel-title panel-center txt-light">Registrar Credito</h2>
-									</div>
-									<div class="clearfix"></div>
-								</div>
-								<div class="panel-wrapper collapse in">
-									<div class="panel-body">
-									<div class="row">
+<div class="panel-heading text-center">
+    <div class="pull-center" >
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="panel-title panel-center txt-light">Registrar Credito</h2>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="panel-wrapper collapse in">
+    <div class="panel-body">
+    <div class="row">
   <div class="col-md-12">
 
 

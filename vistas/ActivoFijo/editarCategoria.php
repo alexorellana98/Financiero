@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +7,6 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Categorias</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
   
   <?php
       include "../Componentes/estilos.php";
@@ -19,12 +14,9 @@ require 'conexion.php';
 
  <script language="javascript">
  
-
-
 function envia(){
-   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Categoria.php";
+   window.location="Categoria.php";
   }
-
 
 </script>
 </head>
@@ -47,19 +39,20 @@ function envia(){
     <!-- Main Content -->
     <div class="page-wrapper">
         <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Editar Categoria</h3>
-            </div>
-          </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
+        <div class="panel panel-warning card-view" style="margin-top:20px;">
+                <div class="panel-heading text-center">
+                    <div class="pull-center">
+                        <h6 class="panel-title txt-light"><i class="fa fa-edit"></i>  Editar Categoria</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                    
                <form  action="editar.php" method="post" class="form-register" > 
        <div class="input-group">
    
- <div class="col-lg-8 col-md-offset-3">
+ <div class="col-lg-8 col-md-offset-4">
   <label for="nombCat2" >Nombre:</label>
   <div class="input-group">
   <input type="text" class="form-control" id="nombCat2" name="nombCat2" placeholder="Nombre" value="<?php echo $fila['nombre'];?>">
@@ -67,7 +60,7 @@ function envia(){
 </div>
 
 </div>
-<div class="col-lg-8 col-md-offset-3">
+<div class="col-lg-8 col-md-offset-4">
   <label for="codCat2" >Codigo:</label>
   <div class="input-group">
   <input type="text" class="form-control" id="codCat2" name="codCat2" placeholder="A001" value="<?php echo $fila['cod'];?>">
@@ -75,7 +68,7 @@ function envia(){
 </div>
 
 </div>
-<div class="col-lg-8 col-md-offset-3">
+<div class="col-lg-8 col-md-offset-4">
   <label for="valr2" >Valor residual(%):</label>
   <div class="input-group">
   <input type="text" class="form-control" id="valr2" name="valr2" placeholder="Nombre" value="<?php echo $fila['val'];?>">
@@ -85,22 +78,14 @@ function envia(){
 </div>
 <input  type="hidden" class="form-control" id="idCat" name="idCat" placeholder="Nombre" value="<?php echo $_POST['btnEditar'];?>">
 
-  <div class="col-lg-12 col-md-offset-5">
-<br>
-<br> 
-<div class="button-group">
-<button type="submit" class="btn btn-success">Guardar</button>
-<button type="button"  class="btn btn-success" data-dismiss="modal" onclick="envia()">Cancelar</button>
 </div>
-</div>
-
-</div>
+  <div class="row text-center" style="margin-top: 15px;">
+      <?php include '../Componentes/BtnGuardarCancelar.php'; ?>
+  </div>
 </form>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-        
+                    </div>
+            </div>
+            </div>
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->

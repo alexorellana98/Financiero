@@ -1,8 +1,5 @@
-
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,36 +7,14 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Reevaluar</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
-  
   <?php
       include "../Componentes/estilos.php";
   ?>
-
   <script language="javascript">
 
-
-
 function envia(){
-   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/compraNueva2.blade.php";
+   window.location="compraNueva2.php";
   }
-
-f
- //funcion para que la tabla se llene dinamicamente
-  
-    $(document).ready(function () {
-   $('#entradafilter').keyup(function () {
-      var rex = new RegExp($(this).val(), 'i');
-        $('.contenidobusqueda tr').hide();
-        $('.contenidobusqueda tr').filter(function () {
-            return rex.test($(this).text());
-        }).show();
-
-        })
-
-});
 </script>
 </head>
 <?php
@@ -61,29 +36,19 @@ $resultado = $mysqli->query($sql);
   <?php
   include "../Componentes/menu.php";
   ?>  
-
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Reevaluación de  activo fijo</h3>
+            <div class="panel panel-primary card-view " style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-usd"></i>  Reevaluación de Activos Fijos</h3>
+                </div>
+                <div class="clearfix"></div>
             </div>
-          </div>
-          <!-- /Title -->
-
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              
-              <div class="panel-wrapper collapse in">
+            <div class="panel-wrapper collapse in">
                 <div class="panel-body">
+                <?php   $cont=0;       ?>
                   <div class="table-wrap">
                     <div class="table-responsive">
                       <table id="datable_1" class="table table-hover display  pb-30" >
@@ -101,14 +66,9 @@ $resultado = $mysqli->query($sql);
                         <tbody >
                           <?php
                             $extraer="SELECT * FROM activo";
-
-                             //$base=mysqli_select_db($con,'finanzas');
                             $ejecutar=mysqli_query($mysqli,$extraer);
-
-
                             while($ejecuta=mysqli_fetch_array($ejecutar))
-                            {
-                              
+                            {                              
                              if (($ejecuta['estado'])==1) {
                               $cont1=$cont1+1;
                                 ?>  
@@ -135,26 +95,18 @@ $resultado = $mysqli->query($sql);
                                 
                                 <td>
                                 <?php
-
-
-                                ?>
-                               
+                                ?>                                                                
                                   <form  action="ReevaluarDetalle.php" method="get" class="form-register" > 
-                                  
-                            <button  type="submit" class="btn btn-danger" id="btnId" name="btnId"  data-toggle="modal"  value=<?php echo $ejecuta['idAc']?>>Ver</button>
+                                  <button  type="submit" class="btn btn-success" id="btnId" name="btnId"  data-toggle="modal"  value="<?php echo $ejecuta['idAc']; ?>"><i class="glyphicon glyphicon-eye-open"></i> Ver</button>
                             </form>
-
                                  <form style="margin-left: 100px; margin-top:-43px;" action="ReevaluarIngresa.php" method="post" class="form-register" > 
-                                 <button  type="submit" class="btn btn-warning" id="btnenvia" name="btnenvia" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idAc'] ?>>Reevaluar</button>
+                                 <button  type="submit" class="btn btn-warning" id="btnenvia" name="btnenvia" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idAc']; ?>"><i class="glyphicon glyphicon-usd"></i>Reevaluar</button>
                                  </form>
 
                                  <?php }?>
-
                                 </td>
                               </tr>
-
                             <?php
-
                             }
                             ?> 
                         </tbody>
@@ -162,43 +114,21 @@ $resultado = $mysqli->query($sql);
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-                    
-                  
+                </div>
+                </div>
 
- 
-        
-        <div class="col-md-1"></div>
-
-
-        
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
-  
   
   <?php
 include "../Componentes/scripts.php";
 ?>
-  
 </body>
 
 </html>

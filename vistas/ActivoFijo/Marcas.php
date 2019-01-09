@@ -1,17 +1,12 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Gestionar Marcas</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
-  
   <?php
       include "../Componentes/estilos.php";
   ?>
@@ -24,19 +19,7 @@ require 'conexion.php';
 	  if (cond==1) {
 	     ajax_act('','marca',cond);
 	  }else if(cond==0){ajax_act('','marca',cond);}
-
 }
-    $(document).ready(function () {
-   $('#entradafilter').keyup(function () {
-      var rex = new RegExp($(this).val(), 'i');
-        $('.contenidobusqueda tr').hide();
-        $('.contenidobusqueda tr').filter(function () {
-            return rex.test($(this).text());
-        }).show();
-
-        })
-
-});
 </script>
 </head>
 <body>  
@@ -49,53 +32,46 @@ require 'conexion.php';
   <?php
   include "../Componentes/menu.php";
   ?>  
-
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Gestionar  Marcas</h3>
-            </div>
-          </div>
-          <!-- /Title -->
-        <!-- Row -->
-            <div class="row">
-                <div class="col-md-3">
-                  <br>
-                  <div class="form-group">
-
-                    <button type="button"  class="btn btn-success " data-toggle="modal" data-target="#ModalRegistarProveedor"  >Ingresar Marca</button>
-                  </div>
-                </div>
-
-                  <div class="col-md-2 ">
-                  <div class="form-group">
-
-                      <label for="condi">Estado :</label>
-                    <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
-                      <option>Selecione</option> 
-                      <option value="1" >Activo</option>
-                       
-                      <option value="0">Inactivo </option>
-                    </select>
-                  </div>
-                </div> 
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              <div class="panel-heading">
-                <div class="pull-left">
-                  <h6 class="panel-title txt-dark">Categorias</h6>
+        <div class="panel panel-primary card-view " style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i>  Gestionar  Marcas</h3>
                 </div>
                 <div class="clearfix"></div>
-              </div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+								 	<div class="form-group">
+								 	<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalRegistarProveedor"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nueva Marca</span></button>
+								 	</div>
+								</div>
+                                <div class="col-md-1">
+                                    <button class="btn  btn-default btn-outline">Estado</button>
+                                </div>
+							  	<div class="col-md-2">
+									<div class="form-group">                                     
+							 			<select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
+											<option value="1" >Activo</option>											 
+											<option value="0">Inactivo </option>
+										</select>
+									</div>
+								</div> 
+                    </div>
+                </div>
+                </div>
+                </div>
+        <!-- Row -->
+            <div class="row">
+                    <?php    $cont=0;         ?>
+                    <!-- Row -->
+        <div class="row" style="margin-left:1px; margin-right:1px;">
+          <div class="col-sm-12">
+            <div class="panel panel-default card-view">
               <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                   <div class="table-wrap">
@@ -107,8 +83,7 @@ require 'conexion.php';
                             <th class="text-center">Nombre</th>
                             <th class="text-center">Opciones</th>
                           </tr>
-                        </thead>
-                        
+                        </thead>    
                         <tbody class="text-center">
                           <?php
                               $extraer="SELECT * FROM marca";
@@ -147,96 +122,64 @@ require 'conexion.php';
         </div>
         <!-- /Row -->
                     
-                  
-
- 
         <!--Modal  Registrar Proveedor-->
 
 <div id="ModalRegistarProveedor" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
-
     <!-- Modal content-->
 <form  action="insert.php" method="post" class="form-register" > 
     <div class="modal-content">
-    <div class="color-moduloInventario">
-      <div class="modal-header" >
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <div class="col-md-offset-5">
-        <h4 class="modal-title">Ingresar Marca</h4>
-        </div>
-      </div>
-      </div>
        <div class="modal-body">
-
+<div class="panel panel-success card-view">
+<div class="panel-heading text-center">
+    <div class="pull-center" >
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="panel-title panel-center txt-light">Registrar Marca</h2>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="panel-wrapper collapse in">
+    <div class="panel-body">
  <div class="row">
   <div class="col-md-12">
-
-
 <div class="col-md-3 ">
-
 <img src="../Imagen/Marca2.png" class="img-rounded" alt="Cinque Terre" width="300" height="250">
 </div>
-
 <div class="col-md-7 col-md-offset-1">
-
 <div class="col-md-6">
 <div class="input-group">
-
   <label for="nombProd" >Nombre:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="nombProd" name="nombProd" placeholder="Nombre">
+  <input type="text" class="form-control" id="nombProd" name="nombProd" placeholder="Nombre" required>
   <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
 </div>
 </div>
-
-
-
-
 </div>
-
-
 </div>
-
 </div>
 </div> 
+    </div>
+    </div>
+           </div>
  </div>
-  
  <div class="modal-footer">
-
-        <button type="submit" class="btn btn-success" >Guardar</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+       <?php include '../Componentes/BtnGuardarCancelar.php'; ?>
         </div>
       </div>
       </form>
       </div>
-      
  </div>
 <!--Fin modal Registrar Proveedor-->
-        
-        <div class="col-md-1"></div>
-
-
          </div>
         <!-- Fin Row -->
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
-  
-  
   <?php
 include "../Componentes/scripts.php";
 ?>

@@ -1,6 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
 ini_set('date.timezone', 'America/El_Salvador');
 ?>
 <!DOCTYPE html>
@@ -9,19 +8,14 @@ ini_set('date.timezone', 'America/El_Salvador');
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Categorias</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
   
   <?php
       include "../Componentes/estilos.php";
   ?>
 
   <script language="javascript">
- 
- 
 function envia(){
-   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Vender.php";
+   window.location="Vender.php";
   }
 </script></head>
 <?php
@@ -43,38 +37,27 @@ $resultado = $mysqli->query($sql);
   <?php
   include "../Componentes/menu.php";
   ?>  
-
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Vender</h3>
+            <div class="panel panel-primary card-view " style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i>  Venta de Activo</h3>
+                </div>
+                <div class="clearfix"></div>
             </div>
-          </div>
-          <!-- /Title -->
-      
-                    <?php 
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                <?php 
                       $aux=$_POST['btnenvia'];
                       $sentencia = "SELECT * FROM activo WHERE idAc=$aux"; 
                       $ejecutar=mysqli_query($mysqli,$sentencia);
                       $fila = mysqli_fetch_assoc($ejecutar);
-                    ?>  
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
+                    ?>
                 <form  action="insert.php" method="post" class="form-register" > 
-
 <input type="hidden" class="form-control" id="idAc" placeholder="Nombre" name="idAc"  value="<?php echo $_POST['btnenvia'];?>">                            
-
- 
-       <div class="input-group">
-   
  <div class="col-lg-12 ">
- 
-
 <div class="col-md-4">
 <br>
 <br>
@@ -82,25 +65,15 @@ $resultado = $mysqli->query($sql);
 <br>
 <br>
 <div class="input-group">
-
-
-
 <div class="form-group">
-
   <label for="condiM">Razon de venta:</label>
  <select class="form-control" data-live-search="true" id="condiM" name="condiM" onchange="razon(this.value)">
-
 <?php
 $extraer="SELECT * FROM movimiento";
-
- //$base=mysqli_select_db($con,'finanzas');
 $ejecutar=mysqli_query($mysqli,$extraer);
-
-
 while($ejecuta=mysqli_fetch_array($ejecutar))
 { if (($ejecuta['estado'])==1) {
   ?>
-
 <option value="<?php echo $ejecuta['idMov']?>" ><?php echo $ejecuta['nombre']?></option>
 <?php
 }
@@ -108,7 +81,6 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 ?>
 </select>
 </div>
-
  </div>
 <br>
 <?php
@@ -123,11 +95,7 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
    $senten1 = "SELECT * FROM categoria WHERE idCat='$fil2[idCat]'"; 
    $ejecu1=mysqli_query($mysqli,$senten1);
    $fil1 = mysqli_fetch_assoc($ejecu1);
-
    ini_set('date.timezone', 'America/El_Salvador');
-
-
-  //$Hoy=date("Y/m/d");
    $fecha1=date_create($fila3['fecha_inicio']);
    $fecha2=date_create(date("Y-m-d"));
    $interval = date_diff($fecha1, $fecha2);
@@ -145,7 +113,6 @@ var valor1=<?php echo json_encode($dep); ?>;
 var ciclo=0;
 var aux=0;
  var v1=0;
-
     window.onload=function(){
       ciclo=365*vida;
       var cuota=valor1/ciclo;
@@ -156,7 +123,6 @@ var aux=0;
       }
         document.getElementById('dir2').value=v1.toFixed(2);
        // document.getElementById('prec').min=v1.toFixed(2);
-    
     }
 
     function razon(id){
@@ -167,19 +133,8 @@ var aux=0;
       }
     }
 </script> 
-
- 
 <br>
-
-
-
 </div>
-
-
-
-
-
-
 <div class="col-md-4">
 <br>
 <br>
@@ -193,42 +148,24 @@ var aux=0;
   <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
   </div>
 </div>
- 
-
-
-
 <br>
-
 <div class="input-group" style="width:220px;">
-
   <label for="prec" >Precio de venta:</label>
   <div class="input-group">
   <input type="number" class="form-control" id="prec" required="true"  placeholder="" name="prec" >
   <div class="input-group-addon"><span  class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
 </div>
 </div>
-
 <br>
-
-
-
 </div>
-
 <div class="col-md-4">
-
-
 <div class="input-group">
-
   <label for="nfac"><h4>FACTURA No.</h4> </label>
   <div class="input-group">
   <h4><input type="text" size="15" class="form-control" id="nfac" placeholder="" name="nfac" value="<?php echo "0000".$_POST['btnenvia'];?>" readonly="readonly"></h4>
-  
   </div>
 </div>
-
-
 <br>
-
 <div class="input-group">
 
   <label for="fech">Fecha de transaccion: </label>
@@ -237,57 +174,34 @@ var aux=0;
    <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
   </div>
 </div>
-
-
-
-
-
-
-
 </div>
-
-
 <input  type="hidden" class="form-control" id="ideU" name="ideU" placeholder="Nombre" value="<?php echo $_POST['btnEditar'];?>">
 
-  <div class="col-lg-12 col-md-offset-5">
-<br>
-<br> 
-<div class="button-group">
-<button type="submit" class="btn btn-success">Guardar</button>
-<button type="button" class="btn btn-success" data-dismiss="modal" onclick="envia()">Cancelar</button>
-</div>
-</div>
+
+
+
+
 
 </div>
+<div class="row text-center" style="margin-top: 15px;">
+    <?php include '../Componentes/BtnGuardarCancelar.php'; ?>
+</div>
+
 </form>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-                    
-        
-        <div class="col-md-1"></div>
+                </div>
+                </div>
+                </div>
 
 
         
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
-  
   
   <?php
 include "../Componentes/scripts.php";

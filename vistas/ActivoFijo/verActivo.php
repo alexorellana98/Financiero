@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +7,6 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>ver activo</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
   
   <?php
       include "../Componentes/estilos.php";
@@ -20,15 +15,12 @@ require 'conexion.php';
   <script language="javascript">
 
     function envia(){
-       window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/VistaActivo.php";
+       window.location="VistaActivo.php";
       }
 
     function envia1(){
-       window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/depreciar.php";
+       window.location="depreciar.php";
       }
-     //funcion para que la tabla se llene dinamicamente
-      
-   
 </script>
 </head>
 
@@ -46,32 +38,16 @@ require 'conexion.php';
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Detalles de activo fijo</h3>
+            <div class="panel panel-info card-view" style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title txt-light"><i class="fa fa-info-circle"></i>   Detalle de Activo Fijo</h3>
+                </div>
+                <div class="clearfix"></div>
             </div>
-          </div>
-          <!-- /Title -->
-      
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              
-              <div class="panel-wrapper collapse in">
+            <div class="panel-wrapper collapse in">
                 <div class="panel-body">
-                  <div class="table-wrap">
-                    <div class="table-responsive">
-                      <table id="datable_1" class="table table-hover display  pb-30" >
-                        <thead>
-                          <tr >
-                              <th  WIDTH="100" HEIGHT='9' >Valor</th>
-                              <th  WIDTH="300" HEIGHT='9'>Descripcion</th>
-                          </tr>
-                        </thead>
-                        
-                        <tbody >
-                          <?php
+                  <?php
                           $aux2=$_GET['btnId'];
                          $sentencia2 = "SELECT * FROM detalle_activo WHERE activofijo_id='$aux2'"; 
                          $ejecutar2=mysqli_query($mysqli,$sentencia2);
@@ -89,7 +65,31 @@ require 'conexion.php';
                          $residual=$precio*($res/100);
                          $dep=$precio-$residual;
                          ?>
-                      <tr>
+                <div class="row">
+                   <div class="col-md-10" style="margin-left:0px; padding-left:0px;">
+                       <div class="button-group">
+                    <button type="submit"  class="btn btn-danger" onclick="envia()"><i class="fa fa-mail-reply"></i>  Atras</button>
+                    </div>
+                   </div>
+                   <div class="col-md-2">
+                       <form  action="depreciar.php" method="get" class="form-register" > 
+                          <button type="submit"  class="btn btn-success" id="boton" name="boton" onclick="envia1()" value="<?php echo $aux2; ?>"><i class="glyphicon glyphicon-eye-open"></i> Ver Depreciacion</button>
+                          </form>
+                   </div>    
+                </div>
+               
+                  <div class="table-wrap">
+                    <div class="table-responsive">
+                      <table id="datable_1" class="table table-hover display  pb-30" >
+                        <thead>
+                          <tr >
+                              <th  WIDTH="100" HEIGHT='9' >Valor</th>
+                              <th  WIDTH="300" HEIGHT='9'>Descripcion</th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody >
+                                                <tr>
                          
                           <td>Serie/Marca :</td>
                           <td><?php echo $fila1['serie'];?></td>
@@ -106,7 +106,7 @@ require 'conexion.php';
                           <td> Proveedor :</td>
                           <td><?php echo $fila3['nombre'];?></td>
                         </tr>
-                       <tr>
+                       
                       <tr>
                          <td> Donacion :</td>
                           <td><?php echo $fila1['donado'];?></td>
@@ -118,12 +118,10 @@ require 'conexion.php';
                          $fila4 = mysqli_fetch_assoc($ejecutar4);
                          
                          ?>
+                         <tr>
                           <td> Ubicacion :</td>
                           <td><?php echo $fila4['nombre'];?></td>
-                        </tr>
-                        
-                        
-                        
+                            </tr>
                          <tr>
                          <td> Fecha de adquisicion :</td>
                           <td><?php echo $fila1['fecha_adqui'];?></td>
@@ -159,47 +157,16 @@ require 'conexion.php';
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-
-        <div class="col-lg-6 col-md-offset-6">
-          <div class="button-group">
-          <form  action="depreciar.php" method="get" class="form-register" > 
-          <button type="submit"  class="btn btn-success" id="boton" name="boton" onclick="envia1()" value=<?php echo $aux2?>>Ver Depreciacion</button>
-          </form>
-          <button type="button"  class="btn btn-success" data-dismiss="modal" onclick="envia()" style=" margin-left: 160px; margin-top:-65px;" >Atras</button>
-          </div>
-          </div>
-                    
-                  
-
- 
-        
-        <div class="col-md-1"></div>
-
-
-        
+                </div>
+                </div>      
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
-  
   
   <?php
 include "../Componentes/scripts.php";

@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,34 +7,11 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
    <title>Vender</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
   
   <?php
       include "../Componentes/estilos.php";
   ?>
-
   <script language="javascript">
-
-function envia(){
-   window.location="http://localhost/Proyecto%20Ananlisis%20financieros/compraNueva2.php";
-  }
-
-f
- //funcion para que la tabla se llene dinamicamente
-  
-    $(document).ready(function () {
-   $('#entradafilter').keyup(function () {
-      var rex = new RegExp($(this).val(), 'i');
-        $('.contenidobusqueda tr').hide();
-        $('.contenidobusqueda tr').filter(function () {
-            return rex.test($(this).text());
-        }).show();
-
-        })
-
-});
 </script>
 </head>
 
@@ -54,26 +29,16 @@ f
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Realizar Venta</h3>
+            <div class="panel panel-primary card-view " style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-usd"></i>  Venta de Activos</h3>
+                </div>
+                <div class="clearfix"></div>
             </div>
-          </div>
-          <!-- /Title -->
-      
-                
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              
-              <div class="panel-wrapper collapse in">
+            <div class="panel-wrapper collapse in">
                 <div class="panel-body">
+                <?php    $cont=0;         ?>
                   <div class="table-wrap">
                     <div class="table-responsive">
                       <table id="datable_1" class="table table-hover display  pb-30" >
@@ -87,18 +52,12 @@ f
                               <th  WIDTH="40" HEIGHT='9'>Opciones</th>
                             </tr>
                         </thead>
-                        
-                        <tbody >
+                        <tbody>
                           <?php
                             $extraer="SELECT * FROM activo";
-
-                            // $base=mysqli_select_db($con,'finanzas');
                             $ejecutar=mysqli_query($mysqli,$extraer);
-
-
                             while($ejecuta=mysqli_fetch_array($ejecutar))
                             {
-                              
                              if (($ejecuta['estado'])==1) {
                               $cont1=$cont1+1;
                                 ?>  
@@ -119,23 +78,18 @@ f
                                $sentencia2 = "SELECT * FROM subcategoria WHERE idSub=$aux2"; 
                                $ejecutar2=mysqli_query($mysqli,$sentencia2);
                                $fila1 = mysqli_fetch_assoc($ejecutar2);
-                               
                                ?>
                                 <td> <?php echo $fila1['nombre'];?></td>
-                                
                                 <td>
                                 <?php
-
-
                                 ?>
                                
                                   <form  action="verDetalle.php" method="get" class="form-register" > 
                                   
-                            <button  type="submit" class="btn btn-danger" id="btnId" name="btnId"  data-toggle="modal"  value=<?php echo $ejecuta['idAc']?>>Ver</button>
+                            <button  type="submit" class="btn btn-success" id="btnId" name="btnId"  data-toggle="modal"  value="<?php echo $ejecuta['idAc']; ?>"> <i class="glyphicon glyphicon-eye-open"></i>  Ver</button>
                             </form>
-
                                  <form style="margin-left: 100px; margin-top:-43px;" action="ventaProcesar.php" method="post" class="form-register" > 
-                                 <button  type="submit" class="btn btn-warning" id="btnenvia" name="btnenvia" style="background-color: transparent border:0" data-toggle="modal"  value=<?php echo $ejecuta['idAc'] ?>>Vender</button>
+                                 <button  type="submit" class="btn btn-warning" id="btnenvia" name="btnenvia" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idAc']; ?>"><i class="glyphicon glyphicon-usd"></i>  Vender</button>
                                  </form>
 
                                  <?php }?>
@@ -153,36 +107,19 @@ f
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-                    
-         
-        
-        <div class="col-md-1"></div>
-
-
+                </div>
+                </div>             
         
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+      <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
 
-    </div>
-    <!-- /#wrapper -->
-  
+
   
   <?php
 include "../Componentes/scripts.php";

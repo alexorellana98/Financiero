@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,9 +7,6 @@ require 'conexion.php';
     <meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<title>Depreciar</title>
-	<meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-	<meta name="author" content="hencework"/>
 	
 	<?php
 	  	include "../Componentes/estilos.php";
@@ -19,18 +14,13 @@ require 'conexion.php';
 
 	<script language="javascript">
 		function envia(){
-		   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/VistaActivo.php";
+		   window.location="VerActivo.php";
 		  }
-
 		function envia1(){
-		   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/depreciar.php";
+		   window.location="depreciar.php";
 		  }
-		 //funcion para que la tabla se llene dinamicamente
-		  
-		   
 		</script>
 </head>
-
 <body>  
 	<!--Preloader-->
 	<div class="preloader-it">
@@ -59,29 +49,28 @@ require 'conexion.php';
    $residual=$precio*($res/100);
    $dep=$precio-$residual;
    ?>
-
 		<!-- Main Content -->
 		<div class="page-wrapper">
             <div class="container-fluid">
-				<!-- Title -->
-					<div class="row heading-bg">
-						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						   <h2 align="center" >Depreciacion</h2>
-						</div>
-					</div>
-					<!-- /Title -->
-				<div class="row">
-					<div class="col-sm-12">
-						<div class="panel panel-default card-view">
-							
-							<div class="row">
-								<div class="col-md-12 col-sm-12 col-xs-12">
-									<div class="x_panel">
-										<div class="x_title">
-											<h3 align="center">Precio: <?php echo $fila1['valor_historico']?>&nbsp;&nbsp; Valor Residual:<?php echo $residual?>&nbsp;&nbsp; Valor a Depreciar:<?php echo $dep?></h3 align="center">
+            <div class="panel panel-primary card-view" style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title txt-light"><i class="fa fa-usd"></i>   Depreciación</h3>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                <div class="row">
+                    <div class="button-group col-md-2" style="margin-left:0px; padding-left:0px;">
+                    <form action="verActivo.php" method="get" class="form-register">
+                <button type="submit" class="btn btn-danger " id="btnId" name="btnId" value="<?php echo $aux2; ?>" style="width: 110%;"><i class="fa fa-mail-reply"></i>  Atras</button>
+            </form>
+                </div>
+                </div>
+                <h5 align="center">Precio: $<?php echo $fila1['valor_historico']?>&nbsp;&nbsp; Valor Residual: $<?php echo $residual?>&nbsp;&nbsp; Valor a Depreciar: $<?php echo $dep?></h5>
 											<div class="clearfix"></div>
-										</div>
-										<div class="col-md-12  col-sm-12 col-xs-12">
+                <div class="col-md-12  col-sm-12 col-xs-12">
 											<?php for ($i=0; $i <2 ; $i++) { 				
 												?>
 												&nbsp;
@@ -107,6 +96,19 @@ require 'conexion.php';
 									
 											
 										</div>
+                </div>
+                </div>
+                </div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel panel-default card-view">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="x_panel">
+										<div class="x_title">
+											
+										</div>
+										
 										<div class="row">
 										<div class=" col-md-12">
 										<div class="x_content">	<br />
@@ -120,7 +122,6 @@ require 'conexion.php';
 															<th data-column-id="codigo">Cuota a depreciar</th>
 															<th data-column-id="nombre">Depreciación acumulada</th>
 															<th data-column-id="vida_util">Valor en Libro</th>
-
 														</tr>
 													</thead>
 													<tbody>
@@ -139,79 +140,50 @@ require 'conexion.php';
 					</div>
 				</div>
 				<!-- /Row -->
-										
-				
-				<div class="col-md-1"></div>
-
-
-				
 			</div>
     <!-- /#wrapper -->
 				<!-- Footer -->
-				<footer class="footer container-fluid pl-30 pr-30">
-					<div class="row">
-						<div class="col-sm-12">
-							<p>2017 &copy; Doodle. Pampered by Hencework</p>
-						</div>
-					</div>
-				</footer>
+				<?php include '../Componentes/footer.php'; ?>
 				<!-- /Footer -->
 			</div>
 		</div>
         <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
-	
 	<script language="javascript">
-
 	function calcular(cantidad, centinela, cont){
 		contar();
 		var valor=$("#valor").val();
 		var vida=$("#vida").val();
 		var ciclo=0;
 		var v=0;
-
-
 		if(vida>0){
-
 			if(cantidad==1){
 				ciclo=vida;
-
 			}else if(cantidad==2){
 				ciclo=12*vida;
-
 			}else{
 				ciclo=365*vida;
-
 			}
-						
-
 			var cuota=valor/ciclo;
 			var aux=0;
 			if(cont==1){
 				ciclo=centinela;
 			}
-
 			for ($i = 1; $i <=ciclo;  $i++){
 				aux=aux+cuota;
 				valor=valor-cuota;
 				var v1 = Math.abs(valor);
 				filas($i,cuota,aux,v1);
-
 			}
-
 		}
-
+        // Recarga Tabla con Nuevos Datos
+       // $('#tabla').DataTable();
 	}
 
 	function filas(i, cuota, aux, valor){
-
 		  var cuota=cuota.toFixed(2);
 			var	aux=aux.toFixed(2);
 			var	valor=valor.toFixed(2);
-		var fila='<tr  name="eli" class="selected" id="fila'+i+'"><td style="text-align:center" class="col-sm-3"><input type="text" style="border:none;background-color: transparent;"  class="form-control"  margin-left:-50px  value="'+i+'"></td><td style="text-align:center" class="col-sm-3"><input type="text" style="border:none;background-color: transparent;  class="form-control" name="nomPr[]" margin-left:-50px  value="'+cuota+'"></td><td style="text-align:center " class="col-sm-2" ><input type="text" style="border:none;background-color: transparent;" width="100" class="form-control" name="cantidad[]" margin-left:5px    value="'+aux+'"></td><td style="text-align:center" class="col-sm-2"><input type="text" style="background-color: transparent; border:none; WIDTH:300" class="form-control"  name="precio_compra[]"  value="'+valor+'"></td></tr>';
-
+        var fila='<tr id="fila'+i+'"><td>'+i+'</td><td>'+cuota+'</td><td>'+aux+'</td><td>'+valor+'</td></tr>';
 		$("#tabla").append(fila);
 	}
 
@@ -248,8 +220,6 @@ if(di>ci){
 
 function daysBetween(date1, date2){   if (date1.indexOf("-") != -1) { date1 = date1.split("-"); } else if (date1.indexOf("/") != -1) { date1 = date1.split("/"); } else { return 0; }   if (date2.indexOf("-") != -1) { date2 = date2.split("-"); } else if (date2.indexOf("/") != -1) { date2 = date2.split("/"); } else { return 0; }   if (parseInt(date1[0], 10) >= 1000) {       var sDate = new Date(date1[0]+"/"+date1[1]+"/"+date1[2]);   } else if (parseInt(date1[2], 10) >= 1000) {       var sDate = new Date(date1[2]+"/"+date1[1]+"/"+date1[0]);   } else {       return 0;   }   if (parseInt(date2[0], 10) >= 1000) {       var eDate = new Date(date2[0]+"/"+date2[1]+"/"+date2[2]);   } else if (parseInt(date2[2], 10) >= 1000) {       var eDate = new Date(date2[2]+"/"+date2[1]+"/"+date2[0]);   } else {       return 0;   }   var one_day = 1000*60*60*24;   var daysApart = Math.abs(Math.ceil((sDate.getTime()-eDate.getTime())/one_day));   return daysApart;}
  
-
-
 
 </script>
 	<?php

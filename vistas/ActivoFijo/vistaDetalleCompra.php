@@ -1,36 +1,25 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>ver activo</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
+  <title>Detalle Activo</title>
   
   <?php
       include "../Componentes/estilos.php";
   ?>
 
   <script language="javascript">
-
-
-
 function envia(){
-   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Comprar.php";
+   window.location="Comprar.php";
   }
 
 function envia1(){
-   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/depreciar.php";
-  }
- //funcion para que la tabla se llene dinamicamente
-  
-   
+   window.location="depreciar.php";
+  } 
 </script>
 </head>
 <?php
@@ -56,27 +45,20 @@ $resultado = $mysqli->query($sql);
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Detalles de activo fijo</h3>
-            </div>
-          </div>
-          <!-- /Title -->
-        <div style="text-align: right;" class="col-lg-12 ">
-                <div class="button-group">
-
-                  <button type="button"  class="btn btn-success" data-dismiss="modal" onclick="envia()" style=" margin-left: 150px; margin-top:-53px;" >Atras</button>
+            <div class="panel panel-info card-view" style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title txt-light"><i class="fa fa-info-circle"></i>   Detalles de Activo Fijo</h3>
                 </div>
-              </div>
-
-        <!-- Row -->
-          <div class="row">
-            <div class="col-md-12">
-              <div class="panel panel-default card-view">
-                
-              <div class="panel-wrapper collapse in">
+                <div class="clearfix"></div>
+            </div>
+            <div class="panel-wrapper collapse in">
                 <div class="panel-body">
+                <div class="row">
+                    <div class="button-group">
+<button type="submit"  class="btn btn-danger" onclick="envia()"><i class="fa fa-mail-reply"></i>  Atras</button>
+</div>
+                </div>
                   <div class="table-wrap">
                     <div class="table-responsive">
                       <table id="datable_1" class="table table-hover display  pb-30" >
@@ -123,7 +105,7 @@ $resultado = $mysqli->query($sql);
                           <td> Proveedor :</td>
                           <td><?php echo $fila3['nombre'];?></td>
                         </tr>
-                       <tr>
+                       
                       <tr>
                          <td> Donacion :</td>
                           <td><?php echo $fila1['donado'];?></td>
@@ -135,12 +117,10 @@ $resultado = $mysqli->query($sql);
                          $fila4 = mysqli_fetch_assoc($ejecutar4);
                          
                          ?>
+                         <tr>
                           <td> Ubicacion :</td>
                           <td><?php echo $fila4['nombre'];?></td>
                         </tr>
-                        
-                        
-                        
                          <tr>
                          <td> Fecha de adquisicion :</td>
                           <td><?php echo $fila1['fecha_adqui'];?></td>
@@ -166,27 +146,18 @@ $resultado = $mysqli->query($sql);
                           <td> Valor Residual :</td>
                           <td><?php echo $residual;?></td>
                          </tr>
-
                         </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
-              </div>
-              </div>
-            </div>
-          </div>
-          <!-- /Row -->
+                </div>
+                </div>
+
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>

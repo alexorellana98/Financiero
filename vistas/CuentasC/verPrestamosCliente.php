@@ -68,7 +68,7 @@ $aux2=$_GET['btnPre'];
    $ejecutar2=mysqli_query($mysqli,$sentencia2);
    $fila1 = mysqli_fetch_assoc($ejecutar2);
     ?>
-<div class="button-group text-center">
+<div class="button-group">
 <form  action="verDetalleCliente.php" method="get" class="form-register" >
 <button type="submit"  class="btn btn-danger" data-dismiss="modal" id="btndetalle" name="btndetalle" value="<?php echo $fila1['idCliente']; ?>" ><i class="fa fa-mail-reply"></i> Atras</button>
 </form>

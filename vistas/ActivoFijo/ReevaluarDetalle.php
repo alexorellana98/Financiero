@@ -1,24 +1,5 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,13 +17,8 @@ require 'conexion.php';
 
   <script language="javascript">
 function envia(){
-   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/Reevaluar.php";
+   window.location="Reevaluar.php";
   }
-
-
- //funcion para que la tabla se llene dinamicamente
-  
-   
 </script>
 </head>
 <?php
@@ -68,34 +44,22 @@ $resultado = $mysqli->query($sql);
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Detalles</h3>
+            <div class="panel panel-info card-view" style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title txt-light"><i class="fa fa-info-circle"></i>   Detalles de Activo</h3>
+                </div>
+                <div class="clearfix"></div>
             </div>
-          </div>
-          <!-- /Title -->
-
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <div class="col-lg-12 col-md-offset-11">
-                      
-                      <div class="button-group">
-
-                      <button type="button"  class="btn btn-success" data-dismiss="modal" onclick="envia()">Atras</button>
-                      </div>
-                      <br>
-                    </div>
-                    <!-- Row -->
-
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              
-              <div class="panel-wrapper collapse in">
+            <div class="panel-wrapper collapse in">
                 <div class="panel-body">
+                <div class="row">
+                    <div class="button-group">
+<button type="submit"  class="btn btn-danger" onclick="envia()"><i class="fa fa-mail-reply"></i>  Atras</button>
+</div>
+                </div>
+                <?php       $cont=0;            ?>
+                
                   <div class="table-wrap">
                     <div class="table-responsive">
                       <table id="datable_1" class="table table-hover display  pb-30" >
@@ -175,37 +139,17 @@ $resultado = $mysqli->query($sql);
                     </div>
                   </div>
                 </div>
-              </div>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-                    
-                  
-
- 
-        
-        <div class="col-md-1"></div>
-
-
-        
+                </div>
+                </div>
+                
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
   
   
   <?php

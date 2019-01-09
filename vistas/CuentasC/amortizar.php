@@ -21,16 +21,6 @@ require 'conexion.php';
          window.location="http://localhost/Financiero/siccif/vistas/CuentasC/creditos.php";
       }
     }
-
-    $(document).ready(function () {
-     $('#entradafilter').keyup(function () {
-        var rex = new RegExp($(this).val(), 'i');
-          $('.contenidobusqueda tr').hide();
-          $('.contenidobusqueda tr').filter(function () {
-              return rex.test($(this).text());
-          }).show();
-        })
-      });
 </script>
 </head>
 <?php
@@ -79,7 +69,7 @@ require 'conexion.php';
             </div>
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
-                <div class="row text-center">
+                <div class="row">
                     <form  action="verPrestamosCliente.php" method="get" class="form-register" >
                           <button type="submit"  class="btn btn-danger" data-dismiss="modal" id="btnPre" name="btnPre" value="<?php echo $fila['idCli']; ?>"> <i class="fa fa-mail-reply"> </i>  Atras</button>
                         </form>

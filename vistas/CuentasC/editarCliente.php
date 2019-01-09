@@ -7,9 +7,6 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Editar Cliente</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
   
   <?php
       include "../Componentes/estilos.php";
@@ -19,7 +16,7 @@ require 'conexion.php';
  
  
 function envia(){
-   window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.php";
+   window.location="RegistroCliente.php";
   }
 </script>
 </head>
@@ -47,25 +44,16 @@ function envia(){
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Editar Cliente</h3>
-            </div>
-          </div>
-          <!-- /Title -->
-      
-            
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              
-               <form  action="editar.php" method="post" class="form-register" > 
+            <div class="panel panel-warning card-view" style="margin-top:20px;">
+                <div class="panel-heading text-center">
+                    <div class="pull-center">
+                        <h6 class="panel-title txt-light"><i class="fa fa-edit"></i>  Editar Cliente</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                     <form  action="editar.php" method="post" class="form-register" > 
    
  <div class="col-lg-12 col-md-offset-2">
  
@@ -140,12 +128,6 @@ function envia(){
 
 
 </div>
-
-
-
-
-
-
 <div class="col-md-6">
 
 <?php if($fila['repre']==""){?>
@@ -233,137 +215,26 @@ function envia(){
 
 
 <input  type="hidden" class="form-control" id="ideC" name="ideC" placeholder="Nombre" value="<?php echo $_POST['btnEditar'];?>"> 
-  <div class="col-lg-12 col-md-offset-5">
+  <div class="text-center">
 <br>
 <br> 
 <div class="button-group">
-<button type="submit" class="btn btn-success">Guardar</button>
-<button type="button" class="btn btn-success" data-dismiss="modal" onclick="envia()">Cancelar</button>
+<button type="submit"  class="btn btn-info btn-lable-wrap left-label"> <span class="btn-label"><i class="fa fa-save"></i> </span><span class="btn-text">Guardar</span></button>
+        <button type="button"  class="btn btn-danger btn-lable-wrap left-label" data-dismiss="modal" onclick="envia()"> <span class="btn-label"><i class="fa fa-close"></i> </span><span class="btn-text">Cerrar</span></button>
 </div>
 </div>
 </form>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-                    
-                  
-
- 
-        <!--Modal  Registrar Proveedor-->
-
-        <div id="ModalRegistarProveedor" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-lg">
-
-            <!-- Modal content-->
-            <form  action="insert.php" method="post" class="form-register" > 
-                <div class="modal-content">
-                  <div class="color-moduloInventario">
-                      <div class="modal-header" >
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <div class="col-md-offset-5">
-                          <h4 class="modal-title">Ingresar Categoria </h4>
-                        </div>
-                        <div class="modal-body">
-                      <div class="row">
-                          <div class="col-md-12">
-                          <div class="col-md-3 ">
-
-                            <img src="../Imagen/categoria.jpg" class="img-rounded" alt="Cinque Terre" width="300" height="250">
-                          </div>
-
-                          <div class="col-md-7 col-md-offset-2">
-
-                            <div class="col-md-6 ">
-                              <div class="input-group">
-
-                                  <label for="nombcat" >Nombre:</label>
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="nombcat" name="nombcat" placeholder="Nombre" required>
-                                    <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
-                                </div>
-                              </div>
-
-
-                              <div class="input-group">
-                                  <label for="cod" >Código:</label>
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="cod" name="cod" placeholder="Ejemplo : H001" required>
-                                    <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
-                                </div>
-                              </div>
-
-
-                              <div class="input-group">
-                                  <label for="val">Valor residual(%):</label>
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="val" name="val" required> 
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
-                                  </div>
-                              </div>
-                            </div>
-                            
-                            <div class="col-md-6">
-                              <div class="input-group">
-
-                                <label for="vidU" >Vida Util:</label>
-                                <div class="input-group">
-                                  <input type="text" class="form-control" id="vidU" name="vidU" required>
-                                  <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
-                                </div>
-                              </div>
-
-
-                              <div class="input-group">
-                                  <label for="vidE">Vida economica:</label>
-                                  <div class="input-group">
-                                    <input type="text" class="form-control" id="vidE" name="vidE" required>
-                                    <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
-                                  </div>
-                              </div>
-
-
-                            </div>
-                          </div>
-
-                        </div>
-                      </div> 
                     </div>
-                            
-                    <div class="modal-footer">
-
-                      <button type="submit" class="btn btn-success" >Guardar</button>
-                      <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-          
-
-        <!--Fin modal Registrar Proveedor-->
-        
-        <div class="col-md-1"></div>
-
-
-        
+                </div>
+                </div>
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
-
-    </div>
-    <!-- /#wrapper -->
   
   
   <?php

@@ -1,6 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +7,6 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Adquisición de activo fijo</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
   
   <?php
       include "../Componentes/estilos.php";
@@ -26,25 +22,6 @@ function sele(){
 	  }else if(cond==0){ajax_act('','compraactivo',cond);}
 
 }
-
-function envia(){
-   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/compraNueva2.php";
-  }
-
-f
- //funcion para que la tabla se llene dinamicamente
-  
-    $(document).ready(function () {
-   $('#entradafilter').keyup(function () {
-      var rex = new RegExp($(this).val(), 'i');
-        $('.contenidobusqueda tr').hide();
-        $('.contenidobusqueda tr').filter(function () {
-            return rex.test($(this).text());
-        }).show();
-
-        })
-
-});
 </script>
 </head>
 <body>  
@@ -61,39 +38,39 @@ f
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h5 align="center" class="txt-dark">Adquisición de activo fijo</h5>
+            <div class="panel panel-primary card-view " style="margin-top: 20px;">
+            <div class="panel-heading text-center">
+                <div class="pull-center">
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i>  Gestionar  Adquisición de Activo Fijo</h3>
+                </div>
+                <div class="clearfix"></div>
             </div>
-          </div>
-          <!-- /Title -->
-                <div class="col-md-3">
-                  <br>
-                  <div class="form-group">
-
-                    <button type="button"  class="btn btn-success" data-toggle="modal" onclick="envia()"  > Registrar nuevo activo</button>
-                  </div>
+            <div class="panel-wrapper collapse in">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+								 	<div class="form-group">
+								 	<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalRegistarProveedor"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Registrar Activo</span></button>
+								 	</div>
+								</div>
+                                <div class="col-md-1">
+                                    <button class="btn  btn-default btn-outline">Estado</button>
+                                </div>
+							  	<div class="col-md-2">
+									<div class="form-group">                                     
+							 			<select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
+											<option value="1" >Activo</option>											 
+											<option value="0">Inactivo </option>
+										</select>
+									</div>
+								</div> 
+                    </div>
+                </div>
+                </div>
                 </div>
 
-                  <div class="col-md-2 ">
-                  <div class="form-group">
+                    <?php          $cont=0;              ?>
 
-                      <label for="condi">Estado :</label>
-                    <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
-                      <option>Seleccione</option> 
-                      <option value="1" >Activo</option>
-                       
-                      <option value="0">Inactivo </option>
-                    </select>
-                  </div>
-                </div> 
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    
-                             <!-- Row -->
         <div class="row">
           <div class="col-sm-12">
             <div class="panel panel-default card-view">
@@ -117,14 +94,9 @@ f
                         <tbody >
                             <?php
                               $extraer="SELECT * FROM activo";
-
-                               //$base=mysqli_select_db($con,'finanzas');
                               $ejecutar=mysqli_query($mysqli,$extraer);
-
-
                               while($ejecuta=mysqli_fetch_array($ejecutar))
                               {
-                                
                                if (($ejecuta['estado'])==1) {
                                 $cont1=$cont1+1;
                                   ?>  
@@ -159,7 +131,6 @@ f
                                   </div>  
                                   </td>
                                 </tr>
-
                               <?php
                               }
                               }
@@ -175,27 +146,24 @@ f
         </div>
         <!-- /Row -->
                         
-                   
-                    
-                  
-
- 
-        <!--Modal  Registrar Proveedor-->
-
+        <!--Modal  Registrar -->
         <div id="ModalRegistarProveedor" class="modal fade" role="dialog">
             <div class="modal-dialog modal-lg">
-
-            <!-- Modal content-->
             <form  action="insert.php" method="post" class="form-register" > 
                 <div class="modal-content">
-                  <div class="color-moduloInventario">
-                      <div class="modal-header" >
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <div class="col-md-offset-5">
-                          <h4 class="modal-title">Ingresar Categoria </h4>
-                        </div>
                         <div class="modal-body">
-                      <div class="row">
+                        
+				       					<div class="panel panel-success card-view">
+<div class="panel-heading text-center">
+    <div class="pull-center" >
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="panel-title panel-center txt-light">Registrar Activo</h2>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="panel-wrapper collapse in">
+    <div class="panel-body">
+    <div class="row">
                           <div class="col-md-12">
                           <div class="col-md-3 ">
 
@@ -214,7 +182,6 @@ f
                                 </div>
                               </div>
 
-
                               <div class="input-group">
                                   <label for="cod" >Código:</label>
                                   <div class="input-group">
@@ -222,7 +189,6 @@ f
                                     <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
                                 </div>
                               </div>
-
 
                               <div class="input-group">
                                   <label for="val">Valor residual(%):</label>
@@ -242,8 +208,6 @@ f
                                   <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
                                 </div>
                               </div>
-
-
                               <div class="input-group">
                                   <label for="vidE">Vida economica:</label>
                                   <div class="input-group">
@@ -258,12 +222,13 @@ f
 
                         </div>
                       </div> 
-                    </div>
-                            
+    </div>
+                                            </div>
+                            </div>
+                      
+                    </div> 
                     <div class="modal-footer">
-
-                      <button type="submit" class="btn btn-success" >Guardar</button>
-                      <button type="button" class="btn btn-success" data-dismiss="modal">Cerrar</button>
+      <?php include '../Componentes/BtnGuardarCancelar.php'; ?>
                     </div>
                   </div>
                 </form>
@@ -273,28 +238,15 @@ f
 
         <!--Fin modal Registrar Proveedor-->
         
-        <div class="col-md-1"></div>
-
-
-        
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
 
-    </div>
-    <!-- /#wrapper -->
-  
   
   <?php
 include "../Componentes/scripts.php";

@@ -46,7 +46,7 @@ function envia(){
             </div>
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
-                <div class="row text-center">
+                <div class="row">
                     <div class="button-group">
 <button type="submit"  class="btn btn-danger" onclick="envia()"><i class="fa fa-mail-reply"></i>  Atras</button>
 </div>

@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +20,7 @@ require 'conexion.php';
 
 
 function envia(){
-   window.location="http://localhost/Financiero/siccif/vistas/ActivoFijo/subcategoria.php";
+   window.location="subcategoria.php";
   }
 
 
@@ -48,115 +46,76 @@ function envia(){
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
-        <!-- Title -->
-          <div class="row heading-bg">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-              <h3 align="center" >Editar Subcategoria</h3>
-            </div>
-          </div>
-          <!-- /Title -->
-      
-               
-                    <?php
-
-                    $cont=0;
-                    ?>
-                    <!-- Row -->
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
+            <div class="panel panel-warning card-view" style="margin-top:20px;">
+                <div class="panel-heading text-center">
+                    <div class="pull-center">
+                        <h6 class="panel-title txt-light"><i class="fa fa-edit"></i>  Editar Sub-Categoria</h6>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                    <?php              $cont=0;              ?>
+                    
+                  
                <form  action="editar.php" method="post" class="form-register" > 
-                  <div class="input-group">
-                 
-               <div class="col-lg-8 col-md-offset-3">
+               <div class="row">  
+               <div class="col-lg-12 col-md-offset-3">
+            <div class="input-group" style="width: 40%;">
                 <label for="nombsub2" >Nombre:</label>
                 <div class="input-group">
                 <input type="text" class="form-control" id="nombsub2" name="nombsub2" placeholder="Nombre" value="<?php echo $fila['nombre'];?>">
                 <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
               </div>
-
               </div>
-              <div class="col-lg-8 col-md-offset-3">
+              <div class="input-group" style="width: 40%;">
                  <label for="nomsubcatego" >Elija una categoria:</label>
               <br>
-               <select class="form-control SCategoria" data-live-search="true" id=" nomsubcatego" name="nomsubcatego" style="padding-bottom: 25px;">
+               <select class="form-control SCategoria" data-live-search="true" id=" nomsubcatego" name="nomsubcatego">
                <option></option>
-
                                    <?php
               $extraer="SELECT * FROM categoria";
-
-               //$base=mysqli_select_db($con,'finanzas');
               $ejecutar=mysqli_query($mysqli,$extraer);
               $cont=$cont+1;
-
               while($ejecuta=mysqli_fetch_array($ejecutar))
-              {$cont=$cont+1;
-                
-
-                  ?>  
-                               <option value="<?php  echo $ejecuta['idCat'] ?>"><?php  echo $ejecuta['nombre'] ?></option>
-                 
-                                 
-                                    
-                  <?php
-              }
-              ?>                   
+              {$cont=$cont+1
+                  ?>     <option value="<?php  echo $ejecuta['idCat'] ?>"><?php  echo $ejecuta['nombre'] ?></option>                 <?php
+              }    ?>                   
                    
               </select>                 
-
               </div>
-              <div class="col-lg-8 col-md-offset-3" style="padding-top:20px;">
+              <div class="input-group" style="width: 40%; margin-top:15px;">
                 <label for="codsub2" >Código:</label>
                 <div class="input-group">
                 <input type="text" class="form-control" id="codsub2" name="codsub2" placeholder="Ejemplo : 0001" value="<?php echo $fila['codigo'];?>">
                 <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
               </div>
               </div>
-
-              
+               </div>
+                </div>
               <input  type="hidden" class="form-control" id="idsu" name="idsu" placeholder="Nombre" value="<?php echo $_POST['btnEditar'];?>">
 
-                <div class="col-lg-12 col-md-offset-5">
-              <br>
-              <br> 
-              <div class="button-group">
-              <button type="submit" class="btn btn-success">Guardar</button>
-              <button type="button"  class="btn btn-success" data-dismiss="modal" onclick="envia()">Cancelar</button>
-              </div>
-              <br>
-              </div>
-              </div>
+                
+             <br>
+             <br>
+              <div class="row text-center">
+      <?php include '../Componentes/BtnGuardarCancelar.php'; ?>
+  </div>
               </form>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
-                    
-                  
-
-
-        
-        <div class="col-md-1"></div>
-
-
-        
+                    </div>
+                </div>
+                </div>
+      
+                         
       </div>
     <!-- /#wrapper -->
         <!-- Footer -->
-        <footer class="footer container-fluid pl-30 pr-30">
-          <div class="row">
-            <div class="col-sm-12">
-              <p>2017 &copy; Doodle. Pampered by Hencework</p>
-            </div>
-          </div>
-        </footer>
+        <?php include '../Componentes/footer.php'; ?>
         <!-- /Footer -->
       </div>
     </div>
         <!-- /Main Content -->
 
-    </div>
-    <!-- /#wrapper -->
   
   
   <?php
