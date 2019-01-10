@@ -1,7 +1,6 @@
 <?php 
 require 'conexion.php';
-
-
+$enviar=1;
 //edita ubicacion
 if (!empty($_POST['nombeditUb']) && !empty($_POST['ideU']) && !empty($_POST['codUb2']))
 	  {
@@ -13,7 +12,6 @@ $sql = " UPDATE ubicacion set nombre='$nombeditUb',codU='$codi' WHERE idUb='$ide
 //$insertar="INSERT INTO ubicacion (nombre) VALUES ('$_POST[nombeditUb]') WHERE $idUb='$_POST[ideU]'";
 //$ejecutar=mysqli_query($con,$insertar);
 header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Ubicacion.php');
-
 }
 //edita proveedor
 if (!empty($_POST['nomb2']) && !empty($_POST['dir2']) && !empty($_POST['nit2']) && !empty($_POST['cont2']) && !empty($_POST['tel2']) && !empty($_POST['correo2']))  {
@@ -32,17 +30,16 @@ header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/RegistroP
 
 }
 //editar marca
-
 if (!empty($_POST['nombMar'])){
 
 $ideU = $_POST['ideU'];
-	$nombeditUb = $_POST['nombMar'];
-	
-
+$nombeditUb = $_POST['nombMar'];
 $sql = " UPDATE marca set nombre='$nombeditUb' WHERE idMarca='$ideU'";
-	$resultado = $mysqli->query($sql);
+$resultado = $mysqli->query($sql);
+    if(!$resultado)
+        $enviar=0;
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Marcas.php');
+header('Location: gestionRegistros.php?paso=marca&resultado='.$enviar);
 
 }
 

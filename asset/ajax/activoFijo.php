@@ -1,10 +1,33 @@
-<!-- Categorias -->
+<?php 
+    $mysqli = new mysqli('localhost', 'root', '', 'siccif');
+    $opcion=$_REQUEST['opcion'];	
+    $est=$_REQUEST['estado'];
+?>
+<div class="text-center">
+<div class="form-group">
+<?php
+    if($opcion==="institucion"){
+?>
+<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalInstitucion"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nueva Institución</span></button>
+<?php }else if($opcion==="ubicacion"){ ?>
+<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalUbicacion"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nueva Ubicación</span></button>
+<?php }else if($opcion==="proveedor"){ ?>
+<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalProveedor"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nuevo Proveedor</span></button>
+<?php }else if($opcion==="movimiento"){ ?>
+<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalMovimiento"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nuevo Movimiento</span></button>
+<?php }else if($opcion==="marca"){ ?>
+<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalMarca"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nueva Marca</span></button>
+<?php }else if($opcion==="categoria"){ ?>
+<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalCategoria"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nueva Categoria</span></button>
+<?php }else if($opcion==="subcategoria"){ ?>
+<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalSubCategoria"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nueva Sub-Categoria</span></button>
+<?php } ?>
+</div>							 	
+</div>
+
 <table id="datable_1" class="table table-hover display  pb-30 tablaAct">
 
 <?php 
-      	$mysqli = new mysqli('localhost', 'root', '', 'siccif');
-		$opcion=$_REQUEST['opcion'];	
-        $est=$_REQUEST['estado'];
 if($opcion==="categoria"){
 ?>
 
@@ -118,7 +141,6 @@ if($opcion==="categoria"){
                               while($ejecuta=mysqli_fetch_array($ejecutar))
                               {if (($ejecuta['estado'])==$est) {
                                 $cont=$cont+1;
-
                                   ?>  
                                 <tr>
                                   <td><?php  echo $cont ?> </td>
@@ -126,9 +148,8 @@ if($opcion==="categoria"){
                                   <td>
                                   <?php if($est=="1"){ ?>
                                  <div class="col-md-6 text-right">
-                                  <form   action="editarMarcas.php" method="post" class="form-register" > 
-                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idMarca']?>" ><i class="fa fa-edit"></i></button>
-                                    </form>	
+                                    <button   type="button" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  onclick="editar('<?php echo $ejecuta['idMarca']?>','ModalMarcaEditar');" ><i class="fa fa-edit"></i></button>
+                                   
                               </div>
                               <div class="col-md-6 text-left">
                                   <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idMarca']; ?>','Desea dar de baja la Marca','marca','0')"><i class="fa fa-arrow-circle-down"></i> </button>
@@ -345,6 +366,50 @@ if($opcion==="categoria"){
                                 <?php }else if($est==='0'){ ?>
                                 <div class="col-md-12 text-center">
                                   <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idUb']; ?>','Desea dar de alta a la Ubicación','ubicacion','1')"><i class="fa fa-arrow-circle-up"></i> </button>
+                              </div>
+                                <?php } ?>
+                                </td>
+                              </tr>
+
+                            <?php
+                            }
+                            }
+                            ?> 
+                        </tbody>
+                        <?php } else if($opcion==='institucion'){ ?>
+                            <thead>
+                          <tr >
+                              <th  WIDTH="50" HEIGHT='9' >N°</th>
+                              <th >Código</th>
+                              <th >Nombre</th>
+                              <th  WIDTH="170" HEIGHT='9'>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                          <?php
+                            $extraer="SELECT * FROM institucion";
+                            $ejecutar=mysqli_query($mysqli,$extraer);
+                            while($ejecuta=mysqli_fetch_array($ejecutar))
+                            { if (($ejecuta['estado'])==$est) {
+                              $cont=$cont+1;
+                                ?>  
+                              <tr>
+                                <td><?php  echo $cont ?> </td>
+                                <td><?php echo $ejecuta['codigo']?></td>
+                                <td id="nam" name="nam"><?php echo $ejecuta['Nombre']?></td>
+                                <td>
+                                <?php if($est==='1'){ ?>
+                                <div class="col-md-6 text-right">
+                                  <form   action="editarUbicacion.php" method="post" class="form-register" > 
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idIn']?>" ><i class="fa fa-edit"></i></button>
+                                    </form>	
+                              </div>
+                              <div class="col-md-6 text-left">
+                                  <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idIn']; ?>','Desea dar de baja a la Institución','institucion','0')"><i class="fa fa-arrow-circle-down"></i> </button>
+                              </div>
+                                <?php }else if($est==='0'){ ?>
+                                <div class="col-md-12 text-center">
+                                  <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idIn']; ?>','Desea dar de alta a la Institución','institucion','1')"><i class="fa fa-arrow-circle-up"></i> </button>
                               </div>
                                 <?php } ?>
                                 </td>

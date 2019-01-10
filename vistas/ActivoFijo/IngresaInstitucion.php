@@ -35,7 +35,6 @@ require 'conexion.php';
             </div>
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
-                
 										<div class="form-wrap">
 											<?php 
 											   $aux=1;

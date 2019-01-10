@@ -19,6 +19,8 @@
         $sql = " UPDATE ubicacion set estado='$est' WHERE idUb='$id'";
     if($opcion=='cliente')
         $sql = " UPDATE cliente set estado='$est' WHERE idCliente='$id'";
+if($opcion=='institucion')
+        $sql = " UPDATE institucion set estado='$est' WHERE idIn='$id'";
 
     $resultado = $mysqli->query($sql); 
 ?>

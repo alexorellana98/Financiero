@@ -1,13 +1,10 @@
 <?php 
 
 require 'conexion.php';
-
 //$con=mysqli_connect('localhost','root','','finanzas');
 if (!$mysqli) {
   echo "Erick no se esta conectando gommennasai";
-
 }else {echo "Erick se esta conectando desu"; }
-
  /*$base=mysqli_select_db($con,'finanzas');
 if (!$base) {
   echo "Erick no se encontro la base gommennasai";
@@ -19,11 +16,9 @@ if (!empty($_POST['nomb']) && !empty($_POST['dir']) && !empty($_POST['nit']) && 
 $insertar="INSERT INTO proveedor (nombre, direccion, nit, contacto, telefono, correo, observacion,estado) VALUES ('$_POST[nomb]','$_POST[dir]','$_POST[nit]','$_POST[cont]','$_POST[tel]','$_POST[correo]','$_POST[obs]','$est')";
 $ejecutar=mysqli_query($mysqli,$insertar);
   //alert('Datos guardados');
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/RegistroProveedor.php');
+header('Location: gestionRegistros.php?paso=proveedor');
 
 }
-
-
 //insertar movimiento
 
 if (!empty($_POST['nombMov']))  {
@@ -31,17 +26,16 @@ $est=1;
 $insertar="INSERT INTO movimiento (nombre,estado) VALUES ('$_POST[nombMov]','$est')";
 $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Movimiento.php');
+header('Location: gestionRegistros.php?paso=movimiento');
 
 }
 //insertar marca
-
 if (!empty($_POST['nombProd'])){
 $est=1;
 $insertar="INSERT INTO marca (nombre,estado) VALUES ('$_POST[nombProd]','$est')";
 $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Marcas.php');
+header('Location: gestionRegistros.php?paso=marca');
 
 }
 //inserta clasificacion activo
@@ -62,7 +56,7 @@ $est=1;
 $insertar="INSERT INTO ubicacion (nombre,estado,codU) VALUES ('$_POST[nombUb]','$est','$_POST[codUb]')";
 $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/ubicacion.php');
+header('Location:gestionRegistros.php?paso=ubicacion');
 
 }
 
@@ -72,7 +66,7 @@ if (!empty($_POST['nombcat']) && !empty($_POST['cod']) )  {
 $insertar="INSERT INTO Categoria (nombre,cod,val,vidautil,vidaeco,estado) VALUES ('$_POST[nombcat]','$_POST[cod]','$_POST[val]','$_POST[vidU]','$_POST[vidE]','$val')";
 $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Categoria.php');
+header('Location: gestionRegistros.php?paso=categoria');
 }
 
 //inserta subCategoria
@@ -89,9 +83,8 @@ $insertar="INSERT INTO subcategoria (nombre,idcat,codigo,estado) VALUES ('$_POST
 
 $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/subcategoria.php');
+header('Location: gestionRegistros.php?paso=subcategoria');
 }
-
 //inserta Activo
 if (!empty($_POST['codi']) && !empty($_POST['idcat']) && !empty($_POST['sub']) && !empty($_POST['des']) && !empty($_POST['ubica2']))  {
   $va2=1;
@@ -99,32 +92,21 @@ if (!empty($_POST['codi']) && !empty($_POST['idcat']) && !empty($_POST['sub']) &
    $sentencia = "SELECT * FROM subcategoria WHERE codigo='$aux'"; 
    $ejecutar=mysqli_query($mysqli,$sentencia);
    $fila = mysqli_fetch_assoc($ejecutar);
-     
-
     $aux2=$_POST['ubica2'];
    $sentencia2 = "SELECT * FROM ubicacion WHERE codU='$aux2'"; 
    $ejecutar2=mysqli_query($mysqli,$sentencia2);
    $fila2 = mysqli_fetch_assoc($ejecutar2);
-       
-
 $insertar="INSERT INTO activo (codAct,descrip,idCat,idSub,estado,idUb) VALUES ('$_POST[codi]','$_POST[des]','$_POST[idcat]','$fila[idSub]','$va2','$fila2[idUb]')";
 $ejecutar=mysqli_query($mysqli,$insertar);
-
-
-
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
 header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/CompraIngresar.php');
 }
-
 //inserta Datos de compraIngresar
 //DESDE AQUI HA CAMBIADO
 if (!empty($_POST['prov']) && !empty($_POST['serie']) && !empty($_POST['fecha']) && !empty($_POST['prec']) && !empty($_POST['ubica']) && !empty($_POST['condi'])  && !empty($_POST['idac']) )  {
-
 $fe=$_POST['fecha'];
 $tfecha=date("Y-m-d",strtotime($fe));//fecha de inicio de uso
 ini_set('date.timezone', 'America/El_Salvador');
-
-
 $Hoy=date("Y/m/d");//fecha de adquisicion
 $vidautil=0; 
 $est=1;
@@ -146,12 +128,9 @@ if ($aux3=="Nuevo"){
   }else{
     $vidautil=$_POST['vi'];
   }
-
 $insertar="INSERT INTO compras (idProv,fecha,condicion,precioUni,codAct,donado,estado) VALUES ('$_POST[prov]','$tfecha','$_POST[condi]','$_POST[prec]','$_POST[idac]','$dona','$est')";
 $ejecutar=mysqli_query($mysqli,$insertar);
-
 $va=1;
-
 $sql = " UPDATE activo set estadoBoton='$va' WHERE idAc='$aux'";
   $resultado = $mysqli->query($sql);
 //insertar en tabla detalle de activo
@@ -167,35 +146,25 @@ echo $_POST['idAc'].$_POST['condiM'].$_POST['nfac'].$_POST['fech'].$_POST['prec'
 if (!empty($_POST['idAc']) && !empty($_POST['condiM']) && !empty($_POST['nfac']) && !empty($_POST['fech']) && !empty($_POST['prec']))  {
  $val=2;
 $aux5=$_POST['idAc'];
-
 $insertar="INSERT INTO venta (idActi,idMovi,factNum,fecha,precVenta) VALUES ('$_POST[idAc]','$_POST[condiM]','$_POST[nfac]','$_POST[fech]','$_POST[prec]')";
 $ejecutar=mysqli_query($mysqli,$insertar);
-
-
 $sql = " UPDATE activo set estado='$val' WHERE idAc='$aux5'";
   $resultado = $mysqli->query($sql);
-
 header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/factura.php');
 }
-
 //inserta Reevaluacion
 if (!empty($_POST['ideA']) && !empty($_POST['precN']) && !empty($_POST['precA']))  {
-
  $val=$_POST['ideA'];
    $aux=$_POST['precN'];
-   
    $sql = " UPDATE detalle_activo set valor_historico='$aux' WHERE activofijo_id='$val'";
   $resultado = $mysqli->query($sql);
   ini_set('date.timezone', 'America/El_Salvador');
-
 $fechaR=date("Y/m/d");//fecha de reevalaucion
 $insertar="INSERT INTO reevaluar (fecha,valorAnt,idAc,valor) VALUES ('$fechaR','$_POST[precA]','$_POST[ideA]','$_POST[precN]')";
-
 $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
 header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/reevaluar.php');
 }
-
 //inserta Departamento
 /*if (!empty($_POST['nombDe']) && !empty($_POST['codDe']) )  {
 
