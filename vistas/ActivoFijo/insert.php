@@ -1,6 +1,6 @@
 <?php 
-
 require 'conexion.php';
+$enviar=1;
 //$con=mysqli_connect('localhost','root','','finanzas');
 if (!$mysqli) {
   echo "Erick no se esta conectando gommennasai";
@@ -15,8 +15,10 @@ if (!empty($_POST['nomb']) && !empty($_POST['dir']) && !empty($_POST['nit']) && 
 
 $insertar="INSERT INTO proveedor (nombre, direccion, nit, contacto, telefono, correo, observacion,estado) VALUES ('$_POST[nomb]','$_POST[dir]','$_POST[nit]','$_POST[cont]','$_POST[tel]','$_POST[correo]','$_POST[obs]','$est')";
 $ejecutar=mysqli_query($mysqli,$insertar);
-  //alert('Datos guardados');
-header('Location: gestionRegistros.php?paso=proveedor');
+if(!$ejecutar)
+    $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=proveedor&tipo=agregar&resultado='.$enviar);
 
 }
 //insertar movimiento
@@ -25,8 +27,10 @@ if (!empty($_POST['nombMov']))  {
 $est=1;
 $insertar="INSERT INTO movimiento (nombre,estado) VALUES ('$_POST[nombMov]','$est')";
 $ejecutar=mysqli_query($mysqli,$insertar);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: gestionRegistros.php?paso=movimiento');
+if(!$ejecutar)
+    $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=movimiento&tipo=agregar&resultado='.$enviar);
 
 }
 //insertar marca
@@ -34,8 +38,10 @@ if (!empty($_POST['nombProd'])){
 $est=1;
 $insertar="INSERT INTO marca (nombre,estado) VALUES ('$_POST[nombProd]','$est')";
 $ejecutar=mysqli_query($mysqli,$insertar);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: gestionRegistros.php?paso=marca');
+if(!$ejecutar)
+    $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=marca&tipo=agregar&resultado='.$enviar);
 
 }
 //inserta clasificacion activo
@@ -55,8 +61,10 @@ $est=1;
 
 $insertar="INSERT INTO ubicacion (nombre,estado,codU) VALUES ('$_POST[nombUb]','$est','$_POST[codUb]')";
 $ejecutar=mysqli_query($mysqli,$insertar);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location:gestionRegistros.php?paso=ubicacion');
+if(!$ejecutar)
+    $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=ubicacion&tipo=agregar&resultado='.$enviar);
 
 }
 
@@ -65,8 +73,10 @@ if (!empty($_POST['nombcat']) && !empty($_POST['cod']) )  {
  $val=1;
 $insertar="INSERT INTO Categoria (nombre,cod,val,vidautil,vidaeco,estado) VALUES ('$_POST[nombcat]','$_POST[cod]','$_POST[val]','$_POST[vidU]','$_POST[vidE]','$val')";
 $ejecutar=mysqli_query($mysqli,$insertar);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: gestionRegistros.php?paso=categoria');
+if(!$ejecutar)
+    $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=categoria&tipo=agregar&resultado='.$enviar);
 }
 
 //inserta subCategoria
@@ -82,8 +92,10 @@ $fila = mysqli_fetch_assoc($ejecutar1);
 $insertar="INSERT INTO subcategoria (nombre,idcat,codigo,estado) VALUES ('$_POST[nombsub]','$fila[idCat]','$_POST[codsub]','$val')";
 
 $ejecutar=mysqli_query($mysqli,$insertar);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: gestionRegistros.php?paso=subcategoria');
+if(!$ejecutar)
+    $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=subcategoria&tipo=agregar&resultado='.$enviar);
 }
 //inserta Activo
 if (!empty($_POST['codi']) && !empty($_POST['idcat']) && !empty($_POST['sub']) && !empty($_POST['des']) && !empty($_POST['ubica2']))  {

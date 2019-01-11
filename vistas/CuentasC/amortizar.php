@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,7 +73,6 @@ require 'conexion.php';
                         </form>
                 </div>
                 <?php $cont=0;   ?>
-                <div class="row">
                     
                   <div class="table-wrap">
                     <div class="table-responsive">
@@ -179,7 +176,7 @@ $monto=$monto-$capital;
                       </table>
                     </div>
                   </div>
-                </div>
+ 
                 </div>
                     </div>
                 </div>

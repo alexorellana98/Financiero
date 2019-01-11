@@ -7,17 +7,14 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Categorias</title>
-  
   <?php
       include "../Componentes/estilos.php";
   ?>
-
  <script language="javascript">
  
 function envia(){
    window.location="Categoria.php";
   }
-
 </script>
 </head>
 <?php 

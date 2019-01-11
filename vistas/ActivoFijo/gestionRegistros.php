@@ -2,7 +2,7 @@
 require 'conexion.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -12,7 +12,13 @@ require 'conexion.php';
   ?>
    <?php
 include "../Componentes/scripts.php";
-?>
+?>    
+    <script>
+        $(function () {
+            $('.SEstado').select2()
+            $('.STipoCategoria').select2()
+        });
+    </script>
 	<script src="../../asset/js/activoFijo.js"></script>
     <script language="javascript">
         var cambio='<?php echo $_REQUEST['paso']; ?>';
@@ -20,11 +26,26 @@ include "../Componentes/scripts.php";
             cambio="institucion";
         else{
             var resultado='<?php echo $_REQUEST['resultado']; ?>';
-            if(resultado==1){
-                    $.confirm({
-                    title: 'Exito!',
-                    content: cambio+' modificada',
-                    type: 'green',
+            var tipo='<?php echo $_REQUEST['tipo']; ?>';
+            if(tipo==="modificacion"){
+                    if(resultado==='1')
+                        alerta("Exito ",""+cambio+ " modificado","green");
+                else if(resultado==='0')
+                    alerta("Error",""+cambio+"  no se pudo modificar","red");
+            }
+            if(tipo==="agregar"){
+                    if(resultado==='1')
+                        alerta("Exito ",""+cambio+ " agregado","green");
+                else if(resultado==='0')
+                    alerta("Error",""+cambio+"  no se pudo agregar","red");
+            }
+        }
+
+function alerta(titulo,contenido,tipo){
+    $.confirm({
+                    title: titulo,
+                    content: contenido,
+                    type: tipo,
                     typeAnimated: true,
                     buttons: {
                         tryAgain: {
@@ -35,13 +56,8 @@ include "../Componentes/scripts.php";
                         }
                     }
                 }); 
-            }
-        }
-    
+}
 function editar(id,tabla){
-    //alert(id);
-    //alert(tabla);
-    //alert("En;tre Editar");
      if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
             }
@@ -50,7 +66,8 @@ function editar(id,tabla){
             }
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    document.getElementById("modalsE").innerHTML = xmlhttp.responseText;
+                    document.getElementById("modalsE").innerHTML = xmlhttp.responseText;                    
+                    $('.SCategoriaEditar').select2()
                     //alert(xmlhttp.responseText);
                     $("#"+tabla).modal('show');
                 }
@@ -101,13 +118,13 @@ window.onload = function() {
                     <div class="row">
                         <div class="col-md-12">
 								 	<div class="form-group">
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('institucion');"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Institución</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onclick="actualizar('ubicacion')"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Ubicación</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('proveedor')"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Proveedor</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('movimiento');"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Movimiento</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('marca');"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Marca</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('categoria');"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Categoria</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('subcategoria');"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Sub-Categoria</span></button>
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('institucion');"> <span class="btn-label"><i class="fa fa-institution"></i> </span><span class="btn-text">Institución</span></button>
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onclick="actualizar('ubicacion')"> <span class="btn-label"><i class="fa fa-map"></i> </span><span class="btn-text">Ubicación</span></button>
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('proveedor')"> <span class="btn-label"><i class="fa fa-male"></i> </span><span class="btn-text">Proveedor</span></button>
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('movimiento');"> <span class="btn-label"><i class="fa fa-history"></i> </span><span class="btn-text">Movimiento</span></button>
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('marca');"> <span class="btn-label"><i class="fa fa-list-alt"></i> </span><span class="btn-text">Marca</span></button>
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('categoria');"> <span class="btn-label"><i class="fa fa-list"></i> </span><span class="btn-text">Categoria</span></button>
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('subcategoria');"> <span class="btn-label"><i class="fa fa-outdent"></i> </span><span class="btn-text">Sub-Categoria</span></button>
 								 	</div>
 								</div> 
                     </div>
@@ -134,8 +151,11 @@ window.onload = function() {
                 <div class="panel-body">
                   <div class="table-wrap">
                     <div class="table-responsive" id="actualizar">
+                    
                     </div>
                   </div>
+                  <br>
+                    
                 </div>
               </div>
             </div>  
@@ -147,6 +167,13 @@ window.onload = function() {
       <div id="modalsE">
           
       </div>
+      <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
     <!-- /#wrapper -->
         <!-- Footer -->
         <?php include '../Componentes/footer.php'; ?>
@@ -154,12 +181,6 @@ window.onload = function() {
       </div>
     </div>
  
-   <script>
-        $(function () {
-            $('.SEstado').select2()
-            $('.STipoCategoria').select2()
-        });
-    </script>
 </body>
 
 </html>

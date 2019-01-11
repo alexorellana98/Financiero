@@ -54,7 +54,7 @@ $resultado = $mysqli->query($sql);
             <div class="panel panel-success card-view" style="margin-top:20px;">
                 <div class="panel-heading text-center">
                     <div class="pull-center">
-                        <h6 class="panel-title txt-light">Prestamos del Cliente</h6>
+                        <h6 class="panel-title txt-light"><i class="fa fa-usd"></i>  Prestamos del Cliente</h6>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -68,7 +68,7 @@ $aux2=$_GET['btnPre'];
    $ejecutar2=mysqli_query($mysqli,$sentencia2);
    $fila1 = mysqli_fetch_assoc($ejecutar2);
     ?>
-<div class="button-group">
+<div class="button-group text-left">
 <form  action="verDetalleCliente.php" method="get" class="form-register" >
 <button type="submit"  class="btn btn-danger" data-dismiss="modal" id="btndetalle" name="btndetalle" value="<?php echo $fila1['idCliente']; ?>" ><i class="fa fa-mail-reply"></i> Atras</button>
 </form>

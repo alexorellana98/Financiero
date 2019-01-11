@@ -9,9 +9,13 @@ $ideU = $_POST['ideU'];
 $codi=$_POST['codUb2'];
 $sql = " UPDATE ubicacion set nombre='$nombeditUb',codU='$codi' WHERE idUb='$ideU'";
 	$resultado = $mysqli->query($sql);
+    if(!$resultado)
+        $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=ubicacion&tipo=modificacion&resultado='.$enviar);
 //$insertar="INSERT INTO ubicacion (nombre) VALUES ('$_POST[nombeditUb]') WHERE $idUb='$_POST[ideU]'";
 //$ejecutar=mysqli_query($con,$insertar);
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Ubicacion.php');
+//header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Ubicacion.php');
 }
 //edita proveedor
 if (!empty($_POST['nomb2']) && !empty($_POST['dir2']) && !empty($_POST['nit2']) && !empty($_POST['cont2']) && !empty($_POST['tel2']) && !empty($_POST['correo2']))  {
@@ -25,8 +29,10 @@ $corre=$_POST['correo2'];
 $ob=$_POST['obs2'];
 $sql ="UPDATE proveedor set nombre='$nombre',direccion='$direc',nit='$nit',contacto='$cont',telefono='$tel',correo='$corre',observacion='$ob' WHERE ide='$ideU'";
 $resultado = $mysqli->query($sql);
-
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/RegistroProveedor.php');
+    if(!$resultado)
+        $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=proveedor&tipo=modificacion&resultado='.$enviar);
 
 }
 //editar marca
@@ -38,8 +44,8 @@ $sql = " UPDATE marca set nombre='$nombeditUb' WHERE idMarca='$ideU'";
 $resultado = $mysqli->query($sql);
     if(!$resultado)
         $enviar=0;
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: gestionRegistros.php?paso=marca&resultado='.$enviar);
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=marca&tipo=modificacion&resultado='.$enviar);
 
 }
 
@@ -53,7 +59,11 @@ $sql = " UPDATE movimiento set nombre='$nombMo' WHERE idMov='$ideU'";
 	$resultado = $mysqli->query($sql);
 //$insertar="INSERT INTO ubicacion (nombre) VALUES ('$_POST[nombeditUb]') WHERE $idUb='$_POST[ideU]'";
 //$ejecutar=mysqli_query($con,$insertar);
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Movimiento.php');
+if(!$resultado)
+    $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=movimiento&tipo=modificacion&resultado='.$enviar);
+//header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Movimiento.php');
 
 }
 
@@ -83,8 +93,10 @@ $ide = $_POST['idCat'];
 
 $sql = " UPDATE categoria set nombre='$nombe',cod='$cod',val='$val' WHERE idCat='$ide'";
 	$resultado = $mysqli->query($sql);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/Categoria.php');
+    if(!$resultado)
+        $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=categoria&tipo=modificacion&resultado='.$enviar);
 
 }
 
@@ -99,8 +111,10 @@ $ide = $_POST['nomsubcatego'];
 
 $sql = " UPDATE subcategoria set nombre='$nombe',idcat='$ide',codigo='$cod' WHERE idSub='$aux'";
 	$resultado = $mysqli->query($sql);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/subcategoria.php');
+    if(!$resultado)
+        $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=subcategoria&tipo=modificacion&resultado='.$enviar);
 
 }
 
@@ -111,13 +125,12 @@ if (!empty($_POST['nombI']) && !empty($_POST['nombCo']) ){
 $aux=1;
 $nombI = $_POST['nombI'];
 	$nomCo = $_POST['nombCo'];
-	
-	
-
 $sql = " UPDATE institucion set codigo='$nomCo',Nombre='$nombI' WHERE idIn='$aux'";
 	$resultado = $mysqli->query($sql);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/IngresaInstitucion.php');
+    if(!$resultado)
+        $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=institucion&tipo=modificacion&resultado='.$enviar);
 
 }
 

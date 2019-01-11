@@ -66,7 +66,7 @@ $resultado = $mysqli->query($sql);
    $ejecutar4=mysqli_query($mysqli,$sentencia4);
    $fila4 = mysqli_fetch_assoc($ejecutar4);
    ?>
-                <div class="row text-center">
+                <div class="row text-left">
             <div class="button-group">
               <form  action="verPrestamosCliente.php" method="get" class="form-register" > 
                   <button type="submit"  class="btn btn-danger" data-dismiss="modal" id="btnPre" name="btnPre" value="<?php echo $fila1['idCli'] ?>" > <i class="fa fa-mail-reply"> </i>  Atras</button>

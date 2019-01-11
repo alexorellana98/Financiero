@@ -73,40 +73,15 @@
 		<div class="fixed-sidebar-left">
 			<ul class="nav navbar-nav side-nav nicescroll-bar">
 				<li class="navigation-header">
-					<span>Principal</span> 
+					<span>Menu Principal</span> 
 					<i class="zmdi zmdi-more"></i>
 				</li>
-				
 
 				<li>
-					<a href="javascript:void(0);" data-toggle="collapse" data-target="#dashboard_dr"><div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span class="right-nav-text">Registros</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
-					<ul id="dashboard_dr" class="collapse collapse-level-1">
-						<li>
-							<a  href="../ActivoFijo/IngresaInstitucion.php">Institución</a>
-						</li>
-						<li>
-							<a  href="../ActivoFijo/RegistroProveedor.php">Proveedores</a>
-						</li>
-						<li>
-							<a href="../ActivoFijo/Marcas.php">Marca</a>
-						</li>
-						<li>
-							<a href="../ActivoFijo/Movimiento.php">Movimientos</a>
-						</li>
-						<li>
-							<a href="../ActivoFijo/Ubicacion.php">Ubicación</a>
-						</li>
-					</ul>
-				</li>
-
-				<li>
-					<a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr"><div class="pull-left"><i class="zmdi zmdi-apps mr-20"></i><span class="right-nav-text">Activo Fijo </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr"><div class="pull-left"><i class="fa fa-gears"></i><span class="right-nav-text">  Activo Fijo </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="app_dr" class="collapse collapse-level-1">
 						<li>
-							<a  href="../ActivoFijo/Categoria.php">Categoria</a>
-						</li>
-						<li>
-							<a  href="../ActivoFijo/subcategoria.php">Sub Categoria</a>
+							<a  href="../ActivoFijo/gestionRegistros.php">Gestion de Registros</a>
 						</li>
 						<li>
 							<a href="../ActivoFijo/Comprar.php">Comprar</a>
@@ -124,7 +99,7 @@
 				</li>
 				
 				<li>
-					<a  href="javascript:void(0);" data-toggle="collapse" data-target="#form_dr"><div class="pull-left"><i class="zmdi zmdi-edit mr-20"></i><span class="right-nav-text">Cuentas Por Cobrar</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<a  href="javascript:void(0);" data-toggle="collapse" data-target="#form_dr"><div class="pull-left"><i class="fa  fa-dollar"></i><span class="right-nav-text">Cuentas Por Cobrar</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="form_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
 							<a  href="../CuentasC/creditos.php">Creditos</a>
@@ -136,7 +111,7 @@
 				</li>
 
 				<li>
-					<a href="javascript:void(0);" data-toggle="collapse" data-target="#chart_dr"><div class="pull-left"><i class="zmdi zmdi-chart-donut mr-20"></i><span class="right-nav-text">Reportes </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#chart_dr"><div class="pull-left"><i class="fa fa-file-text-o"></i><span class="right-nav-text">  Reportes </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="chart_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
 							<a  href="../ActivoFijo/ReporteActivo.php">Activos</a>

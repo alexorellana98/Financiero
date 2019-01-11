@@ -56,9 +56,7 @@ if($opcion==="categoria"){
                 <td>
                    <?php if($est==='1'){ ?>
                    <div class="col-md-6 text-center">
-                    <form action="editarCategoria.php" method="post" class="form-register">
-                        <button type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar" data-toggle="modal" value="<?php echo $ejecuta['idCat']?>"><i class="fa fa-edit"></i> </button>
-                    </form>
+                        <button type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar" data-toggle="modal" onclick="editar('<?php echo $ejecuta['idCat']?>','ModalCategoriaEditar');"><i class="fa fa-edit"></i> </button>
                     </div>
                     <div class="col-md-6">
                     <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idCat']; ?>','Desea dar de baja a la Categoria','categoria','0')"><i class="fa fa-arrow-circle-down"></i>  </button>
@@ -107,9 +105,7 @@ if($opcion==="categoria"){
             <td class="text-center">
              <?php if($est==='1'){ ?>
             <div class="col-md-6 text-center">
-              <form   action="editarSubcategoria.php" method="post" class="form-register" > 
-                <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idSub']?>" ><i class="fa fa-edit"></i></button>
-                </form>	
+                <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  onclick="editar('<?php echo $ejecuta['idSub']?>','ModalSubCategoriaEditar');" ><i class="fa fa-edit"></i></button>
           </div>
           <div class="col-md-6 text-right">
               <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idSub']; ?>','Desea dar de baja a la Sub-Categoria','subcategoria','0')"><i class="fa fa-arrow-circle-down"></i> </button>
@@ -191,9 +187,7 @@ if($opcion==="categoria"){
                                 <td>
                                 <?php if($est==='1'){ ?>
                                  <div class="col-md-6 text-right">
-                                  <form   action="editarMovimiento.php" method="post" class="form-register" > 
-                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idMov']?>" ><i class="fa fa-edit"></i></button>
-                                    </form>	
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal" onclick="editar('<?php echo $ejecuta['idMov']?>','ModalMovimientoEditar');" ><i class="fa fa-edit"></i></button>
                               </div>
                               <div class="col-md-6 text-left">
                                   <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idMov']; ?>','Desea dar de baja al Movimiento','movimiento','0')"><i class="fa fa-arrow-circle-down"></i> </button>
@@ -312,9 +306,7 @@ if($opcion==="categoria"){
                                 <td>
                                  <?php if($est=="1"){ ?>
                                  <div class="col-md-6" style="margin-right:0px; padding-left:0px; padding-right: 0px;">
-                                  <form   action="editarProveedor.php" method="post" class="form-register" > 
-                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['ide']?>" ><i class="fa fa-edit"></i></button>
-                                    </form>	
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  onclick="editar('<?php echo $ejecuta['ide']?>','ModalProveedorEditar');"><i class="fa fa-edit"></i></button>
                               </div>
                               <div class="col-md-6">
                                   <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['ide']; ?>','Desea dar de baja al Proveedor','proveedor','0')"><i class="fa fa-arrow-circle-down"></i> </button>
@@ -356,9 +348,7 @@ if($opcion==="categoria"){
                                 <td>
                                 <?php if($est==='1'){ ?>
                                 <div class="col-md-6 text-right">
-                                  <form   action="editarUbicacion.php" method="post" class="form-register" > 
-                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idUb']?>" ><i class="fa fa-edit"></i></button>
-                                    </form>	
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal" onclick="editar('<?php echo $ejecuta['idUb']?>','ModalUbicacionEditar');"  ><i class="fa fa-edit"></i></button>
                               </div>
                               <div class="col-md-6 text-left">
                                   <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idUb']; ?>','Desea dar de baja a la Ubicación','ubicacion','0')"><i class="fa fa-arrow-circle-down"></i> </button>
