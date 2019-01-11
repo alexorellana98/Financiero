@@ -8,7 +8,7 @@ $Hoy=date("Y/m/d");
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Categorias</title>
+  <title>Prestamo</title>
   
   <?php
       include "../Componentes/estilos.php";
@@ -52,50 +52,33 @@ function envia(){
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body">
                     <form  action="insert.php" method="post" class="form-register" > 
-   
- <div class="col-lg-12 col-md-offset-2">
- 
-<div class="col-md-6">
-<div class="input-group">
+<div class="row">
+<div class="col-md-1"></div>
+<div class="col-md-3">
   <label for="nomb" >Nombre de Cliente:</label>
   <div class="input-group">
   <input type="text" readonly="true" class="form-control" id="nomb" placeholder="Nombre" name="nomb" value="<?php echo $fila['nombre'];?>">
   <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
 </div>
-</div>
-
-
-<br> 
-<div class="input-group">
-
   <label for="dui">DUI </label>
   <div class="input-group">
   <input type="text" readonly="true" class="form-control" id="dui" placeholder="Ej:00000000-0" name="dui" value="<?php echo $fila['dui'];?>">
    <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
   </div>
-</div>
-<br>
-
-<div class="input-group">
-
   <label for="tel" >Telefono:</label>
   <div class="input-group">
   <input type="text" readonly="true" class="form-control" id="tel" placeholder="Ej:0000-0000" name="tel" value="<?php echo $fila['tel'];?>">
   <div class="input-group-addon"><span  class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
 </div>
-</div>
-<br>
- <div class="form-group" style="width:220px;">
   <label for="tipo" >Tipo de Prestamo:</label>
-   <select class="form-control STipoPrestamo"  id=" tipo" name="tipo" onchange="cambiar(this.selectedIndex)">
-   <option value="0"></option>
+   <select class="form-control STipoPrestamo"  id="tipo" name="tipo" onchange="cambiar(this.selectedIndex)">
+   <option value="0">Seleccione</option>
 <?php
  $sentencia1 = "SELECT * FROM creditos"; 
  $ejecutar1=mysqli_query($mysqli,$sentencia1);
    
 $cont=1;
 $tipo;
-                      
                         $interes;
                         $maxpres;
                      $minpres;
@@ -107,104 +90,81 @@ while($ejecuta=mysqli_fetch_array($ejecutar1))
     $interes[$cont]=$ejecuta['interes'];
     $maxpres[$cont]=$ejecuta['cmax'];
     $minpres[$cont]=$ejecuta['cmin'];
-  
 $es=$ejecuta['idCre'];
     ?> 
     <?php ?>
         <option value="<?php  echo $ejecuta['idCre'] ?>"><?php  echo $ejecuta['tipo'] ?></option>                     
     <?php
-    
-    
     $cont++;
 }
 
 ?>                     
 </select>    
 </div>
-<br>
-<br>
-<div class="form-group" style="width:220px;">
-  <label for="plazo" >Plazo(meses):</label>
-  <div class="input-group">
-  <input type="number" min="1" required="true" max="<?php  echo $plamax[0];?>" class="form-control" id="plazo" placeholder="Ej:0" name="plazo" >
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
-</div>
-</div>
 
-<br>
- <div class="form-group">  
-<button type="button" style="width:220px;"  class="btn btn-warning btn-large " onclick="cuota1()">Calcular Cuota</button>
-</div>
 
-</div>
 
-<div class="col-md-6">
-<div class="input-group">
+<div class="col-md-4">
   <label for="ape" >Apellidos:</label>
   <div class="input-group">
   <input type="text" class="form-control" readonly="true" id="ape" placeholder="Apellidos" name="ape"  value="<?php echo $fila['apellido'];?>">
   <div class="input-group-addon"><span  class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
 </div>
-</div>
-<br>
-<div class="input-group">
   <label for="nit">NIT  </label>
   <div class="input-group">
   <input type="text" class="form-control" id="nit" readonly="true" placeholder="Ej:0000-000000-000-0" name="nit" value="<?php echo $fila['nit'];?>">
    <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
   </div>
-</div>
-<br>
-<div class="input-group">
   <label for="Ocup" >Ocupación:</label>
   <div class="input-group">
   <input type="text" class="form-control" id="Ocup" readonly="true" placeholder="Ocupación laboral" name="Ocup" value="<?php echo $fila['ocupacion'];?>">
   <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
 </div>
-</div>
-<br>
-<div class="input-group" style="width:220px;">
   <label for="monto" >Monto($):</label>
   <div class="input-group">
   <input type="number" min="<?php  echo $minpres[0];?>" max="<?php  echo $maxpres[0];?>" class="form-control" id="monto" required="true"  placeholder="1000" name="monto">
   <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
 </div>
 </div>
-<br>
-<div class="input-group">
+
+<div class="col-md-3">
+    
   <label for="fecha">Fecha de registro:</label>
   <div class="input-group">
   <input type="date" class="form-control" id="fecha" readonly="true" name="fecha" value="<?php echo date("Y-m-d");?>">
   <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
   </div>
-</div>
-<br>
-<div class="input-group" style="width:220px;">
   <label for="cuota" >Cuota($):</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="cuota" required="true" readonly="true" placeholder="0.00" name="cuota">
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+  <input type="text" class="form-control" id="cuota" required readonly="true" placeholder="0.00" name="cuota">
+  <div class="input-group-addon"><span  class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
+</div>
+<label for="plazo" >Plazo(meses):</label>
+  <div class="input-group">
+  <input type="number" min="1" required="true" max="<?php  echo $plamax[0];?>" class="form-control" id="plazo" placeholder="Ingrese un plazo" name="plazo" >
+  <div class="input-group-addon"><span  class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
+</div>
+
+ <div class="form-group text-center col-md-3" style="margin-top:20px; width:100%;">  
+<button type="button"  class="btn btn-success btn-large " onclick="cuota1()"><i class="fa fa-money"></i> Calcular Cuota</button>
 </div>
 </div>
 
+
+
+
 </div>
-
-
 
 <input  type="hidden" class="form-control" id="ideC" name="ideC" placeholder="Nombre" value="<?php echo $_GET['btnEditar1'];?>"/> 
 <input  type="hidden" class="form-control" id="saldo" name="saldo"/> 
 <input  type="hidden" class="form-control" id="posi" name="posi"/> 
   
 
-
-
-</div>
  <div class="text-center">
 <br>
 <br> 
 <div class="button-group">
-<button type="submit"  class="btn btn-info btn-lable-wrap left-label"> <span class="btn-label"><i class="fa fa-save"></i> </span><span class="btn-text">Guardar</span></button>
-        <button type="button"  class="btn btn-danger btn-lable-wrap left-label" data-dismiss="modal" onclick="envia()"> <span class="btn-label"><i class="fa fa-close"></i> </span><span class="btn-text">Cerrar</span></button>
+<?php include '../Componentes/BtnGuardarCancelar.php'; ?>
 </div>
 </div>
 </form>
@@ -239,8 +199,9 @@ include "../Componentes/scripts.php";
         var pos=document.getElementById('posi').value;
         var monto=document.getElementById('monto').value;
         var plaz=document.getElementById('plazo').value;
-        if(monto=="" || plaz==""){
-            alert("Por favor llene los campos!!!");
+        var tipo=document.getElementById('tipo').value;
+        if(monto=="" || plaz=="" || tipo==0){
+            alerta('Error','Complete los campos...','red');
         }else{
             var inter=(interes[pos]/12)/100;
             var cuota=monto/((1-Math.pow((1+inter),- plaz))/inter);
@@ -249,6 +210,22 @@ include "../Componentes/scripts.php";
             document.getElementById('saldo').value=(cuota*plaz).toFixed(2);
         }
     }
+    function alerta(titulo,contenido,tipo){
+    $.confirm({
+                    title: titulo,
+                    content: contenido,
+                    type: tipo,
+                    typeAnimated: true,
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-success',
+                            action: function(){
+                            }
+                        }
+                    }
+                }); 
+}
 </script>
   <script>
         $(function () {

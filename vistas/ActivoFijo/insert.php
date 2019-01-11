@@ -33,6 +33,18 @@ if(!$ejecutar)
 header('Location: gestionRegistros.php?paso=movimiento&tipo=agregar&resultado='.$enviar);
 
 }
+//insertar institucion
+
+if (!empty($_POST['nombreIns']))  {
+$est=1;
+$insertar="INSERT INTO institucion (codigo,Nombre,estado) VALUES ('$_POST[codIns]','$_POST[nombreIns]','$est')";
+$ejecutar=mysqli_query($mysqli,$insertar);
+if(!$ejecutar)
+    $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: gestionRegistros.php?paso=institucion&tipo=agregar&resultado='.$enviar);
+
+}
 //insertar marca
 if (!empty($_POST['nombProd'])){
 $est=1;
@@ -42,7 +54,6 @@ if(!$ejecutar)
     $enviar=0;
 //echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
 header('Location: gestionRegistros.php?paso=marca&tipo=agregar&resultado='.$enviar);
-
 }
 //inserta clasificacion activo
 if (!empty($_POST['nomAct']))  {
@@ -174,8 +185,10 @@ if (!empty($_POST['ideA']) && !empty($_POST['precN']) && !empty($_POST['precA'])
 $fechaR=date("Y/m/d");//fecha de reevalaucion
 $insertar="INSERT INTO reevaluar (fecha,valorAnt,idAc,valor) VALUES ('$fechaR','$_POST[precA]','$_POST[ideA]','$_POST[precN]')";
 $ejecutar=mysqli_query($mysqli,$insertar);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/ActivoFijo/reevaluar.php');
+if(!$ejecutar)
+    $enviar=0;
+//echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
+header('Location: administrarActivo.php?accion=reevaluar&tipo=agregar&resultado='.$enviar);
 }
 //inserta Departamento
 /*if (!empty($_POST['nombDe']) && !empty($_POST['codDe']) )  {

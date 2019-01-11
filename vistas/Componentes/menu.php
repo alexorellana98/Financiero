@@ -10,10 +10,8 @@
 			<div class="mobile-only-brand pull-left">
 				<div class="nav-header pull-left">
 					<div class="logo-wrap">
-						<a href="index.html">
-							<img class="brand-img" src="../Plantilla/dist/img/logo.png" alt="brand"/>
+							<img class="brand-img" src="../../img/logito.png" width="35" height="35"/>
 							<span class="brand-text">Financiero</span>
-						</a>
 					</div>
 				</div>	
 				<a id="toggle_nav_btn" class="toggle-left-nav-btn inline-block ml-20 pull-left" href="javascript:void(0);"><i class="zmdi zmdi-menu"></i></a>
@@ -84,16 +82,10 @@
 							<a  href="../ActivoFijo/gestionRegistros.php">Gestion de Registros</a>
 						</li>
 						<li>
-							<a href="../ActivoFijo/Comprar.php">Comprar</a>
+							<a href="../ActivoFijo/Comprar.php">Adquisición Activo</a>
 						</li>
 						<li>
-							<a href="../ActivoFijo/Reevaluar.php">Reevaluar</a>
-						</li>
-						<li>
-							<a href="../ActivoFijo/VistaActivo.php">Depreciar</a>
-						</li>
-						<li>
-							<a href="../ActivoFijo/Vender.php">Vender</a>
+							<a  href="../ActivoFijo/administrarActivo.php">Administrar Activo Fijo</a>
 						</li>
 					</ul>
 				</li>
@@ -105,7 +97,7 @@
 							<a  href="../CuentasC/creditos.php">Creditos</a>
 						</li>
 						<li>
-							<a  href="../CuentasC/RegistroCliente.php">Todos los Clientes</a>
+							<a  href="../CuentasC/RegistroCliente.php">Clientes</a>
 						</li>
 					</ul>
 				</li>

@@ -15,7 +15,7 @@ require 'conexion.php';
   <script language="javascript">
 
     function envia(){
-       window.location="VistaActivo.php";
+       window.location="administrarActivo.php?accion=depreciar";
       }
 
     function envia1(){

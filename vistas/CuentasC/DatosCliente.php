@@ -1,7 +1,5 @@
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,20 +13,6 @@ require 'conexion.php';
   ?>
 
   <script language="javascript">
-    $(function () {
-      $.mask.definitions['~'] = "[+-]";
-      $("#date").mask("99/99/9999", {completed: function () {
-        alert("completed!");
-      }});
-      $("#tel").mask("9999-9999");
-      $("#dui").mask("09999999-9");
-      $("#nit").mask("9999-999999-999-9");
-      $("input").blur(function () {
-        $("#info").html("Unmasked value: " + $(this).mask());
-      }).dblclick(function () {
-        $(this).unmask();
-      });
-    });
     function envia(){
     window.location="RegistroCliente.php";
   }
@@ -58,117 +42,66 @@ require 'conexion.php';
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="panel-wrapper collapse in">
-                    <div class="panel-body">
-                    <?php     $cont=0;          ?>
-                    <form  action="insert.php" method="post" class="form-register" > 
- <div class="col-lg-12 col-md-offset-2">
-<div class="col-md-6">
-<div class="form-group">
-  <select class="form-control STipoPersona" name="persona" id="persona" onchange="per(this.value)">
-  <option value="0">Persona Natural</option>
-  <option value="1">Persona Juridica</option>
-</select>
-</div>
-<div class="input-group">
+<div class="panel-wrapper collapse in">
+<div class="panel-body">
+<form  action="insert.php" method="post" class="form-register" >
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <select class="form-control STipoPersona" name="persona" id="persona" onchange="per(this.value)">
+          <option value="0">Persona Natural</option>
+          <option value="1">Persona Juridica</option>
+        </select>
+    </div>
+</div> 
 
+<div class="row">
+<div class="col-md-6">
   <label for="nomb" id="noC" >Nombre de Cliente:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="nomb" placeholder="Nombre" name="nomb" >
+  <input type="text" class="form-control" id="nomb" placeholder="Nombre" name="nomb" required>
   <div class="input-group-addon"><span  class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
 </div>
-</div>
-
-
-<br>
-
-<div class="input-group">
   <label for="nit" id="ni">NIT: </label>
   <div class="input-group">
-  <input type="text" class="form-control" id="nit" placeholder="0000-000000-000-0" name="nit">
+  <input type="text" class="form-control" id="nit" placeholder="0000-000000-000-0" name="nit" data-mask="9999-999999-999-9" required>
    <div class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></div>
   </div>
-</div>
-
-<br>
-
-<div class="input-group">
-
   <label for="tel" >Telefono:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="tel" placeholder="0000-0000" name="tel" >
+  <input type="text" class="form-control" id="tel" placeholder="0000-0000" name="tel" data-mask="9999-9999" required>
   <div class="input-group-addon"><span  class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
 </div>
-</div>
-
-<br>
- <div class="input-group">
-
   <label for="Ocup" id="oc" >Ocupación:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="Ocup" placeholder="Ocupación laboral" name="Ocup" >
+  <input type="text" class="form-control" id="Ocup" placeholder="Ocupación laboral" name="Ocup" required>
   <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
 </div>
-</div>
-
-
-<br>
- 
-
-<div class="input-group">
   <label for="dir">Dirección:</label>
   <div class="input-group">
-  <textarea type="text" class="form-control" id="dir" name="dir" style="width:300px;"></textarea> 
+  <textarea type="text" class="form-control" id="dir" name="dir" required></textarea> 
   <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
   </div>
 </div>
-<br>
-
-
-</div>
-
-
-
-
-
 
 <div class="col-md-6">
-
-<br>
-<br>
-<div class="input-group" id="a2" style="width:220px; display:none;">
-
   <label for="repre" >Representante Legal:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="repre" placeholder="Nombre Representante" name="repre" >
+  <input type="text" class="form-control" id="repre" placeholder="Nombre Representante" name="repre" required>
   <div class="input-group-addon"><span  class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
 </div>
-</div>
-<div class="input-group" id="a1" style="width:220px;">
-
   <label for="ape" >Apellidos:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="ape" placeholder="Apellidos" name="ape" >
+  <input type="text" class="form-control" id="ape" placeholder="Apellidos" name="ape" required>
   <div class="input-group-addon"><span  class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
 </div>
-</div>
-<br>
-<div class="input-group">
-
   <label for="dui" id="du">DUI:</label>
   <div class="input-group">
-  <input type="text" class="form-control sombraCajas" id="dui" placeholder="00000000-0" name="dui">
+  <input type="text" class="form-control sombraCajas" id="dui" placeholder="00000000-0" name="dui" data-mask="99999999-9" required>
    <div class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></div>
   </div>
-</div>
-
-<br>
-
-<div class="form-group" style="width:220px;">
-
   <label for="depa">Departamento:</label>
- <select class="form-control SDepartamento" data-live-search="true" id="depa" name="depa" >
-<option></option> 
+ <select class="form-control SDepartamento" data-live-search="true" id="depa" name="depa" required> 
 <option value="San Salvador" >San Salvador</option>
  <option value="San Vicente" >San Vicente</option>
  <option value="Morazán" >Morazan</option>
@@ -184,35 +117,23 @@ require 'conexion.php';
  <option value="Chalatenango" >Chalatenango</option>
  <option value="Cuscatlán">Cuscatlan</option>
 </select>
-</div>
-<br>
-<br>
-
-<div class="input-group">
   <label for="fecha">Fecha de registro:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo date("Y/m/d"); ?>">
+  <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo date("d/m/Y"); ?>" required>
   <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
   </div>
 </div>
-
 </div>
-
-</div>
+<div class="row" style="margin-top:20px;">
 <div class="button-group text-center">
-<button type="submit"  class="btn btn-info btn-lable-wrap left-label"> <span class="btn-label"><i class="fa fa-save"></i> </span><span class="btn-text">Guardar</span></button>
-        <button type="button"  class="btn btn-danger btn-lable-wrap left-label" data-dismiss="modal" onclick="envia()"> <span class="btn-label"><i class="fa fa-close"></i> </span><span class="btn-text">Cerrar</span></button>
+<?php include '../Componentes/BtnGuardarCancelar.php'; ?>
+</div>
 </div>
 </form>
                     </div>
                  </div>
-                </div>
-
-                 
+                </div>        
       </div>
-
-
-
     <!-- /#wrapper -->
         <!-- Footer -->
         <?php include '../Componentes/footer.php'; ?>
@@ -223,7 +144,6 @@ require 'conexion.php';
   
   <script language="javascript">
     function per(val){
-     
       if(val==0){
         document.querySelector('#noC').innerText="Nombre de Cliente:";
         document.querySelector('#du').innerText="DUI:";

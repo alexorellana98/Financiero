@@ -74,9 +74,6 @@ $resultado = $mysqli->query($sql);
             </div>
             <br>
           </div>
-                    <?php   $cont=0;   ?>
-                <div class="row">
-                    
                   <div class="table-wrap">
                     <div class="table-responsive">
                       <table id="datable_1" class="table table-hover display  pb-30" >
@@ -143,7 +140,6 @@ $resultado = $mysqli->query($sql);
                       </table>
                     </div>
                   </div>
-                </div>
                 </div>
                  </div>
                 </div>

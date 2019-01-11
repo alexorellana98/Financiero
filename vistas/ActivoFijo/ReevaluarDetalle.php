@@ -17,7 +17,7 @@ require 'conexion.php';
 
   <script language="javascript">
 function envia(){
-   window.location="Reevaluar.php";
+   window.location="administrarActivo.php?accion=reevaluar";
   }
 </script>
 </head>

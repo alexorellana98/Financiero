@@ -74,7 +74,6 @@ $aux2=$_GET['btnPre'];
 </form>
 </div>
                              </div>
-                             <div class="row">
                                  <div class="table-wrap">
                     <div class="table-responsive">
                       <table id="datable_1" class="table table-hover display  pb-30" >
@@ -142,25 +141,10 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
                       </table>
                     </div>
                   </div>
-                             </div>
 
                     </div>
                 </div>
             </div>
-							
-
-
-
-                    
-          
-
-
-
-
-
-
-
-
 
       </div>
     <!-- /#wrapper -->

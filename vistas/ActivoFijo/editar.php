@@ -122,7 +122,7 @@ header('Location: gestionRegistros.php?paso=subcategoria&tipo=modificacion&resul
 
 
 if (!empty($_POST['nombI']) && !empty($_POST['nombCo']) ){
-$aux=1;
+$aux=$_POST['idIns'];
 $nombI = $_POST['nombI'];
 	$nomCo = $_POST['nombCo'];
 $sql = " UPDATE institucion set codigo='$nomCo',Nombre='$nombI' WHERE idIn='$aux'";

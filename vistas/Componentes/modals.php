@@ -16,22 +16,20 @@
 <div class="panel-wrapper collapse in">
     <div class="panel-body">
  <div class="row">
-  <div class="col-md-12">
-<div class="col-md-3 ">
-<img src="../Imagen/movimientos.png" class="img-rounded" alt="Cinque Terre" width="300" height="250">
-</div>
-<div class="col-md-7 col-md-offset-2">
 <div class="col-md-6">
-<div class="input-group">
   <label for="nombMov" >Nombre:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="nombMov" name="nombMov" placeholder="Nombre" required>
+  <input type="text" class="form-control" id="nombreIns" name="nombreIns" placeholder="Ingrese un Nombre" required>
   <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
 </div>
 </div>
+<div class="col-md-6">
+      <label for="codUb" >Código:</label>
+  <div class="input-group">
+  <input type="text" class="form-control" id="codIns" name="codIns" placeholder="Ingrese un código" required>
+  <div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
 </div>
-</div>
-</div>
+  </div>
 </div> 
     </div>
     </div>
@@ -70,32 +68,32 @@
     
     <label for="nombcat" >Nombre:</label>
     <div class="input-group">
-        <input type="text" class="form-control" id="nombcat" name="nombcat" placeholder="Nombre" required>
-        <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+        <input type="text" class="form-control" id="nombcat" name="nombcat" placeholder="Ingrese un Nombre" required>
+        <div class="input-group-addon"><span  class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></div>
     </div>
 </div>
 <div class="col-md-6 ">
     <label for="cod" >Código:</label>
     <div class="input-group">
-        <input type="text" class="form-control" id="cod" name="cod" placeholder="Ejemplo : H001" required>
-        <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+        <input type="text" class="form-control" id="cod" name="cod" placeholder="Ingrese un Código" required>
+        <div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
     </div>
     <label for="val">Valor residual(%):</label>
     <div class="input-group">
-        <input type="text" class="form-control" id="val" name="val" required> 
-        <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
+        <input type="text" class="form-control" id="val" name="val" required placeholder="Ingrese un Valor"> 
+        <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
     </div>
 </div>
 <div class="col-md-6">
     <label for="vidU" >Vida Util:</label>
     <div class="input-group">
-      <input type="text" class="form-control" id="vidU" name="vidU" required>
-      <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+      <input type="text" class="form-control" id="vidU" name="vidU" required placeholder="Ingrese un Valor">
+      <div class="input-group-addon"><span  class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span></div>
     </div>
     <label for="vidE">Vida economica:</label>
     <div class="input-group">
-        <input type="text" class="form-control" id="vidE" name="vidE" required>
-        <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
+        <input type="text" class="form-control" id="vidE" name="vidE" required placeholder="Ingrese un Valor">
+        <div class="input-group-addon"><span class="glyphicon glyphicon-sort-by-attributes"></span></div>
     </div>
 </div>
 
@@ -136,16 +134,16 @@
   <div class="col-md-6">
       <label for="nombUb" >Nombre:</label>
       <div class="input-group">
-      <input type="text" class="form-control" id="nombUb" name="nombUb" placeholder="Nombre" required>
-      <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+      <input type="text" class="form-control" id="nombUb" name="nombUb" placeholder="Ingrese un Nombre" required>
+      <div class="input-group-addon"><span  class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></div>
       </div>
   </div>
 
   <div class="col-md-6">
-      <label for="codUb" >Codigo:</label>
+      <label for="codUb" >Código:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="codUb" name="codUb" placeholder="Ej:0023" required>
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+  <input type="text" class="form-control" id="codUb" name="codUb" placeholder="Ingrese un código" required>
+  <div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
 </div>
   </div>
 
@@ -188,41 +186,41 @@
                                     <div class="col-md-6">
                                             <label for="nomb">Nombre de proveedor:</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="nomb" placeholder="Nombre" name="nomb" required>
-                                                <div class="input-group-addon"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+                                                <input type="text" class="form-control" id="nomb" placeholder="Ingrese un Nombre" name="nomb" required>
+                                                <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
                                             </div>
                                             <label for="dir">Dirección </label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="dir" name="dir" required>
+                                                <input type="text" class="form-control" id="dir" name="dir" placeholder="Ingrese una Dirección" required>
                                                 <div class="input-group-addon"><span class="glyphicon glyphicon-home"></span></div>
                                             </div>
                                             <label for="nit">NIT </label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="nit" placeholder="" name="nit" required>
+                                                <input type="text" class="form-control" id="nit" placeholder="Ingrese un NIT" name="nit" required data-mask="9999-999999-999-9">
                                                 <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
                                             </div>
                                     </div>
                                     <div class="col-md-6">
                                                     <label for="cont">Nombre del contacto:</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="cont" placeholder="Nombre" name="cont" required>
+                                                        <input type="text" class="form-control" id="cont" placeholder="Ingrese un Nombre" name="cont" required>
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
                                                     </div>
-                                                    <label for="tel">Telefono:</label>
+                                                    <label for="tel">Teléfono:</label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="tel" placeholder="" name="tel" required>
+                                                        <input type="text" class="form-control" id="tel" placeholder="Ingrese un Teléfono" name="tel" required data-mask="9999-9999">
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
                                                     </div>
                                                     <label for="correo">Correo electrónico </label>
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control" id="correo" name="correo" required>
+                                                        <input type="text" class="form-control" id="correo" name="correo" required placeholder="Ingrese un Correo Electrónico">
                                                         <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
                                                     </div>
                                     </div>
                                     <div class="col-md-12">
-                                            <label for="obs">Observaciones </label>
+                                            <label for="obs">Observaciones</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control" id="obs" placeholder="" name="obs" required>
+                                                <input type="text" class="form-control" id="obs" placeholder="Ingrese observaciones (Opcional) " name="obs">
                                                 <div class="input-group-addon"><span class="glyphicon glyphicon-eye-open"></span></div>
                                             </div>
                                     </div>
@@ -260,8 +258,8 @@
 <div class="col-md-12">
   <label for="nombMov" >Nombre:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="nombMov" name="nombMov" placeholder="Nombre" required>
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+  <input type="text" class="form-control" id="nombMov" name="nombMov" placeholder="Ingrese un movimiento" required>
+  <div class="input-group-addon"><span  class="glyphicon glyphicon-repeat" aria-hidden="true"></span></div>
 </div>
 </div>
 </div> 
@@ -300,8 +298,8 @@
   <div class="col-md-12">
   <label for="nombProd" >Nombre:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="nombProd" name="nombProd" placeholder="Nombre" required>
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+  <input type="text" class="form-control" id="nombProd" name="nombProd" placeholder="Ingrese una Marca" required>
+  <div class="input-group-addon"><span  class="glyphicon glyphicon-qrcode" aria-hidden="true"></span></div>
 </div>
 </div>
 </div> 
@@ -329,7 +327,7 @@
 <div class="panel-heading text-center">
     <div class="pull-center" >
     <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h2 class="panel-title panel-center txt-light">Registrar Categoria</h2>
+        <h2 class="panel-title panel-center txt-light">Registrar Sub-Categoria</h2>
     </div>
     <div class="clearfix"></div>
 </div>
@@ -340,8 +338,8 @@
  <div class="col-md-12">
     <label for="nombsub" >Nombre:</label>
     <div class="input-group">
-    <input type="text" class="form-control" id="nombsub" name="nombsub" placeholder="Nombre" required>
-    <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+    <input type="text" class="form-control" id="nombsub" name="nombsub" placeholder="Ingrese un Nombre" required>
+    <div class="input-group-addon"><span  class="glyphicon glyphicon-bookmark" aria-hidden="true"></span></div>
     </div>
  </div>
 
@@ -367,8 +365,8 @@ $cont=$cont+1;
 <div class="col-md-6"> 
 <label for="codsub" >Código:</label>
 <div class="input-group">
-<input type="text" class="form-control" id="codsub" name="codsub" placeholder="Ejemplo : 0001" required>
-<div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+<input type="text" class="form-control" id="codsub" name="codsub" placeholder="Ingrese un Código" required>
+<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
 </div>
 </div>
 </div>

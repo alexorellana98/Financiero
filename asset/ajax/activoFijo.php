@@ -390,9 +390,7 @@ if($opcion==="categoria"){
                                 <td>
                                 <?php if($est==='1'){ ?>
                                 <div class="col-md-6 text-right">
-                                  <form   action="editarUbicacion.php" method="post" class="form-register" > 
-                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idIn']?>" ><i class="fa fa-edit"></i></button>
-                                    </form>	
+                                    <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  onclick="editar('<?php echo $ejecuta['idIn']?>','ModalInstitucionEditar');"><i class="fa fa-edit"></i></button>
                               </div>
                               <div class="col-md-6 text-left">
                                   <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idIn']; ?>','Desea dar de baja a la Institución','institucion','0')"><i class="fa fa-arrow-circle-down"></i> </button>

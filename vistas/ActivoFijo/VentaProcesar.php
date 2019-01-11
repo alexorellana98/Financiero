@@ -7,7 +7,7 @@ ini_set('date.timezone', 'America/El_Salvador');
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Categorias</title>
+  <title>Venta Activo</title>
   
   <?php
       include "../Componentes/estilos.php";
@@ -15,7 +15,7 @@ ini_set('date.timezone', 'America/El_Salvador');
 
   <script language="javascript">
 function envia(){
-   window.location="Vender.php";
+   window.location="administrarActivo.php?accion=vender";
   }
 </script></head>
 <?php
@@ -43,7 +43,7 @@ $resultado = $mysqli->query($sql);
             <div class="panel panel-primary card-view " style="margin-top: 20px;">
             <div class="panel-heading text-center">
                 <div class="pull-center">
-                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i>  Venta de Activo</h3>
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-usd"></i>  Venta de Activo</h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -57,17 +57,25 @@ $resultado = $mysqli->query($sql);
                     ?>
                 <form  action="insert.php" method="post" class="form-register" > 
 <input type="hidden" class="form-control" id="idAc" placeholder="Nombre" name="idAc"  value="<?php echo $_POST['btnenvia'];?>">                            
- <div class="col-lg-12 ">
-<div class="col-md-4">
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="input-group">
-<div class="form-group">
+ <div class="row">
+ <div class="row" style="margin-bottom:5px;"> 
+ <div class="col-md-3"></div>
+ <div class="col-md-8">
+      <div class="input-group">
+      <label for="nfac"><h4>FACTURA No.</h4> </label>
+      <div class="input-group">
+      <h4><input type="text" size="15" class="form-control" id="nfac" placeholder="" name="nfac" value="<?php echo "0000".$_POST['btnenvia'];?>" readonly="readonly"></h4>
+      </div>
+    </div>
+ </div>
+ <div class="col-md-2"></div>
+ </div>
+<br><br>
+<div class="row" style="margin-bottom:10px;">
+<div class="col-md-3"></div>
+<div class="col-md-3">
   <label for="condiM">Razon de venta:</label>
- <select class="form-control" data-live-search="true" id="condiM" name="condiM" onchange="razon(this.value)">
+ <select class="form-control SRazon" data-live-search="true" id="condiM" name="condiM" onchange="razon(this.value)">
 <?php
 $extraer="SELECT * FROM movimiento";
 $ejecutar=mysqli_query($mysqli,$extraer);
@@ -81,8 +89,6 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 ?>
 </select>
 </div>
- </div>
-<br>
 <?php
     $aux3=$_POST['btnenvia'];;
    $sentencia3 = "SELECT * FROM detalle_activo WHERE activofijo_id='$aux3'"; 
@@ -122,9 +128,7 @@ var aux=0;
          v1 = Math.abs(valor1);
       }
         document.getElementById('dir2').value=v1.toFixed(2);
-       // document.getElementById('prec').min=v1.toFixed(2);
     }
-
     function razon(id){
       if(id==1){
        // document.getElementById('prec').min=v1.toFixed(2);
@@ -133,57 +137,40 @@ var aux=0;
       }
     }
 </script> 
-<br>
-</div>
-<div class="col-md-4">
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="input-group">
+<div class="col-md-3">
   <label for="dir">Valor en libros del activo: </label>
   <div class="input-group">
   <input type="text" class="form-control" id="dir2" name="dir2" readonly="readonly">
   <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
   </div>
 </div>
+<div class="col-md-3"></div>
+</div>
 <br>
-<div class="input-group" style="width:220px;">
+<div class="row">
+<div class="col-md-3"></div>
+<div class="col-md-3">
   <label for="prec" >Precio de venta:</label>
   <div class="input-group">
   <input type="number" class="form-control" id="prec" required="true"  placeholder="" name="prec" >
   <div class="input-group-addon"><span  class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
 </div>
 </div>
-<br>
-</div>
-<div class="col-md-4">
-<div class="input-group">
-  <label for="nfac"><h4>FACTURA No.</h4> </label>
-  <div class="input-group">
-  <h4><input type="text" size="15" class="form-control" id="nfac" placeholder="" name="nfac" value="<?php echo "0000".$_POST['btnenvia'];?>" readonly="readonly"></h4>
-  </div>
-</div>
-<br>
-<div class="input-group">
 
+<div class="col-md-3">
   <label for="fech">Fecha de transaccion: </label>
   <div class="input-group">
-  <input type="text" class="form-control" id="fech" placeholder="" name="fech" readonly="readonly" value="<?php echo date("Y/m/d");?>">
+  <input type="text" class="form-control" id="fech" placeholder="" name="fech" readonly="readonly" value="<?php echo date("d/m/Y");?>">
    <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
   </div>
 </div>
 </div>
+
 <input  type="hidden" class="form-control" id="ideU" name="ideU" placeholder="Nombre" value="<?php echo $_POST['btnEditar'];?>">
 
 
-
-
-
-
 </div>
-<div class="row text-center" style="margin-top: 15px;">
+<div class="row text-center" style="margin-top: 25px;">
     <?php include '../Componentes/BtnGuardarCancelar.php'; ?>
 </div>
 
@@ -206,7 +193,11 @@ var aux=0;
   <?php
 include "../Componentes/scripts.php";
 ?>
-  
+<script>
+        $(function () {
+            $('.SRazon').select2()
+        });
+    </script>
 </body>
 
 </html>

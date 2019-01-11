@@ -6,41 +6,29 @@ require 'conexion.php';
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Gestionar Registros</title>
+  <title>Administrar Activo Fijo</title>
   <?php
       include "../Componentes/estilos.php";
   ?>
    <?php
 include "../Componentes/scripts.php";
 ?>    
-    <script>
-        $(function () {
-            $('.SEstado').select2()
-            $('.STipoCategoria').select2()
-        });
-    </script>
 	<script src="../../asset/js/activoFijo.js"></script>
     <script language="javascript">
-        var cambio='<?php echo $_REQUEST['paso']; ?>';
+var cambio='<?php echo $_REQUEST['accion']; ?>';
         if(cambio===null || cambio==="")
-            cambio="institucion";
+            cambio="reevaluar";
         else{
             var resultado='<?php echo $_REQUEST['resultado']; ?>';
             var tipo='<?php echo $_REQUEST['tipo']; ?>';
-            if(tipo==="modificacion"){
-                    if(resultado==='1')
-                        alerta("Exito ",""+MaysPrimera(cambio)+ " modificado","green");
-                else if(resultado==='0')
-                    alerta("Error",""+MaysPrimera(cambio)+"  no se pudo modificar","red");
-            }
             if(tipo==="agregar"){
                     if(resultado==='1')
-                        alerta("Exito ",""+MaysPrimera(cambio)+ " agregado","green");
+                        alerta("Exito ",""+MaysPrimera(cambio)+ " con exito","green");
                 else if(resultado==='0')
-                    alerta("Error",""+MaysPrimera(cambio)+"  no se pudo agregar","red");
+                    alerta("Error",""+MaysPrimera(cambio)+"  no se completo","red");
             }
         }
-
+        
 function alerta(titulo,contenido,tipo){
     $.confirm({
                     title: titulo,
@@ -57,7 +45,8 @@ function alerta(titulo,contenido,tipo){
                     }
                 }); 
 }
-function editar(id,tabla){
+function actualizar(tabla){
+     $("#gestion").text(MaysPrimera(tabla)+"  Activo Fijo");
      if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
             }
@@ -66,34 +55,52 @@ function editar(id,tabla){
             }
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    document.getElementById("modalsE").innerHTML = xmlhttp.responseText;                    
-                    $('.SCategoriaEditar').select2()
-                    //alert(xmlhttp.responseText);
+                    document.getElementById("actualizar").innerHTML = xmlhttp.responseText;  
+                    $('.tablaAct').DataTable();
+                }
+            }
+            xmlhttp.open("post", "../..//asset/ajax/administracionActivo.php?actualiza=" +tabla, true);
+            xmlhttp.send();
+}
+
+function editar(id,tabla){
+    //alert(tabla);
+     if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("modalsE").innerHTML = xmlhttp.responseText;    
                     $("#"+tabla).modal('show');
                 }
             }
             xmlhttp.open("post", "../Componentes/modalsEditar.php?actualiza=" +tabla + "&id=" + id, true);
             xmlhttp.send();
 }
-        
-function sele(){
-    $("#gestion").text("Administrar "+MaysPrimera(cambio));
-    //document.getElementById("gestion").value=MaysPrimera(cambio);
-    var cond= $("#condi").val(); 
-    ajax_act('',cambio,cond); 
-} 
-function actualizar(va){
-    cambio=va; 
-    $("#condi").val('1'); 
-    $("#condi").change();
-    
-}
+function alerta(titulo,contenido,tipo){
+    $.confirm({
+                    title: titulo,
+                    content: contenido,
+                    type: tipo,
+                    typeAnimated: true,
+                    buttons: {
+                        tryAgain: {
+                            text: 'Ok',
+                            btnClass: 'btn-success',
+                            action: function(){
+                            }
+                        }
+                    }
+                }); 
+}   
 function MaysPrimera(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
 window.onload = function() { 
-    $("#condi").val('1'); 
-    $("#condi").change();
+    actualizar(cambio);
 }
 </script>
 </head>
@@ -113,41 +120,25 @@ window.onload = function() {
        <div class="panel panel-primary card-view " style="margin-top: 20px;">
             <div class="panel-heading text-center">
                 <div class="pull-center">
-                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i> Gestión de Registros</h3>
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i>Administración de Activos</h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                     <div class="row text-center">
-                        <div class="col-md-12">
-								 	<div class="form-group">
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('institucion');"> <span class="btn-label"><i class="fa fa-institution"></i> </span><span class="btn-text">Institución</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onclick="actualizar('ubicacion')"> <span class="btn-label"><i class="fa fa-map"></i> </span><span class="btn-text">Ubicación</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('proveedor')"> <span class="btn-label"><i class="fa fa-male"></i> </span><span class="btn-text">Proveedor</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('movimiento');"> <span class="btn-label"><i class="fa fa-history"></i> </span><span class="btn-text">Movimiento</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('marca');"> <span class="btn-label"><i class="fa fa-list-alt"></i> </span><span class="btn-text">Marca</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('categoria');"> <span class="btn-label"><i class="fa fa-list"></i> </span><span class="btn-text">Categoria</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('subcategoria');"> <span class="btn-label"><i class="fa fa-outdent"></i> </span><span class="btn-text">Sub-Categoria</span></button>
-								 	</div>
-								</div> 
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4" >
+                       <div class="col-md-4" >
                             <div class="alert alert-success alert-dismissable alert-style-1">
                                 <i class="fa fa-gear"></i><h6 id="gestion" ></h6>
                             </div>
                         </div>
-                        <div class="col-md-5"></div>
-                        <div class="col-md-1"> <button class="btn  btn-default btn-outline">Estado</button></div>
-                        <div class="col-md-2">
-                            <div class="form-group">                                     
-                                <select class="form-control select2 select2-hidden-accessible" data-live-search="true" id="condi" name="condi" onchange="sele()">
-                                    <option value="1" >Activo</option>											 
-                                    <option value="0">Inactivo </option>
-                                </select>
-                            </div>
-                        </div> 
+                        <div class="col-md-8">
+								 	<div class="form-group">
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('reevaluar');"> <span class="btn-label"><i class="fa fa-bar-chart-o"></i> </span><span class="btn-text">Reevaluar</span></button>
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onclick="actualizar('depreciar')"> <span class="btn-label"><i class="fa fa-sort-numeric-desc"></i> </span><span class="btn-text">Depreciar</span></button>
+								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('vender')"> <span class="btn-label"><i class="fa fa-money"></i> </span><span class="btn-text">Vender</span></button>
+								 	</div>
+								</div> 
                     </div>
                 </div>
                 </div>

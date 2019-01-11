@@ -13,7 +13,7 @@ require 'conexion.php';
 
   <script language="javascript">
 function envia(){
-   window.location="Vender.php";
+   window.location="administrarActivo.php?accion=vender";
   }
    
 </script>

@@ -16,9 +16,14 @@ function envia(){
    window.location="http://localhost/Financiero/siccif/vistas/CuentasC/DatosCliente.php";
   }
  function sele(){
+  var cambio= $("#condi2 option:selected").text();
+  $("#gestion").text("Administración Clientes: "+MaysPrimera(cambio));
   var cond= $("#condi").val();
   var tipo= $("#condi2").val();
   ajax_act('','cliente',cond,tipo);
+}
+function MaysPrimera(string){
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
     window.onload = function() {
         $("#condi").val('2');
@@ -44,42 +49,41 @@ function envia(){
             <div class="panel panel-primary card-view" style="margin-top: 20px;">
                 <div class="panel-heading text-center">
                     <div class="pull-center">
-                        <h3 class="panel-title txt-light" id="titulo">Clientes</h3>
+                        <h3 class="panel-title txt-light" id="titulo"><i class="fa fa-male"></i>Clientes</h3>
                     </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body">
+                    
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-2">
-    <div class="col-md-4">
-        <br>
-        <div class="form-group">
-           <button class="btn btn-primary btn-lable-wrap left-label" onclick="envia()"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Ingresar Nuevo Cliente</span></button>
-        </div>
-    </div>
-    <div class="col-md-2 ">
-        <div class="form-group">
-            <label for="condi">Estado :</label>
-            <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
-                <option value="1">Activo</option>
-                <option value="0">Inactivo</option>
-                <option value="2">Todos</option>
-            </select>
-        </div>
-    </div>
-    <div class="col-md-4">
-        <div class="form-group">
-            <label for="condi">Cartera:</label>
-            <select class="form-control SCartera" data-live-search="true" id="condi2" name="condi2" onchange="sele()" style="width: 100%;">
-                <option value="0">Normales</option>
-                <option value="1">Morosos</option>
-                <option value="2">Incobrables</option>
-                <option value="3">Todos los clientes</option>
-            </select>
-        </div>
-    </div>
-</div>
+                    <div class="col-md-5" >
+                            <div class="alert alert-success alert-dismissable alert-style-1">
+                                <i class="fa fa-gear"></i><h6 id="gestion">Administración de Clientes</h6>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                         <div class="col-md-1"> <button class="btn  btn-default btn-outline">Estado:</button></div>
+                        <div class="col-md-2 ">
+                            <div class="form-group">
+                                <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                    <option value="2">Todos</option>
+                                </select>
+                            </div>
+                        </div>
+                         <div class="col-md-1"> <button class="btn  btn-default btn-outline">Cartera:</button></div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <select class="form-control SCartera" data-live-search="true" id="condi2" name="condi2" onchange="sele()" style="width: 100%;">
+                                    <option value="0">Normales</option>
+                                    <option value="1">Morosos</option>
+                                    <option value="2">Incobrables</option>
+                                    <option value="3">Todos los clientes</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     </div>
                 </div>
@@ -97,6 +101,11 @@ function envia(){
               <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                   <div class="table-wrap">
+                       <div class="text-center">
+                        <div class="form-group">
+                           <button class="btn btn-primary btn-lable-wrap left-label" onclick="envia()"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nuevo Cliente</span></button>
+                        </div>
+                    </div>
                     <div class="table-responsive" id="actualizar">
                       
                     </div>

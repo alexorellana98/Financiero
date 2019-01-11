@@ -41,7 +41,11 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
     <td> <?php echo $ejecuta['depa']?></td>
     <td> <?php if($tipo==0){echo 'Normal';} if($tipo==1){echo 'Moroso';} if($tipo==2){echo 'Incobrable';} ?></td>
     <td>
-    <button class="btn btn-info btn-icon left-icon" data-toggle="modal" data-target="#editarProducto" onclick="lanzaModal(<?php echo $ejecuta['idCliente']; ?>);" id="btnInfoProducto"> <i class="fa fa-info-circle"></i></button>
+    <?php if($ejecuta['estado']=='1'){ ?>
+        <button class="btn btn-success btn-icon left-icon" data-toggle="modal" data-target="#editarProducto" onclick="lanzaModal(<?php echo $ejecuta['idCliente']; ?>);" id="btnInfoProducto"> <i class="fa fa-info-circle"></i></button>
+    <?php }else{ ?>
+        <button class="btn btn-warning btn-icon left-icon" data-toggle="modal" data-target="#editarProducto" onclick="lanzaModal(<?php echo $ejecuta['idCliente']; ?>);" id="btnInfoProducto"> <i class="fa fa-info-circle"></i></button>
+    <?php } ?>
     </td>
   </tr>
 

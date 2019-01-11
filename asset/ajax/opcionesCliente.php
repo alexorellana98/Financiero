@@ -13,8 +13,6 @@
                         </thead>
                         
                         <tbody >
-                          
-
     <?php
    $sentencia2 = "SELECT * FROM cliente WHERE idCliente='$id'"; 
    $ejecutar2=mysqli_query($mysqli,$sentencia2);
@@ -56,11 +54,16 @@
                       </table>
                     </div>
     <div class="co-sm-12 text-center">
+      <?php if($fila1['estado']=='0') { ?>
+      <div class="col-md-3"></div>
+      <?php } ?>
        <div class="col-sm-3">
             <form action="verDetalleCliente.php" method="get" class="form-register">
                 <button type="submit" title="Ver Cliente" class="btn btn-success " id="btndetalle" name="btndetalle" value="<?php echo $id; ?>" style="width: 110%;"><i class="glyphicon glyphicon-eye-open"></i>  Detalles</button>
             </form>
        </div>
+       
+       <?php if($fila1['estado']=='1') { ?>
        <div class="col-sm-3">
            <form action="editarCliente.php" method="post" class="form-register">
             <button type="submit" title="Modificar Cliente" class="btn btn-primary" id="btnEditar" name="btnEditar"  value="<?php echo $id; ?>" style="width: 110%;"><i class="glyphicon glyphicon-edit"></i>  Editar</button>
@@ -71,6 +74,8 @@
             <button type="submit" title="Realizar Prestamo" class="btn btn-warning" id="btnEditar1" name="btnEditar1" value="<?php echo $id; ?>" style="width: 110%;"><i class="glyphicon glyphicon-usd"></i> Prestamo</button>
             </form>
        </div>
+       <?php } ?>
+       
        <div class="col-sm-3">
            <?php if($fila1['estado']=='1') { ?>
             <button type="submit" title="Dar de baja Cliente" class="btn btn-danger" id="btnbaja" name="btnbaja" onClick="darBaja('<?php echo $id; ?>','Desea dar de baja al Cliente','cliente','0','<?php echo $tipoCliente; ?>')" style="width: 110%;"><i class="g glyphicon glyphicon-download"></i>  Dar Baja</button>
