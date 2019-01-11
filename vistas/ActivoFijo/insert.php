@@ -82,7 +82,15 @@ header('Location: gestionRegistros.php?paso=ubicacion&tipo=agregar&resultado='.$
 //inserta Categoria
 if (!empty($_POST['nombcat']) && !empty($_POST['cod']) )  {
  $val=1;
-$insertar="INSERT INTO Categoria (nombre,cod,val,vidautil,vidaeco,estado) VALUES ('$_POST[nombcat]','$_POST[cod]','$_POST[val]','$_POST[vidU]','$_POST[vidE]','$val')";
+if($_POST['depreciar']==="on")
+    $depreciar=1;
+else 
+    $depreciar=0;
+if($_POST['reevaluar']==="on")
+    $reevaluar=1;
+else
+    $reevaluar=0;
+$insertar="INSERT INTO Categoria (nombre,cod,val,vidautil,vidaeco,estado,reevaluar,depreciar) VALUES ('$_POST[nombcat]','$_POST[cod]','$_POST[val]','$_POST[vidU]','$_POST[vidE]','$val',$reevaluar,$depreciar)";
 $ejecutar=mysqli_query($mysqli,$insertar);
 if(!$ejecutar)
     $enviar=0;

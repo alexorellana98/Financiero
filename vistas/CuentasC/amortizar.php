@@ -23,13 +23,18 @@ require 'conexion.php';
 </head>
 <?php
   //activa el activo
+    /*
    $aux=$_GET['btnbaja'];
    $cadena = explode(" ", $aux);
-
    $aux = $cadena[0];
    $idPre = $cadena[1];
    $aux7=$cadena[0];
    $sentencia = "SELECT * FROM prestamo WHERE idCli='$aux' AND idPres = '$idPre'";
+   */
+    
+    $aux=$_GET['btnbaja'];
+   $aux7=$_GET['btnbaja'];
+   $sentencia = "SELECT * FROM prestamo WHERE idCli='$aux'"; 
    $ejecutar=mysqli_query($mysqli,$sentencia);
    $fila = mysqli_fetch_assoc($ejecutar);
 

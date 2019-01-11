@@ -96,11 +96,8 @@ $aux2=$_GET['btnPre'];
                          <?php
   $var=$_GET['btnPre'];
 $extraer="SELECT * FROM prestamo WHERE idCli='$var'";
-
  //$base=mysqli_select_db($con,'finanzas');
 $ejecutar=mysqli_query($mysqli,$extraer);
-
-
 while($ejecuta=mysqli_fetch_array($ejecutar))
 {  $cont=$cont+1;
 
@@ -127,7 +124,7 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
      </form>
      
      <form  style=" margin-left: 100px; margin-top:-43px;" action="amortizar.php" method="get" class="form-register" >
-       <button  type="submit" class="btn btn-warning" title="Ver Amortizacion de prestamo" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal" value="<?php echo $var." ".$ejecuta['idPres'] ?>"> <i class="glyphicon glyphicon-usd"></i>Amortización</button>
+       <button  type="submit" class="btn btn-warning" title="Ver Amortizacion de prestamo" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal" value="<?php echo $ejecuta['idCli'] ?>"> <i class="glyphicon glyphicon-usd"></i>Amortización</button>
      </form>
     </td>
   </tr>

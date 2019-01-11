@@ -1,4 +1,3 @@
-
 <?php
 require 'conexion.php';
 ?>
@@ -8,10 +7,7 @@ require 'conexion.php';
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Detalles</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
   <meta name="author" content="hencework"/>
-  
   <?php
       include "../Componentes/estilos.php";
   ?>
@@ -47,9 +43,19 @@ function envia(){
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
                 <div class="row">
-                    <div class="button-group">
-<button type="submit"  class="btn btn-danger" onclick="envia()"><i class="fa fa-mail-reply"></i>  Atras</button>
-</div>
+                    <div class="col-md-10" style="margin-left:0px; padding-left:0px;">
+                       <div class="button-group">
+                    <button type="submit"  class="btn btn-danger" onclick="envia()"><i class="fa fa-mail-reply"></i>  Atras</button>
+                    </div>
+                   </div>
+                   <div class="col-md-2" style="margin-rigth:20px; padding-rigth:20px;">
+                       <form  action="verPrestamosCliente.php" method="get" class="form-register" > 
+                         
+                       <div class="button-group" >
+                          <button type="submit"  class="btn btn-success" id="btnPre" name="btnPre" onclick="envia1()" value="<?php echo $_GET['btndetalle']; ?>"><i class="glyphicon glyphicon-usd"></i> Ver Prestamos</button>
+                           </div>
+                          </form>
+                   </div>  
                 </div>
                   <div class="table-wrap">
                     <div class="table-responsive">
@@ -135,17 +141,6 @@ function envia(){
     <td>Fecha de registro :</td>
     <td><?php echo $fila1['fecha'];?></td>
   </tr>
-
-  <tr>
-    <td>Ver prestamos:</td>
-    <td>
-    <div class="col-md-2">
-        <form action="verPrestamosCliente.php" method="get" class="form-register">
-                <button type="submit"  class="btn btn-success " id="btnPre" name="btnPre" value="<?php echo $fila1['idCliente']; ?>" style="width: 110%;"><i class="glyphicon glyphicon-eye-open"> </i>    Ver</button>
-            </form>
-    </div>
-    </td>
-  </tr>
                         </tbody>
                       </table>
                     </div>
@@ -163,7 +158,6 @@ function envia(){
         <!-- /Main Content -->
 
     <!-- /#wrapper -->
-  
   
   <?php
 include "../Componentes/scripts.php";

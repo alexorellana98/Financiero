@@ -65,6 +65,36 @@
     <div class="panel-body">
 <div class="row">
 <div class="col-md-12">
+<div class="panel panel-default card-view">
+    <div class="panel-heading text-center">
+        <div class="pull-center">
+            <h6 class="panel-title txt-dark"><i class="zmdi zmdi-lock-outline mr-10"></i>Configuración  Activos Fijos</h6>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="panel-wrapper collapse in">
+        <div class="panel-body">
+           <div class="row">
+            <div class="col-md-3" style="margin-bottom:0px; padding-bottom:0px;">
+            <label>Posibilidad de reevaluar: </label>
+            </div>
+            <div class="col-md-2" style="margin-top:0px; padding-top:0px;">
+            <input type="checkbox" class="js-switch js-switch-1"   name="reevaluar" id="reevaluar" data-color="#469408" data-size="small"/>
+            </div>
+
+            <div class="col-md-3">
+            <label>Posibilidad de depreciar: </label>
+            </div>
+            <div class="col-md-2">
+            <input type="checkbox" class="js-switch js-switch-1"  name="depreciar" id="depreciar" data-color="#469408" data-size="small"/>
+            </div>
+    
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="col-md-12">
     
     <label for="nombcat" >Nombre:</label>
     <div class="input-group">
@@ -80,19 +110,19 @@
     </div>
     <label for="val">Valor residual(%):</label>
     <div class="input-group">
-        <input type="text" class="form-control" id="val" name="val" required placeholder="Ingrese un Valor"> 
+        <input type="number" class="form-control" id="val" name="val" required placeholder="Ingrese un Valor"> 
         <div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
     </div>
 </div>
 <div class="col-md-6">
     <label for="vidU" >Vida Util:</label>
     <div class="input-group">
-      <input type="text" class="form-control" id="vidU" name="vidU" required placeholder="Ingrese un Valor">
+      <input type="number" class="form-control" id="vidU" name="vidU" required placeholder="Ingrese un Valor">
       <div class="input-group-addon"><span  class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span></div>
     </div>
     <label for="vidE">Vida economica:</label>
     <div class="input-group">
-        <input type="text" class="form-control" id="vidE" name="vidE" required placeholder="Ingrese un Valor">
+        <input type="number" class="form-control" id="vidE" name="vidE" required placeholder="Ingrese un Valor">
         <div class="input-group-addon"><span class="glyphicon glyphicon-sort-by-attributes"></span></div>
     </div>
 </div>
