@@ -2,19 +2,19 @@
 require 'conexion.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Adquisición de activo fijo</title>
-  
   <?php
       include "../Componentes/estilos.php";
   ?>
 	<script src="../../asset/js/activoFijo.js"></script>
-
   <script language="javascript">
-
+function nuevoActivo(){
+    document.location.href="CompraActivo.php";
+}
 function sele(){
   var cond= $("#condi").val();
 	  if (cond==1) {
@@ -50,7 +50,7 @@ function sele(){
                     <div class="row">
                         <div class="col-md-5">
 								 	<div class="form-group">
-								 	<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalRegistarProveedor"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Registrar Activo</span></button>
+								 	<button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#" onclick="nuevoActivo();"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Registrar Activo</span></button>
 								 	</div>
 								</div>
                                 <div class="col-md-1">

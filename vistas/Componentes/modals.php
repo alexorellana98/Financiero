@@ -195,8 +195,6 @@
  
 </div>
 <!--Fin modal Registrar Ubicacion-->
-        
-        
  <!--Modal  Registrar Proveedor-->
 <div id="ModalProveedor" class="modal fade" role="dialog">
     <div class="modal-dialog modal-lg">

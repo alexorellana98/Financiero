@@ -63,8 +63,25 @@ function actualizar(tabla){
             xmlhttp.send();
 }
 
+function cargarModal(id){
+     if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("cargarModal").innerHTML = xmlhttp.responseText;  
+                    $('.tablaDetalle').DataTable();
+                    $("#ModalDetalleActivo").modal('show');
+                }
+            }
+            xmlhttp.open("post", "../..//asset/ajax/modalDetalle.php?id=" +id, true);
+            xmlhttp.send();
+}
+        
 function editar(id,tabla){
-    //alert(tabla);
      if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
             }
@@ -167,6 +184,7 @@ window.onload = function() {
       <div id="modalsE">
           
       </div>
+      <div id="cargarModal"></div>
       <br>
                     <br>
                     <br>

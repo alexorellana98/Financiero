@@ -1,78 +1,34 @@
-<?php
-require 'conexion.php';
+<?php 
+$mysqli = new mysqli('localhost', 'root', '', 'siccif');
+$id=$_REQUEST['id'];	
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Detalles Reevaluar</title>
-  <meta name="description" content="Doodle is a Dashboard & Admin Site Responsive Template by hencework." />
-  <meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Doodle Admin, Doodleadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-  <meta name="author" content="hencework"/>
-  
-  <?php
-      include "../Componentes/estilos.php";
-  ?>
-
-  <script language="javascript">
-function envia(){
-   window.location="administrarActivo.php?accion=reevaluar";
-  }
-</script>
-</head>
-<?php
-if (!empty($_GET['btnalta1']))  {
-//activa el activo 
-$est=1;
-$var=$_GET['btnalta1'];
-$sql = " UPDATE categoria set estado='$est' WHERE idCat='$var'";
-$resultado = $mysqli->query($sql); 
-}
-?>
-<body>  
-  <!--Preloader-->
-  <div class="preloader-it">
-    <div class="la-anim-1"></div>
-  </div>
-  <!--/Preloader-->
-    <div class="wrapper theme-1-active box-layout pimary-color-red">
-  <?php
-  include "../Componentes/menu.php";
-  ?>  
-
-    <!-- Main Content -->
-    <div class="page-wrapper">
-            <div class="container-fluid">
-            <div class="panel panel-info card-view" style="margin-top: 20px;">
-            <div class="panel-heading text-center">
-                <div class="pull-center">
-                    <h3 class="panel-title txt-light"><i class="fa fa-info-circle"></i>   Detalles de Activo</h3>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="panel-wrapper collapse in">
-                <div class="panel-body">
-                <div class="row">
-                    <div class="button-group">
-<button type="submit"  class="btn btn-danger" onclick="envia()"><i class="fa fa-mail-reply"></i>  Atras</button>
+<div id="ModalDetalleActivo" class="modal fade" role="dialog">
+<div class="modal-dialog modal-lg">
+<form action="insert.php" method="post" class="form-register">
+<div class="modal-content">
+<div class="modal-body">
+<div class="panel panel-info card-view">
+<div class="panel-heading text-center">
+<div class="pull-center">
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+<h2 class="panel-title panel-center txt-light">Detalle Activo Fijo</h2> </div>
+<div class="clearfix"></div>
 </div>
-                </div>
-                <?php       $cont=0;            ?>
-                
-                  <div class="table-wrap">
+<div class="panel-wrapper collapse in">
+<div class="panel-body">
+    <div class="table-wrap">
                     <div class="table-responsive">
-                      <table id="datable_1" class="table table-hover display  pb-30" >
+                      <table id="datable_1" class="table table-hover display  pb-30 tablaDetalle" >
                         <thead>
                           <tr >
-                            <th  WIDTH="100" HEIGHT='9' >Valor</th>
-                            <th  WIDTH="300" HEIGHT='9'>Descripcion</th>
+                            <th  WIDTH="100" HEIGHT='5' >Valor</th>
+                            <th  WIDTH="300" HEIGHT='5'>Descripcion</th>
                           </tr>
                         </thead>
                         
                         <tbody >
                               <?php
-                              $aux2=$_GET['btnId'];
+                              $aux2=$id;
                              $sentencia2 = "SELECT * FROM detalle_activo WHERE activofijo_id='$aux2'"; 
                              $ejecutar2=mysqli_query($mysqli,$sentencia2);
                              $fila1 = mysqli_fetch_assoc($ejecutar2);
@@ -107,9 +63,6 @@ $resultado = $mysqli->query($sql);
                               <td> Ubicacion :</td>
                               <td><?php echo $fila4['nombre'];?></td>
                             </tr>
-                            
-                            
-                            
                              <tr>
                              <td> Fecha de adquisicion :</td>
                               <td><?php echo $fila1['fecha_adqui'];?></td>
@@ -138,28 +91,16 @@ $resultado = $mysqli->query($sql);
                       </table>
                     </div>
                   </div>
-                </div>
-                </div>
-                </div>
-                
-      </div>
-    <!-- /#wrapper -->
-        <!-- Footer -->
-        <?php include '../Componentes/footer.php'; ?>
-        <!-- /Footer -->
-      </div>
-    </div>
-        <!-- /Main Content -->
-  
-  
-  <?php
-include "../Componentes/scripts.php";
-?>
-  
-</body>
-
-</html>
-
-
-    
-        
+</div>
+</div>
+</div>
+</div>
+<div class="modal-footer">
+<div class="button-group">
+        <button type="button"  class="btn btn-danger btn-lable-wrap left-label" data-dismiss="modal" onclick="envia()"> <span class="btn-label"><i class="fa fa-close"></i> </span><span class="btn-text">Cerrar</span></button>
+                  </div>
+</div>
+</div>
+</form>
+</div>
+</div>

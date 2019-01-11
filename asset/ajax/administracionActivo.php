@@ -19,10 +19,18 @@ if($actualiza==="reevaluar"){
                         <tbody >
                           <?php
                             $extraer="SELECT * FROM activo";
+                            
                             $ejecutar=mysqli_query($mysqli,$extraer);
                             while($ejecuta=mysqli_fetch_array($ejecutar))
-                            {                              
-                             if (($ejecuta['estado'])==1) {
+                            {
+                                
+                            $extraerreevaluar='SELECT categoria.reevaluar as reevaluar FROM activo ,categoria where activo.idAc='.$ejecuta['idAc'].' and categoria.idCat='.$ejecuta['idCat'];
+                            $ejecutarreevaluar=mysqli_query($mysqli,$extraerreevaluar);
+                                while($ejecutareeval=mysqli_fetch_array($ejecutarreevaluar))
+                                { $reevaluar=$ejecutareeval['reevaluar'];}
+                                
+                                
+                             if (($ejecuta['estado'])==1 && ($reevaluar==1)) {
                               $cont1=$cont1+1;
                                 ?>  
                               <tr>
@@ -50,9 +58,7 @@ if($actualiza==="reevaluar"){
                                 <?php
                                 ?>
                                 <div class="col-md-4" style="margin:0px; padding:0px;">
-                                    <form  action="ReevaluarDetalle.php" method="get" class="form-register" > 
-                                  <button  type="submit" class="btn btn-success" id="btnId" name="btnId"  data-toggle="modal"  value="<?php echo $ejecuta['idAc']; ?>"><i class="glyphicon glyphicon-eye-open"></i> Ver</button>
-                                    </form>
+                                  <button  type="submit" class="btn btn-success" id="btnId" name="btnId"  data-toggle="modal"  onclick="cargarModal('<?php echo $ejecuta['idAc']; ?>');"><i class="glyphicon glyphicon-eye-open"></i> Ver</button>
                                 </div>                                                                
                                   
                                     <div class="col-md-8" style="margin:0px; padding:0px;">
@@ -74,7 +80,7 @@ if($actualiza==="reevaluar"){
                               <th >Descripción</th>
                               <th >Categoria</th>
                               <th >Subcategoria</th>
-                              <th  WIDTH="40" HEIGHT='9'>Opciones</th>
+                              <th  WIDTH="200" HEIGHT='9'>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -109,13 +115,15 @@ if($actualiza==="reevaluar"){
                                 <?php
                                 ?>
                                
-                                  <form  action="verDetalle.php" method="get" class="form-register" > 
-                                  
-                            <button  type="submit" class="btn btn-success" id="btnId" name="btnId"  data-toggle="modal"  value="<?php echo $ejecuta['idAc']; ?>"> <i class="glyphicon glyphicon-eye-open"></i>  Ver</button>
-                            </form>
-                                 <form style="margin-left: 100px; margin-top:-43px;" action="ventaProcesar.php" method="post" class="form-register" > 
+                                  <div class="col-md-4" style="margin:0px; padding:0px;">
+                                  <button  type="submit" class="btn btn-success" id="btnId" name="btnId"  data-toggle="modal"  onclick="cargarModal('<?php echo $ejecuta['idAc']; ?>');"><i class="glyphicon glyphicon-eye-open"></i> Ver</button>
+                                </div>
+                                
+                                  <div class="col-md-4" style="margin-left:10px;">
+                                 <form action="ventaProcesar.php" method="post" class="form-register" > 
                                  <button  type="submit" class="btn btn-warning" id="btnenvia" name="btnenvia" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idAc']; ?>"><i class="glyphicon glyphicon-usd"></i>  Vender</button>
                                  </form>
+                                    </div>
 
                                  <?php }?>
 
@@ -144,8 +152,13 @@ if($actualiza==="reevaluar"){
 $extraer="SELECT * FROM activo";
 $ejecutar=mysqli_query($mysqli,$extraer);
 while($ejecuta=mysqli_fetch_array($ejecutar))
+    
+    $extraerdepreciar='SELECT categoria.depreciar as depreciar FROM activo ,categoria where activo.idAc='.$ejecuta['idAc'].' and categoria.idCat='.$ejecuta['idCat'];
+    $ejecutadepreciar=mysqli_query($mysqli,$extraerdepreciar);
+        while($ejecutadepre=mysqli_fetch_array($ejecutadepreciar))
+        { $depreciar=$ejecutadepre['depreciar'];}
 {
-if (($ejecuta['estado'])==1) {
+if (($ejecuta['estado'])==1 && $depreciar==1) {
 $cont1=$cont1+1;
 ?>
 <tr>
@@ -179,10 +192,10 @@ $fila1 = mysqli_fetch_assoc($ejecutar2);
 <td>
 <?php
 ?>
-    <form action="verActivo.php" method="get" class="form-register">
-        <button type="submit" class="btn btn-success" id="btnId" name="btnId" data-toggle="modal" value="<?php echo $ejecuta['idAc']; ?>"><i class="glyphicon glyphicon-eye-open"></i> Ver</button>
-    </form>
-    <?php }?>
+<form action="verActivo.php" method="get" class="form-register">
+<button type="submit" class="btn btn-success" id="btnId" name="btnId" data-toggle="modal" value="<?php echo $ejecuta['idAc']; ?>"><i class="glyphicon glyphicon-eye-open"></i> Ver</button>
+</form>
+<?php }?>
 </td>
 </tr>
 <?php
