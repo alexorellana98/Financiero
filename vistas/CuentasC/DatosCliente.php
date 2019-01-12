@@ -2,7 +2,7 @@
 require 'conexion.php';
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -24,7 +24,7 @@ require 'conexion.php';
 <body>  
   <!--Preloader-->
   <div class="preloader-it">
-    <div class="la-anim-1"></div>
+    <div class="la-anim-2"></div>
   </div>
   <!--/Preloader-->
     <div class="wrapper theme-1-active box-layout pimary-color-red">
@@ -48,7 +48,7 @@ require 'conexion.php';
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <select class="form-control STipoPersona" name="persona" id="persona" onchange="per(this.value)">
+        <select class="form-control selectpicker" name="persona" id="persona" data-style="btn-success btn-outline" onchange="per()">
           <option value="0">Persona Natural</option>
           <option value="1">Persona Juridica</option>
         </select>
@@ -101,7 +101,7 @@ require 'conexion.php';
    <div class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></div>
   </div>
   <label for="depa">Departamento:</label>
- <select class="form-control SDepartamento" data-live-search="true" id="depa" name="depa" required> 
+ <select class="form-control select2" id="depa" name="depa" > 
 <option value="San Salvador" >San Salvador</option>
  <option value="San Vicente" >San Vicente</option>
  <option value="Morazán" >Morazan</option>
@@ -130,50 +130,44 @@ require 'conexion.php';
 </div>
 </div>
 </form>
-                    </div>
-                 </div>
-                </div>        
-      </div>
-    <!-- /#wrapper -->
-        <!-- Footer -->
-        <?php include '../Componentes/footer.php'; ?>
-        <!-- /Footer -->
-      </div>
-    </div>
-        <!-- /Main Content -->
+</div>
+</div>
+</div>        
+</div>
+<!-- /#wrapper -->
+<!-- Footer -->
+<?php include '../Componentes/footer.php'; ?>
+<!-- /Footer -->
+</div>
+</div>
+<!-- /Main Content -->
   
   <script language="javascript">
-    function per(val){
-      if(val==0){
-        document.querySelector('#noC').innerText="Nombre de Cliente:";
-        document.querySelector('#du').innerText="DUI:";
-        document.querySelector('#ni').innerText="NIT:";
-        document.querySelector('#oc').innerText="Ocupación:";
-        document.getElementById('Ocup').placeholder="Ocupación Laboral";
-        document.getElementById('a1').style.display='block';
-        document.getElementById('a2').style.display='none';
-      }else{
-        document.querySelector('#noC').innerText="Nombre de Empresa:";
-        document.querySelector('#du').innerText="DUI de Representante:";
-        document.querySelector('#ni').innerText="NIT de Empresa:";
-        document.querySelector('#oc').innerText="Giro:";
-        document.getElementById('Ocup').placeholder="Giro de Empresa";
-        document.getElementById('a1').style.display='none';
-        document.getElementById('a2').style.display='block';
-      }
-
-    }
-  </script>
-   
-  <?php
-    include "../Componentes/scripts.php";
-  ?>
-  <script>
-        $(function () {
-            $('.STipoPersona').select2()
-            $('.SDepartamento').select2()
-        });
+function per(){
+var val=document.getElementById("persona").value;
+if(val==0){
+document.querySelector('#noC').innerText="Nombre de Cliente:";
+document.querySelector('#du').innerText="DUI:";
+document.querySelector('#ni').innerText="NIT:";
+document.querySelector('#oc').innerText="Ocupación:";
+document.getElementById('Ocup').placeholder="Ocupación Laboral";
+document.getElementById('a1').style.display='block';
+document.getElementById('a2').style.display='none';
+}else{
+document.querySelector('#noC').innerText="Nombre de Empresa:";
+document.querySelector('#du').innerText="DUI de Representante:";
+document.querySelector('#ni').innerText="NIT de Empresa:";
+document.querySelector('#oc').innerText="Giro:";
+document.getElementById('Ocup').placeholder="Giro de Empresa";
+document.getElementById('a1').style.display='none';
+document.getElementById('a2').style.display='block';
+}
+}
 </script>
+
+<?php
+include "../Componentes/scripts.php";
+?>
   <script src="../dist/js/pages/privilegios.js"></script>
  
 </body>

@@ -5,6 +5,13 @@
 		<!-- Bootstrap Core JavaScript -->
 		<script src="../Plantilla/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 		<script src="../Plantilla/vendors/bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.min.js"></script>
+		<!-- Form Wizard JavaScript -->
+		<script src="../Plantilla/vendors/bower_components/jquery.steps/build/jquery.steps.min.js"></script>
+		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
+		
+		<!-- Form Wizard Data JavaScript -->
+		<script src="../Plantilla/dist/js/form-wizard-data.js"></script>
+		
 		<!-- Slimscroll JavaScript -->
 		<script src="../Plantilla/dist/js/jquery.slimscroll.js"></script>
 		<!-- Fancy Dropdown JS -->
@@ -22,7 +29,7 @@
 		<!-- Switchery JavaScript -->
 		<script src="../Plantilla/vendors/bower_components/switchery/dist/switchery.min.js"></script>
 		<!-- Select2 JavaScript -->
-		<script src="../Plantilla/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
+		<script src="../Plantilla/vendors/bower_components/select2/dist/js/select2.min.js"></script>
 		<!-- Bootstrap Select JavaScript -->
 		<script src="../Plantilla/vendors/bower_components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
 		<!-- Bootstrap Tagsinput JavaScript -->

@@ -10,7 +10,7 @@ require 'conexion.php';
   
   <?php      include "../Componentes/estilos.php";  ?>
   <script language="javascript">
- 
+
 function envia(){
    window.location="Comprar.php";
   }
@@ -38,6 +38,10 @@ $('#idcat').val(v1);
 $('#codi').val(ins+"-"+ub+"-"+sub+"-"+"00"+act);
 }
 }
+      
+function ajax_act(opcion,id){
+    
+}
 </script>
 </head>
 <body>  
@@ -52,14 +56,13 @@ $('#codi').val(ins+"-"+ub+"-"+sub+"-"+"00"+act);
          <div class="panel panel-success card-view">
 <div class="panel-heading text-center">
 <div class="pull-center" >
-<h2 class="panel-title panel-center txt-light"><i class="fa fa-plus"></i>  Nuevo Activo</h2>
+<h2 class="panel-title panel-center txt-light"><i class="fa fa-plus"></i> Nuevo Activo</h2>
 </div>
 <div class="clearfix"></div>
 </div>
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
 <div class="row">
-<div class="table-wrap">
 <div class="row">
 <div class="col-md-12">
 <div class="col-md-6">
@@ -133,7 +136,6 @@ if (($ejecuta['estado'])==1) {
 <br>
 <br>
 </div>
-
 <form  action="insert.php" method="post" class="form-register" > 
 <div class="col-md-6">
 <input type="hidden" class="form-control" id="ubica2" placeholder="Nombre" name="ubica2" >
@@ -172,26 +174,49 @@ if (($ejecuta['estado'])==1) {
 </div>
 </div>
 <input  type="hidden" class="form-control" id="ideU" name="ideU" placeholder="Nombre" value="<?php echo $_POST['btnEditar'];?>">
-
 <div class="row text-center"> 
 <div class="button-group">
-
 <button type="button"  class="btn btn-danger btn-lable-wrap left-label"  onclick="recibe()"> <span class="btn-label"><i class="fa fa-usb"></i> </span><span class="btn-text">Calcular Codigo</span></button>
-
 <button type="submit"  class="btn btn-info btn-lable-wrap left-label"> <span class="btn-label"><i class="fa fa-save"></i> </span><span class="btn-text">Continuar</span></button>
 <button type="button"  class="btn btn-danger btn-lable-wrap left-label" data-dismiss="modal" onclick="envia()"> <span class="btn-label"><i class="fa fa-close"></i> </span><span class="btn-text">Cancelar</span></button>
-
-
 </div>
 </div>
-
-
-
 </form>
 </div>
 </div>
 </div>
-</div> 
+
+ <!-- Row -->
+<div class="row text-center">
+<form id="example-advanced-form" action="#">
+<div class="col-md-12">
+   
+    <div class="col-md-6">
+        
+    </div>
+    <div class="col-md-6"></div>
+    
+</div>
+
+<h3><span class="number"><i class="icon-user-following txt-black"></i></span><span class="head-font capitalize-font">signup</span></h3>
+<fieldset>
+<div class="row">
+
+</div>
+</fieldset>
+
+<h3><span class="number"><i class="icon-bag txt-black"></i></span><span class="head-font capitalize-font">shipping</span></h3>
+<fieldset>
+<div class="row">
+
+</div>
+</fieldset>
+
+</form>
+</div>
+<!-- /Row -->
+
+  
 </div>
 </div>
 </div>     

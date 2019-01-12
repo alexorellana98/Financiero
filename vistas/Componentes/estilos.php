@@ -11,6 +11,10 @@
 		<link href="../Plantilla/vendors/bower_components/bootstrap-select/dist/css/bootstrap-select.min.css" rel="stylesheet" type="text/css"/>
 		<!-- bootstrap-tagsinput CSS -->
 		<link href="../Plantilla/vendors/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" rel="stylesheet" type="text/css"/>
+		<!-- vector map CSS -->
+		<link href="../Plantilla/vendors/bower_components/jquery-wizard.js/css/wizard.css" rel="stylesheet" type="text/css"/>
+		<!-- jquery-steps css -->
+		<link rel="stylesheet" href="../Plantilla/vendors/bower_components/jquery.steps/demo/css/jquery.steps.css">
 		<!-- bootstrap-touchspin CSS -->
 		<link href="../Plantilla/vendors/bower_components/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css" rel="stylesheet" type="text/css"/>
 		<!-- multi-select CSS -->

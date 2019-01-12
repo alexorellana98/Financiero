@@ -20,7 +20,6 @@ require 'conexion.php';
   <script language="javascript">
  
  function total(){
-
 var cant= $("#cant").val();
 var val= $("#prec").val();
 $('#tot').val((cant*val));
@@ -47,11 +46,7 @@ function envia(){
    $sentencia = "SELECT * FROM activo  order by idAc desc"; 
    $ejecutar=mysqli_query($mysqli,$sentencia);
    $fila = mysqli_fetch_assoc($ejecutar);
-
-   
-
  ?>
-
     <!-- Main Content -->
     <div class="page-wrapper">
             <div class="container-fluid">
@@ -83,7 +78,7 @@ function envia(){
  <form  action="insert.php" method="post" class="form-register" > 
       
    
- <div class="col-lg-12"">
+ <div class="col-lg-12">
  
 
 <div class="col-md-6">
@@ -254,8 +249,8 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 </div>
 
 
-</form>
-
+     </div>
+      </form>
  </div>
 
 
