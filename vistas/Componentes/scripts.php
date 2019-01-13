@@ -8,10 +8,8 @@
 		<!-- Form Wizard JavaScript -->
 		<script src="../Plantilla/vendors/bower_components/jquery.steps/build/jquery.steps.min.js"></script>
 		<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.min.js"></script>
-		
 		<!-- Form Wizard Data JavaScript -->
 		<script src="../Plantilla/dist/js/form-wizard-data.js"></script>
-		
 		<!-- Slimscroll JavaScript -->
 		<script src="../Plantilla/dist/js/jquery.slimscroll.js"></script>
 		<!-- Fancy Dropdown JS -->

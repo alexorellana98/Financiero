@@ -75,20 +75,33 @@
     <div class="panel-wrapper collapse in">
         <div class="panel-body">
            <div class="row">
-            <div class="col-md-3" style="margin-bottom:0px; padding-bottom:0px;">
-            <label>Posibilidad de reevaluar: </label>
+            <div class="col-md-2" style="margin-bottom:0px; padding-bottom:0px;">
+            <label>Reevaluar: </label>
             </div>
-            <div class="col-md-2" style="margin-top:0px; padding-top:0px;">
+            <div class="col-md-1" style="margin-top:0px; padding-top:0px;">
             <input type="checkbox" class="js-switch js-switch-1"   name="reevaluar" id="reevaluar" data-color="#469408" data-size="small"/>
             </div>
-
-            <div class="col-md-3">
-            <label>Posibilidad de depreciar: </label>
-            </div>
             <div class="col-md-2">
+            <label>Depreciar: </label>
+            </div>
+            <div class="col-md-1">
             <input type="checkbox" class="js-switch js-switch-1"  name="depreciar" id="depreciar" data-color="#469408" data-size="small"/>
             </div>
-    
+            
+           
+            
+<div class="col-md-6">
+<div class="col-md-2">
+<label>Tipo: </label>
+</div>
+<div class="col-md-10">
+<select class="form-control selectpicker" name="tipo" id="tipo" data-style="btn-success btn-outline" required style="width:100%;">
+<option value="Mueble">Mueble</option>
+<option value="Inmueble">Inmueble</option>
+</select>
+</div>
+</div>
+            
             </div>
         </div>
     </div>

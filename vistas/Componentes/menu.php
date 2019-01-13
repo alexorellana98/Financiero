@@ -4,7 +4,6 @@
 	</div>
 	<!--/Preloader-->
     <div class="wrapper theme-1-active box-layout pimary-color-red">
-
         <!-- Top Menu Items -->
 		<nav class="navbar navbar-inverse navbar-fixed-top">
 			<div class="mobile-only-brand pull-left">
@@ -74,18 +73,26 @@
 					<span>Menu Principal</span> 
 					<i class="zmdi zmdi-more"></i>
 				</li>
-
+                
+                <li>
+					<a href="../ActivoFijo/institucion.php"><div class="pull-left"><i class="fa fa-institution"></i><span class="right-nav-text"> Institución </span></div><div class="pull-right"></div><div class="clearfix"></div></a>
+				</li>
+				
+				
 				<li>
-					<a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr"><div class="pull-left"><i class="fa fa-gears"></i><span class="right-nav-text">  Activo Fijo </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
+					<a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr"><div class="pull-left"><i class="fa fa-gear"></i><span class="right-nav-text">  Activo Fijo </span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="app_dr" class="collapse collapse-level-1">
 						<li>
-							<a  href="../ActivoFijo/gestionRegistros.php">Gestion de Registros</a>
+							<a  href="../ActivoFijo/gestionRegistros.php">Gestión de Registros</a>
 						</li>
 						<li>
-							<a href="../ActivoFijo/Comprar.php">Adquisición Activo</a>
+							<a href="../ActivoFijo/Comprar.php">Adquisición Activo Fijo</a>
 						</li>
 						<li>
 							<a  href="../ActivoFijo/administrarActivo.php">Administrar Activo Fijo</a>
+						</li>
+						<li>
+							<a  href="../ActivoFijo/buscarActivo.php">Buscar Activo Fijo</a>
 						</li>
 					</ul>
 				</li>
@@ -94,7 +101,7 @@
 					<a  href="javascript:void(0);" data-toggle="collapse" data-target="#form_dr"><div class="pull-left"><i class="fa  fa-dollar"></i><span class="right-nav-text">Cuentas Por Cobrar</span></div><div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div><div class="clearfix"></div></a>
 					<ul id="form_dr" class="collapse collapse-level-1 two-col-list">
 						<li>
-							<a  href="../CuentasC/creditos.php">Creditos</a>
+							<a  href="../CuentasC/creditos.php">Tipo Creditos</a>
 						</li>
 						<li>
 							<a  href="../CuentasC/RegistroCliente.php">Clientes</a>

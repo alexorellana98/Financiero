@@ -37,7 +37,7 @@ require 'conexion.php';
             <div class="panel panel-primary card-view " style="margin-top: 20px;">
             <div class="panel-heading text-center">
                 <div class="pull-center">
-                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i>  Gestionar  Credito</h3>
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i>  Gestionar Tipos de Creditos</h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -46,13 +46,10 @@ require 'conexion.php';
                  <?php
                     $cont=0;
                     ?>
-                <div class="row">
-                    <div class="col-md-3">
-                  <br>
+                <div class="row text-center">
                   <div class="form-group">
-                    <button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalRegistarCredito"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Ingresar Credito</span></button>
+                    <button class="btn btn-primary btn-lable-wrap left-label" data-toggle="modal" data-target="#ModalRegistarCredito"> <span class="btn-label"><i class="fa fa-plus"></i> </span><span class="btn-text">Nuevo Credito</span></button>
                   </div>
-                </div>
                     </div>
                     <div class="row">
                   <div class="table-wrap">
@@ -112,7 +109,6 @@ require 'conexion.php';
            
 
        <!--Modal  Registrar -->
-
 <div id="ModalRegistarCredito" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
 
@@ -132,19 +128,9 @@ require 'conexion.php';
 <div class="panel-wrapper collapse in">
     <div class="panel-body">
     <div class="row">
-  <div class="col-md-12">
-
-
-<div class="col-md-3 ">
-
-<img src="../../img/credito.png" class="img-rounded" alt="Cinque Terre" width="300" height="250">
-</div>
-
-<div class="col-md-8 col-md-offset-1">
 
 <div class="col-md-6 ">
 <div class="form-group">
-
   <label for="nombcre" >Nombre de Credito:</label>
   <div class="input-group">
   <input type="text" required="true" autocomplete="off" class="form-control"  id="nombcre" name="nombcre" placeholder="Nombre" >
@@ -171,6 +157,12 @@ require 'conexion.php';
   </div>
 </div>
 </div>
+
+
+
+
+
+
 <div class="col-md-6">
 
 <div class="form-group">
@@ -202,8 +194,7 @@ require 'conexion.php';
 </div>
 </div>
 
-</div>
-</div> 
+
  </div>
 									</div>
 								</div>

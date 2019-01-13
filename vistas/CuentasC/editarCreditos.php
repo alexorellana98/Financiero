@@ -55,7 +55,7 @@ function envia(){
                     <div class="form-group">
                       <label for="nombcre" >Nombre de Credito:</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" readonly="true" id="nombcre" name="nombcre" placeholder="Nombre" value="<?php echo $fila['tipo'];?>">
+                        <input type="text" class="form-control" readonly="true" id="nombcre" name="nombcre" placeholder="Nombre" value="<?php echo $fila['tipo'];?>" required>
                         <div class="input-group-addon">
                           <span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </div>
@@ -64,7 +64,7 @@ function envia(){
                     <div class="form-group">
                       <label for="minip" >Mínimo a Prestar:</label>
                       <div class="input-group">
-                        <input type="number" class="form-control" id="minip" name="minip" placeholder="100" value="<?php echo $fila['cmin'];?>">
+                        <input type="number" class="form-control" id="minip" name="minip" placeholder="100" value="<?php echo $fila['cmin'];?>" required> 
                         <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </div>
                       </div>
@@ -72,7 +72,7 @@ function envia(){
                     <div class="form-group">
                       <label for="inter">Interes Anual(%):</label>
                       <div class="input-group">
-                        <input type="number" class="form-control" id="inter" name="inter" value="<?php echo $fila['interes'];?>">
+                        <input type="number" class="form-control" id="inter" name="inter" value="<?php echo $fila['interes'];?>" required>
                         <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
                       </div>
                     </div>
@@ -82,21 +82,21 @@ function envia(){
                     <div class="form-group">
                       <label for="pmax" >Plazo Máximo:</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" id="pmax" name="pmax" value="<?php echo $fila['plazom'];?>">
+                        <input type="text" class="form-control" id="pmax" name="pmax" value="<?php echo $fila['plazom'];?>" required>
                         <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
                       </div>
                     </div>
                     <div class="form-group">
                       <label for="maxp">Máximo a Prestar:</label>
                       <div class="input-group">
-                        <input type="text" class="form-control" id="maxp" name="maxp" value="<?php echo $fila['cmax'];?>">
+                        <input type="text" class="form-control" id="maxp" name="maxp" value="<?php echo $fila['cmax'];?>" required>
                         <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
                       </div>
                     </div>
                     <div class="form-group ">
                       <label for="gara">Tipo de Garantía:</label>
                       <br>
-                      <select class="form-control STipoGarantia" data-live-search="true" name="gara" id="gara" value="<?php echo $fila['garantia'];?>">
+                      <select class="form-control select2" data-live-search="true" name="gara" id="gara" value="<?php echo $fila['garantia'];?>" required>
                         <option ></option>
                         <option value="Aval">Aval</option>
                         <option value="Hipotecaria">Hipotecaria</option>

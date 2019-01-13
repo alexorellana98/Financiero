@@ -125,12 +125,13 @@ if (!empty($_POST['nombI']) && !empty($_POST['nombCo']) ){
 $aux=$_POST['idIns'];
 $nombI = $_POST['nombI'];
 	$nomCo = $_POST['nombCo'];
-$sql = " UPDATE institucion set codigo='$nomCo',Nombre='$nombI' WHERE idIn='$aux'";
+    $direccion=$_POST['dire'];
+$sql = " UPDATE institucion set codigo='$nomCo',Nombre='$nombI', direccion='$direccion' WHERE idIn='$aux'";
 	$resultado = $mysqli->query($sql);
     if(!$resultado)
         $enviar=0;
 //echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: gestionRegistros.php?paso=institucion&tipo=modificacion&resultado='.$enviar);
+header('Location: institucion.php?paso=institucion&tipo=modificacion&resultado='.$enviar);
 
 }
 

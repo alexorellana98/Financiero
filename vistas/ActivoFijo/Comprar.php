@@ -13,7 +13,6 @@ include "../Componentes/estilos.php";
 <link href="../Plantilla/vendors/bower_components/SmartWizard-master/dist/css/smart_wizard_theme_circles.css" rel="stylesheet" type="text/css" />
 <link href="../Plantilla/vendors/bower_components/SmartWizard-master/dist/css/smart_wizard_theme_arrows.css" rel="stylesheet" type="text/css" />
 <link href="../Plantilla/vendors/bower_components/SmartWizard-master/dist/css/smart_wizard_theme_dots.css" rel="stylesheet" type="text/css" />
-
 <?php include "../Componentes/scripts.php"; ?>
 <script src="../../asset/js/activoFijo.js"></script>
 <script language="javascript">
@@ -21,7 +20,7 @@ function nuevoActivo(){
 document.location.href="CompraActivo.php";
 }
 function sele(){
-var cond= $("#condi").val();
+var cond= $("#cond").val();
 ajax_act('','compraactivo',cond);
 }
 
@@ -36,7 +35,7 @@ var ins= $("#idIns").val();
 var act= $("#idActivo").val();
 var sub= $("#sub").val();
 var ub= $("#ubica").val();
-if (dep=="" || sub=="" || ub=="") {
+if (dep=="" || sub==null || ub=="") {
 alerta('Error','Complete los campos...','red');
 }
 else{
@@ -65,8 +64,10 @@ $.ajax({
 url: url
 , data: data
 , success: function (result) {
-$("#sub").html(result);
-
+if(opcion==='comboSubCategoria')
+    $("#sub").html(result);
+else
+    sele();
 }
 });
 }
@@ -89,9 +90,6 @@ action: function(){
 }
 
 function guardar(){
-    alert('ENtre a guardar');
-    
-    
     var categoria=$('#cat').val();
     var subcategoria=$('#sub').val();
     var condicion=$('#condi').val();
@@ -99,20 +97,28 @@ function guardar(){
     var codigo=$('#codigo').val();
     var descrpcion=$('#des').val();
     var serie=$('#serie').val();
-    var fecha=$('#dona').val();
+    var fecha=$('#fecha').val();
     var prec=$('#prec').val();
-    //var vida=$('#vi').val();
+    var vida=$('#vi').val();
     
-    if( ubicacion=="" || codigo=="" || descrpcion=="" || serie=="" || fecha=="" || prec=="")
+    if(categoria=='Seleccione' || subcategoria==null || ubicacion=="Seleccione" || codigo=="" || descrpcion=="" || serie=="" || fecha=="" || prec=="")
         alerta("Error","Complete los campos",'red');
     else{
         ajax_ac('guardar','','muebles');
         ajax_ac('guardar','','inmuebles');
+        cerrarModal();
     } 
 }
     window.onload = function() { 
-    $("#condi").val('1'); 
+    $("#condi").val('Nuevo'); 
     $("#condi").change();
+    $("#cond").val('1'); 
+    $("#cond").change();
+}
+    
+function cerrarModal(){
+    $('#smartwizard').smartWizard("reset");
+    $('#madalAgregar').modal('hide');
 }
 </script>
 </head>
@@ -140,13 +146,18 @@ include "../Componentes/menu.php";
 <div class="panel-wrapper collapse in">
 <div class="panel-body">
 <div class="row">
-<div class="col-md-4"></div>
+<div class="col-md-4" >
+<div class="alert alert-success alert-dismissable alert-style-1">
+<i class="fa fa-usd"></i><h6 id="gestion" >Adquisición de Activo Fijo</h6>
+</div>
+</div>
+<div class="col-md-5"></div>
 <div class="col-md-1">
 <button class="btn  btn-default btn-outline">Estado</button>
 </div>
 <div class="col-md-2">
 <div class="form-group">                                     
-<select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
+<select class="form-control SEstado" data-live-search="true" id="cond" name="cond" onchange="sele()">
 <option value="1" >Activo</option>											 
 <option value="0">Inactivo </option>
 </select>
@@ -265,7 +276,7 @@ $a2=$ejecuta['cod'];
 <label for="ubica" >Ubicación:</label>
 <br>
 <select class="form-control SUbicacion" data-live-search="true" id="ubica" name="ubica" required>
-<option> </option>
+<option>Seleccione</option>
 <?php
 $extraer="SELECT * FROM ubicacion";
 $ejecutar=mysqli_query($mysqli,$extraer);
@@ -324,14 +335,24 @@ if (($ejecuta['estado'])==1) {
 <div class="col-md-6">
  <?php 
 //Para obtener numero de registro 
-   $sentencia = "SELECT * FROM activo  order by idAc desc"; 
+   $sentencia = "SELECT count(*) as cuenta FROM activo  order by idAc desc"; 
    $ejecutar=mysqli_query($mysqli,$sentencia);
-   $fila = mysqli_fetch_assoc($ejecutar);
+    $fila = mysqli_fetch_assoc($ejecutar);
+    if($fila['cuenta']<='0'){
+        $id=1;
+    }
+    else{
+       $sentencia = "SELECT * FROM activo  order by idAc desc"; 
+       $ejecutar=mysqli_query($mysqli,$sentencia);
+       $fila = mysqli_fetch_assoc($ejecutar);
+       $id=$fila['idAc'];
+    }
  ?>
-<input type="hidden" class="form-control" id="idac" placeholder="Nombre" name="idac"  value="<?php  echo $fila['idAc']; ?>">
+<input type="hidden" class="form-control" id="idac" placeholder="Nombre" name="idac"  value="<?php  echo $id; ?>">
 <div class="form-group">
 <label for="serie" >Marca:</label>
-<select class="form-control SMarca" data-live-search="true" id="marca" name="marca"  >
+<select class="form-control SMarca" data-live-search="true" id="marca" name="marca" >
+<option>Ninguna</option>
 <?php
 $extraer="SELECT * FROM marca";
 $ejecutar=mysqli_query($mysqli,$extraer);
@@ -351,7 +372,6 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 <div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
 </div>
 </div>
-<input type="hidden"  class="form-control" id="ubica" name="ubica" placeholder="Nombre" value="<?php echo $fila['idUb'];?>">
 <div class="form-group">
 <label for="fecha">Fecha de inicio de uso:</label>
 <div class="input-group">
@@ -359,17 +379,27 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
 </div>
 </div>
-<div class="form-group">
-<label for="dona">Donacion: </label>
+
+
+
+<div class="form-group" style="margin-bottom:25px;">
+<label for="dona">Donación: </label>
 <div class="input-group">
-<input type="checkbox" name="dona" id="dona"  value="1">
+<input type="checkbox" class="js-switch js-switch-1"  name="dona" id="dona"  value="1" data-color="#469408" data-size="small" style="margin-bottom:15px;"/>
 </div>
 </div>
+
+
+
+
+
 </div>
+
 <div class="col-md-6">
 <div class="form-group">
 <label for="prov" >Proveedor:</label>
-<select class="form-control SProveedor" data-live-search="true" id="prov" name="prov"  required>
+<select class="form-control SProveedor" data-live-search="true" id="prov" name="prov">
+<option>Ninguno</option>
 <?php
 $extraer="SELECT * FROM proveedor";
 $ejecutar=mysqli_query($mysqli,$extraer);
@@ -390,9 +420,8 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 </div>
 </div>
 <div class="form-group">
-<label for="condi">Condicion: </label>
+<label for="condi">Condición: </label>
 <select class="form-control selectpicker" id="condi" name="condi" onchange="condic(this.value)">
-<option></option>
 <option value="Nuevo">Nuevo </option>
 <option value="Usado">Usado </option>
 </select>

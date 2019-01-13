@@ -113,63 +113,67 @@ window.onload = function() {
        <div class="panel panel-primary card-view " style="margin-top: 20px;">
             <div class="panel-heading text-center">
                 <div class="pull-center">
-                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-wrench"></i> Gestión de Registros</h3>
+                    <h3 class="panel-title panel-center txt-light"><i class="fa fa-institution"></i> Institución</h3>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="panel-wrapper collapse in">
                 <div class="panel-body">
-                    <div class="row text-center">
-                        <div class="row text-center">
-								 	<div class="form-group">								 	
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onclick="actualizar('ubicacion')"> <span class="btn-label"><i class="fa fa-map"></i> </span><span class="btn-text">Ubicación</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('proveedor')"> <span class="btn-label"><i class="fa fa-male"></i> </span><span class="btn-text">Proveedor</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('movimiento');"> <span class="btn-label"><i class="fa fa-history"></i> </span><span class="btn-text">Movimiento</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('marca');"> <span class="btn-label"><i class="fa fa-list-alt"></i> </span><span class="btn-text">Marca</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('categoria');"> <span class="btn-label"><i class="fa fa-list"></i> </span><span class="btn-text">Categoria</span></button>
-								 	<button type="button" class="btn btn-success btn-lable-wrap left-label" onClick="actualizar('subcategoria');"> <span class="btn-label"><i class="fa fa-outdent"></i> </span><span class="btn-text">Sub-Categoria</span></button>
-								 	</div>
-								</div> 
-                    </div>
                     <div class="row">
-                        <div class="col-md-4" >
+                        <div class="col-md-12" >
                             <div class="alert alert-success alert-dismissable alert-style-1">
-                                <i class="fa fa-gear"></i><h6 id="gestion" ></h6>
+                                <i class="fa fa-gear"></i><h6 id="gestion" >Información y Configuración de la Institución</h6>
                             </div>
                         </div>
-                        <div class="col-md-5"></div>
-                        <div class="col-md-1"> <button class="btn  btn-default btn-outline">Estado</button></div>
-                        <div class="col-md-2">
-                            <div class="form-group">                                     
-                                <select class="form-control select2 select2-hidden-accessible" data-live-search="true" id="condi" name="condi" onchange="sele()">
-                                    <option value="1" >Activo</option>											 
-                                    <option value="0">Inactivo </option>
-                                </select>
-                            </div>
-                        </div> 
                     </div>
-                </div>
-                </div>
-                </div>
-                    <?php  $cont=0;      ?>
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="panel panel-default card-view">
-              <div class="panel-wrapper collapse in">
-                <div class="panel-body">
-                  <div class="table-wrap">
-                    <div class="table-responsive" id="actualizar">
-                    
-                    </div>
-                  </div>
-                  <br>
-                    
-                </div>
-              </div>
-            </div>  
-          </div>
-        </div>
-        <!-- /Row -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="../../img/lains.png"  height="500">
+                        </div>
+                        <div class="col-md-6">
+                            <?php 
+                            $sentencia = "SELECT * FROM institucion WHERE idIn=1"; 
+   $ejecutar=mysqli_query($mysqli,$sentencia);
+   $fila = mysqli_fetch_assoc($ejecutar);
+                            
+                            ?>
+<div class="panel panel-primary card-view">
+<div class="panel-heading text-center">
+<div class="pull-center" >
+<h2 class="panel-title panel-center txt-light">Detalle Institución</h2>
+</div>
+<div class="clearfix"></div>
+</div>
+<div class="panel-wrapper collapse in">
+<div class="panel-body">
+<label for="nombMov" >Nombre:</label>
+<div class="input-group">
+<input type="text" class="form-control" id="nombI" name="nombI" placeholder="Ingrese un Nombre" required value="<?php echo $fila['Nombre'];?>" disabled>
+<div class="input-group-addon"><span  class="fa fa-institution" aria-hidden="true"></span></div>
+</div>
+<br>
+<label for="codUb" >Código:</label>
+<div class="input-group">
+<input type="text" class="form-control" id="nombCo" name="nombCo" placeholder="Ingrese un código" required value="<?php echo $fila['codigo'];?>" disabled>
+<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
+</div> 
+
+<br>
+<label for="codUb" >Dirección:</label>
+<div class="input-group">
+<textarea type="text" class="form-control" id="dire" name="dire" placeholder="Ingrese una Direccion" disabled><?php echo $fila['direccion'];?></textarea> 
+<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
+</div>
+<br>
+<button class="btn btn-success btn-block btn-rounded btn-outline btn-anim" onclick="editar('1','ModalInstitucionEditar');"><i class="fa fa-edit"></i><span class="btn-text">Modificar Información</span><div></div></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
       </div>
       <?php include '../Componentes/modals.php'; ?>
       <div id="modalsE">

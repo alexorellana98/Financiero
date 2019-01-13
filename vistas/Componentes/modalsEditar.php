@@ -415,6 +415,13 @@ $aux=$id;
   <div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
 </div>
   </div>
+  <div class="col-md-12">
+                       <label for="codUb" >Dirección:</label>
+<div class="input-group">
+<textarea type="text" class="form-control" id="dire" name="dire" placeholder="Ingrese una Direccion" required><?php echo $fila['direccion'];?></textarea> 
+<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
+</div>
+                   </div>
 </div> 
    <input  type="hidden" class="form-control" id="idIns" name="idIns" value="<?php echo $aux;?>"> 
     </div>
@@ -470,6 +477,8 @@ $aux=$id;
                       </div>
                    </div>
                    </div>
+                   
+                   
                   <input  type="hidden" class="form-control" id="ideA" name="ideA" placeholder="Nombre" value="<?php echo $aux;?>">
               </div>
     </div>
