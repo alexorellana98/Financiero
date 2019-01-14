@@ -2,25 +2,20 @@
 require 'conexion.php';
 ?>
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Gestionar Registros</title>
-  <?php
-      include "../Componentes/estilos.php";
-  ?>
-   <?php
-include "../Componentes/scripts.php";
-?>    
+  <?php   include "../Componentes/estilos.php";  ?>
+   <?php include "../Componentes/scripts.php";  ?>
+   <script src="../../asset/js/activoFijo.js"></script>    
     <script>
         $(function () {
             $('.SEstado').select2()
             $('.STipoCategoria').select2()
         });
-    </script>
-	<script src="../../asset/js/activoFijo.js"></script>
-    <script language="javascript">
+        
         var cambio='<?php echo $_REQUEST['paso']; ?>';
         if(cambio===null || cambio==="")
             cambio="ubicacion";
@@ -98,8 +93,7 @@ window.onload = function() {
 </script>
 </head>
 <body>  
-  <!--Preloader-->
-  <div class="preloader-it">
+ <div class="preloader-it">
     <div class="la-anim-1"></div>
   </div>
   <!--/Preloader-->

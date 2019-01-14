@@ -1,5 +1,5 @@
 <?php
-require 'conexion.php';
+require 'conexion.php'; 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -89,10 +89,7 @@ function MaysPrimera(string){
                 </div>
             </div>
           
-                    <?php
-
-                    $cont=0;
-                    ?>
+                    <?php   $cont=0;         ?>
                     <!-- Row -->
         <div class="row">
           <div class="col-sm-12">
@@ -119,7 +116,19 @@ function MaysPrimera(string){
       </div>
     <!-- /#wrapper -->
        
-       <!--- Modal -->
+      
+        
+        
+        
+        
+        <!-- Footer -->
+       <?php  include '../Componentes/footer.php'; ?>
+        <!-- /Footer -->
+        
+    </div>
+    </div>
+
+ <!--- Modal -->
         <div class="modal fade" id="editarProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -143,16 +152,7 @@ function MaysPrimera(string){
             </div>
         </div>
         <!-- Fin Modal -->
-        
-        
-        
-        
-        <!-- Footer -->
-       <?php  include '../Componentes/footer.php'; ?>
-        <!-- /Footer -->
-        
-    </div>
-    </div>
+    
   <?php
 include "../Componentes/scripts.php";
 ?>

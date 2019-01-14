@@ -135,7 +135,7 @@ window.onload = function() {
 }
     </style>
 </head>
-<body>  
+<body >
   <!--Preloader-->
   <div class="preloader-it">
     <div class="la-anim-1"></div>
@@ -224,7 +224,6 @@ window.onload = function() {
         <!-- /Footer -->
       </div>
     </div>
- 
 </body>
 
 </html>

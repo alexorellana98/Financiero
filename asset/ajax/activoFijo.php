@@ -250,9 +250,7 @@ if($opcion==="categoria"){
                                 <td class="text-center">
                                  <?php if($est==="1"){ ?>
                                   <div class="col-md-6 text-center">
-                                     <form  action="vistaDetalleCompra.php" method="get" class="form-register" > 
-                                   <button  type="submit" class="btn btn-danger" id="btnId" name="btnId" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idAc'] ?>" ><i class="fa fa-info"></i></button>
-                                   </form>
+                                   <button  type="submit" class="btn btn-danger" id="btnId" name="btnId" style="background-color: transparent border:0" data-toggle="modal"  onclick="cargarModal('<?php echo $ejecuta['idAc']; ?>','');" ><i class="fa fa-info"></i></button>
                                   </div>
                                   <div class="col-md-6 text-center">
                                       <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idAc']; ?>','Desea dar de baja al Activo','compraactivo','0')"><i class="fa fa-arrow-circle-down"></i> </button>

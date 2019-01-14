@@ -120,6 +120,27 @@ function cerrarModal(){
     $('#smartwizard').smartWizard("reset");
     $('#madalAgregar').modal('hide');
 }
+
+
+function cargarModal(id,opcion){
+     if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("cargarModal").innerHTML = xmlhttp.responseText;  
+                    alert(xmlhttp.responseText);
+                    $('.tablaDetalle').DataTable();
+                    $("#modalDetalleCompra").modal('show');
+                }
+            }
+            xmlhttp.open("post", "../..//asset/ajax/modalDetalle.php?id=" +id+"&opcion=detallecompra", true);
+            xmlhttp.send();
+}
+
 </script>
 </head>
 <body>  
@@ -457,6 +478,7 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 </div>
 </div>    
 </div>
+<div id="cargarModal"></div>
 <!-- /#wrapper -->
 <!-- Footer -->
 <?php include '../Componentes/footer.php'; ?>

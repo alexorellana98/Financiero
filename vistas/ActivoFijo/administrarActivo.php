@@ -77,7 +77,7 @@ function cargarModal(id,opcion){
                     $("#ModalDetalleActivo").modal('show');
                 }
             }
-            xmlhttp.open("post", "../..//asset/ajax/modalDetalle.php?id=" +id, true);
+            xmlhttp.open("post", "../..//asset/ajax/modalDetalle.php?id=" +id+"&opcion=activoDetalle", true);
             xmlhttp.send();
 }
         
