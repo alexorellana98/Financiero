@@ -1,8 +1,5 @@
-
 <?php
 require 'conexion.php';
-//$con=mysqli_connect('localhost','root','','finanzas');
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,17 +11,50 @@ require 'conexion.php';
   <?php
       include "../Componentes/estilos.php";
   ?>
-
   <script language="javascript">
-function envia(){
-   window.location="DatosCliente.php";
-  }
- function sele(){
-  var cond= $("#condi").val();
-  if (cond==1) {
-     window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroCliente.php";
-  }else{window.location="http://localhost/Financiero/siccif/vistas/CuentasC/RegistroClienteInactivo.php";}
-
+function enviar(idCliente,idPrestamo){
+    document.location.href="amortizar.php?cliente="+idCliente+"&prestamo="+idPrestamo;
+}
+      
+      function ajax_act(id,opcion) {
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("actualizar").innerHTML = xmlhttp.responseText;    
+            // Recarga Tabla con Nuevos Datos
+            $('.tablaAct').DataTable();
+        }
+    }
+    xmlhttp.open("post", "../../asset/ajax/cuentasXcobrar.php?id="+id+"&opcion="+opcion, true);
+    xmlhttp.send();
+}
+function cargarModal(id,opcion){
+if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            document.getElementById("cargarModal").innerHTML = xmlhttp.responseText; 
+            //alert(xmlhttp.responseText);
+            $('.tablaDetalle').DataTable();
+            $("#modalDetallePrestamo").modal('show');
+        }
+    }
+    xmlhttp.open("post", "../..//asset/ajax/modalDetalle.php?id=" +id+"&opcion="+opcion, true);
+    xmlhttp.send();
+}
+      
+      
+window.onload = function() { 
+ ajax_act('<?php echo $_REQUEST['btnPre']; ?>',"Prestamos");
 }
 </script>
 </head>
@@ -60,9 +90,8 @@ $resultado = $mysqli->query($sql);
                 </div>
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body">
-                    <?php  $cont=0;        ?>
                              <div class="row">
-                                  <?php
+                                  <?php $cont=0;  
 $aux2=$_GET['btnPre'];
    $sentencia2 = "SELECT * FROM cliente WHERE idCliente=$aux2";
    $ejecutar2=mysqli_query($mysqli,$sentencia2);
@@ -75,67 +104,7 @@ $aux2=$_GET['btnPre'];
 </div>
                              </div>
                                  <div class="table-wrap">
-                    <div class="table-responsive">
-                      <table id="datable_1" class="table table-hover display  pb-30" >
-                        <thead>
-                          <tr >
-                              <th  WIDTH="50" HEIGHT='9' >N°</th>
-                              <th >Nombre</th>
-                              <th >DUI</th>
-                              <th >Estado de prestamo</th>
-                              <th >Plazo</th>
-                              <th >Monto</th>
-                              <th >Cuota</th>
-                              <th >Fecha de financiamiento</th>
-
-                              <th  WIDTH="180" HEIGHT='9'>Opciones</th>
-                            </tr>
-                        </thead>
-
-                        <tbody >
-                         <?php
-  $var=$_GET['btnPre'];
-$extraer="SELECT * FROM prestamo WHERE idCli='$var'";
- //$base=mysqli_select_db($con,'finanzas');
-$ejecutar=mysqli_query($mysqli,$extraer);
-while($ejecuta=mysqli_fetch_array($ejecutar))
-{  $cont=$cont+1;
-
-
- $aux2=$_GET['btnPre'];
-   $sentencia2 = "SELECT * FROM cliente WHERE idCliente=$aux2";
-   $ejecutar2=mysqli_query($mysqli,$sentencia2);
-   $fila1 = mysqli_fetch_assoc($ejecutar2);
-    ?>
-  <tr>
-    <td><?php  echo $cont ?> </td>
-    <td><?php  echo $fila1['nombre'] ?> </td>
-    <td><?php echo $fila1['dui']?></td>
-    <td> <?php echo $ejecuta['estado']?></td>
-    <td> <?php echo $ejecuta['plazo']?></td>
-    <td> <?php echo $ejecuta['monto']?></td>
-    <td> <?php echo $ejecuta['cuota']?></td>
-    <td> <?php echo $ejecuta['fechafinan']?></td>
-
-    <td>
-       
-     <form   action="vistaDetallePrestamo.php" method="get" class="form-register" >
-     <button  type="submit" class="btn btn-primary" id="btndetalle" title="Ver Prestamo" name="btndetalle" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idPres']; ?>"> <i class="glyphicon glyphicon-eye-open"></i>   Ver</button>
-     </form>
-     
-     <form  style=" margin-left: 100px; margin-top:-43px;" action="amortizar.php" method="get" class="form-register" >
-       <button  type="submit" class="btn btn-warning" title="Ver Amortizacion de prestamo" id="btnbaja" name="btnbaja" style="background-color: transparent border:0" data-toggle="modal" value="<?php echo $ejecuta['idCli'] ?>"> <i class="glyphicon glyphicon-usd"></i>Amortización</button>
-     </form>
-    </td>
-  </tr>
-
-<input  type="hidden" class="form-control" id="idCli" name="idCli" placeholder="Nombre" value="<?php echo $var." ".$ejecuta['idPres'];?>">
-<?php
-
-}
-?>
-                        </tbody>
-                      </table>
+                    <div class="table-responsive" id="actualizar">
                     </div>
                   </div>
 
@@ -144,6 +113,8 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
             </div>
 
       </div>
+      
+      <div id="cargarModal"></div>
     <!-- /#wrapper -->
         <!-- Footer -->
         <?php include '../Componentes/footer.php'; ?>

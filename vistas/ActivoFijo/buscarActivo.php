@@ -77,11 +77,12 @@ function cargarModal(id){
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     document.getElementById("cargarModal").innerHTML = xmlhttp.responseText;  
-                    $('.tablaDetalle').DataTable();
+                    //$('.tablaDetalle').DataTable();
+                    $('.tablaDetalle').DataTable({"ordering": false});
                     $("#ModalDetalleActivo").modal('show');
                 }
             }
-            xmlhttp.open("post", "../..//asset/ajax/modalDetalle.php?id=" +id, true);
+            xmlhttp.open("post", "../..//asset/ajax/modalDetalle.php?id=" +id+"&opcion=activoDetalle", true);
             xmlhttp.send();
 }
         
@@ -123,7 +124,16 @@ function MaysPrimera(string){
 window.onload = function() { 
     actualizar("Mueble");
 }
+
 </script>
+
+<style type="text/css">
+.headt td {
+  min-width: 235px;
+  height: 100px;
+  background-color: #433;
+}
+    </style>
 </head>
 <body>  
   <!--Preloader-->
@@ -165,6 +175,7 @@ window.onload = function() {
                         <option value="depreciar" >Depreciables</option>											 
                         <option value="vender">Disponibles para la venta </option>
                         <option value="reevaluar">Reevaluables</option>
+                        <option value="donacion">Donados</option>
                         </select>
                         </div>
                         </div> 

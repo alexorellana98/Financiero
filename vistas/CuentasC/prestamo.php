@@ -9,19 +9,15 @@ $Hoy=date("Y/m/d");
     <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Prestamo</title>
-  
   <?php
       include "../Componentes/estilos.php";
   ?>
-
  <script language="javascript">
- 
 function envia(){
    window.location="RegistroCliente.php";
   }
 </script>
-</head>
-  
+</head> 
 <?php 
    $aux=$_GET['btnEditar1'];
    $sentencia = "SELECT * FROM cliente WHERE idCliente=$aux"; 
@@ -52,23 +48,30 @@ function envia(){
                 <div class="panel-wrapper collapse in">
                     <div class="panel-body">
                     <form  action="insert.php" method="post" class="form-register" > 
+                    <div class="col-md-12">
+    <div class="alert alert-success alert-dismissable alert-style-1 text-center">
+                                <i class="fa fa-male"></i><h6 id="gestion" ><strong>Cliente:</strong> <?php echo $fila['nombre']." ".$fila["apellido"];?>
+                                                                            <br><strong>NIT:</strong>  <?php echo $fila['nit'];?>
+                                                                            <br><strong>DUI:</strong> <?php echo $fila['dui'];?>
+                                                                            <br><strong>Telefono:</strong> <?php echo $fila['tel'];?></h6>
+                            </div>
+</div>
+
+
 <div class="row">
 <div class="col-md-1"></div>
 <div class="col-md-3">
-  <label for="nomb" >Nombre de Cliente:</label>
+  <label for="nomb" hidden >Nombre de Cliente:</label>
   <div class="input-group">
-  <input type="text" readonly="true" class="form-control" id="nomb" placeholder="Nombre" name="nomb" value="<?php echo $fila['nombre'];?>">
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+  <input type="hidden" readonly="true" class="form-control" id="nomb" placeholder="Nombre" name="nomb" value="<?php echo $fila['nombre'];?>">
 </div>
-  <label for="dui">DUI </label>
+  <label for="dui" hidden>DUI </label>
   <div class="input-group">
-  <input type="text" readonly="true" class="form-control" id="dui" placeholder="Ej:00000000-0" name="dui" value="<?php echo $fila['dui'];?>">
-   <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
+  <input type="hidden" readonly="true" class="form-control" id="dui" placeholder="Ej:00000000-0" name="dui" value="<?php echo $fila['dui'];?>">
   </div>
-  <label for="tel" >Telefono:</label>
+  <label for="tel" hidden>Telefono:</label>
   <div class="input-group">
-  <input type="text" readonly="true" class="form-control" id="tel" placeholder="Ej:0000-0000" name="tel" value="<?php echo $fila['tel'];?>">
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
+  <input type="hidden" readonly="true" class="form-control" id="tel" placeholder="Ej:0000-0000" name="tel" value="<?php echo $fila['tel'];?>">
 </div>
   <label for="tipo" >Tipo de Prestamo:</label>
    <select class="form-control STipoPrestamo"  id="tipo" name="tipo" onchange="cambiar(this.selectedIndex)">
@@ -99,31 +102,37 @@ $es=$ejecuta['idCre'];
 }
 
 ?>                     
-</select>    
+</select>
+<label for="plazo" >Plazo(meses):</label>
+  <div class="input-group">
+  <input type="number" min="1" required="true" max="<?php  echo $plamax[0];?>" class="form-control" id="plazo" placeholder="Ingrese un plazo" name="plazo" >
+  <div class="input-group-addon"><span  class="glyphicon glyphicon-list" aria-hidden="true"></span></div>
+</div>    
 </div>
+
 
 
 
 <div class="col-md-4">
-  <label for="ape" >Apellidos:</label>
+  <label for="ape" hidden >Apellidos:</label>
   <div class="input-group">
-  <input type="text" class="form-control" readonly="true" id="ape" placeholder="Apellidos" name="ape"  value="<?php echo $fila['apellido'];?>">
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+  <input type="hidden" class="form-control" readonly="true" id="ape" placeholder="Apellidos" name="ape"  value="<?php echo $fila['apellido'];?>">
 </div>
-  <label for="nit">NIT  </label>
+  <label for="nit" hidden>NIT  </label>
   <div class="input-group">
-  <input type="text" class="form-control" id="nit" readonly="true" placeholder="Ej:0000-000000-000-0" name="nit" value="<?php echo $fila['nit'];?>">
-   <div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
+  <input type="hidden" class="form-control" id="nit" readonly="true" placeholder="Ej:0000-000000-000-0" name="nit" value="<?php echo $fila['nit'];?>">
   </div>
-  <label for="Ocup" >Ocupación:</label>
+  <label for="Ocup" hidden>Ocupación:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="Ocup" readonly="true" placeholder="Ocupación laboral" name="Ocup" value="<?php echo $fila['ocupacion'];?>">
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+  <input type="hidden" class="form-control" id="Ocup" readonly="true" placeholder="Ocupación laboral" name="Ocup" value="<?php echo $fila['ocupacion'];?>">
 </div>
-  <label for="monto" >Monto($):</label>
+  <label for="monto" >Monto:</label>
   <div class="input-group">
   <input type="number" min="<?php  echo $minpres[0];?>" max="<?php  echo $maxpres[0];?>" class="form-control" id="monto" required="true"  placeholder="1000" name="monto">
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+  <div class="input-group-addon"><span  class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
+</div>
+ <div class="form-group text-center col-md-3" style="margin-top:20px; width:100%;">  
+<button type="button"  class="btn btn-success btn-large " onclick="cuota1()"><i class="fa fa-money"></i> Calcular Cuota</button>
 </div>
 </div>
 
@@ -132,34 +141,23 @@ $es=$ejecuta['idCre'];
   <label for="fecha">Fecha de registro:</label>
   <div class="input-group">
   <input type="date" class="form-control" id="fecha" readonly="true" name="fecha" value="<?php echo date("Y-m-d");?>">
-  <div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
+  <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
   </div>
   <label for="cuota" >Cuota($):</label>
   <div class="input-group">
   <input type="text" class="form-control" id="cuota" required readonly="true" placeholder="0.00" name="cuota">
   <div class="input-group-addon"><span  class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
 </div>
-<label for="plazo" >Plazo(meses):</label>
-  <div class="input-group">
-  <input type="number" min="1" required="true" max="<?php  echo $plamax[0];?>" class="form-control" id="plazo" placeholder="Ingrese un plazo" name="plazo" >
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
-</div>
-
- <div class="form-group text-center col-md-3" style="margin-top:20px; width:100%;">  
-<button type="button"  class="btn btn-success btn-large " onclick="cuota1()"><i class="fa fa-money"></i> Calcular Cuota</button>
-</div>
-</div>
-
 
 
 
 </div>
 
+</div>
 <input  type="hidden" class="form-control" id="ideC" name="ideC" placeholder="Nombre" value="<?php echo $_GET['btnEditar1'];?>"/> 
 <input  type="hidden" class="form-control" id="saldo" name="saldo"/> 
 <input  type="hidden" class="form-control" id="posi" name="posi"/> 
   
-
  <div class="text-center">
 <br>
 <br> 

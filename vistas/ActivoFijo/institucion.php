@@ -162,7 +162,7 @@ window.onload = function() {
 <label for="codUb" >Dirección:</label>
 <div class="input-group">
 <textarea type="text" class="form-control" id="dire" name="dire" placeholder="Ingrese una Direccion" disabled><?php echo $fila['direccion'];?></textarea> 
-<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
+<div class="input-group-addon"><span  class="fa fa-map" aria-hidden="true"></span></div>
 </div>
 <br>
 <button class="btn btn-success btn-block btn-rounded btn-outline btn-anim" onclick="editar('1','ModalInstitucionEditar');"><i class="fa fa-edit"></i><span class="btn-text">Modificar Información</span><div></div></button>

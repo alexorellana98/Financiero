@@ -419,7 +419,7 @@ $aux=$id;
                        <label for="codUb" >Dirección:</label>
 <div class="input-group">
 <textarea type="text" class="form-control" id="dire" name="dire" placeholder="Ingrese una Direccion" required><?php echo $fila['direccion'];?></textarea> 
-<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
+<div class="input-group-addon"><span  class="fa fa-map" aria-hidden="true"></span></div>
 </div>
                    </div>
 </div> 
@@ -492,4 +492,116 @@ $aux=$id;
       </form>
       </div>
 </div>
+<?php }else if($actualiza=="ModalCreditoEditar"){ 
+$aux=$id;
+   $sentencia = "SELECT * FROM creditos WHERE idCre=$aux"; 
+   $ejecutar=mysqli_query($mysqli,$sentencia);
+   $fila = mysqli_fetch_assoc($ejecutar);
+   $garanti=$fila['garantia'];
+
+?>
+    <!--Modal  Registrar -->
+<div id="ModalCreditoEditar" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+<form  action="editar.php" method="post" class="form-register" > 
+    <div class="modal-content">
+       <div class="modal-body">
+<div class="panel panel-warning card-view">
+<div class="panel-heading text-center">
+    <div class="pull-center" >
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="panel-title panel-center txt-light"><i class="fa fa-edit"></i>  Editar Credito</h2>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="panel-wrapper collapse in">
+    <div class="panel-body">
+    <div class="row">
+                  <div class="col-md-6 ">
+                    <div class="form-group">
+                      <label for="nombcre" >Nombre de Credito:</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" readonly="true" id="nombcre" name="nombcre" placeholder="Nombre" value="<?php echo $fila['tipo'];?>" required>
+                        <div class="input-group-addon">
+                          <span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="minip" >Mínimo a Prestar:</label>
+                      <div class="input-group">
+                        <input type="number" class="form-control" id="minip" name="minip" placeholder="100" value="<?php echo $fila['cmin'];?>" required> 
+                        <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inter">Interes Anual(%):</label>
+                      <div class="input-group">
+                        <input type="number" class="form-control" id="inter" name="inter" value="<?php echo $fila['interes'];?>" required>
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="pmax" >Plazo Máximo:</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="pmax" name="pmax" value="<?php echo $fila['plazom'];?>" required>
+                        <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="maxp">Máximo a Prestar:</label>
+                      <div class="input-group">
+                        <input type="text" class="form-control" id="maxp" name="maxp" value="<?php echo $fila['cmax'];?>" required>
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-briefcase"></span></div>
+                      </div>
+                    </div>
+                    <div class="form-group ">
+                      <label for="gara">Tipo de Garantía:</label>
+                      <br>
+                      <select class="form-control STipoGarantia" data-live-search="true" name="gara" id="gara" value="<?php echo $fila['garantia'];?>" required>
+                       <?php if($fila['garantia']==="Aval"){ ?>
+                        <option value="Aval" selected>Aval</option>
+                        <option value="Hipoteca">Hipoteca</option>
+                        <option value="Embargo">Embargo</option>
+                        <option value="Seguro">Seguro</option>
+                        <?php }else if($fila['garantia']==="Hipoteca"){ ?>
+                        <option value="Aval" >Aval</option>
+                        <option value="Hipoteca" selected>Hipoteca</option>
+                        <option value="Embargo">Embargo</option>
+                        <option value="Seguro">Seguro</option>
+                        <?php }else if($fila['garantia']==="Embargo"){ ?>
+                        <option value="Aval" >Aval</option>
+                        <option value="Hipoteca" >Hipoteca</option>
+                        <option value="Embargo" selected>Embargo</option>
+                        <option value="Seguro">Seguro</option>
+                        <?php }else if($fila['garantia']==="Seguro"){ ?>
+                        <option value="Aval" >Aval</option>
+                        <option value="Hipoteca" >Hipoteca</option>
+                        <option value="Embargo" >Embargo</option>
+                        <option value="Seguro" selected>Seguro</option>
+                        <?php } ?>
+                      </select>  
+
+                    </div>
+        </div>
+                   
+                  <input  type="hidden" class="form-control" id="idCre" name="idCre" placeholder="Nombre" value="<?php echo $id;?>">
+              </div>
+    </div>
+    </div>
+    </div>
+ </div>
+ <div class="modal-footer">
+       <?php include '../Componentes/BtnGuardarCancelar.php'; ?>
+        </div>
+    </div>
+      </form>
+      </div>
+</div>
+     
 <?php } ?>

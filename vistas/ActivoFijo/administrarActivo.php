@@ -63,7 +63,7 @@ function actualizar(tabla){
             xmlhttp.send();
 }
 
-function cargarModal(id){
+function cargarModal(id,opcion){
      if (window.XMLHttpRequest) {
                 xmlhttp = new XMLHttpRequest();
             }

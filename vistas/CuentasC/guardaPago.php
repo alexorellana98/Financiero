@@ -1,7 +1,5 @@
 <?php 
-
 require 'conexion.php';
-
 //$con=mysqli_connect('localhost','root','','finanzas');
 if (!$mysqli) {
   echo "Erick no se esta conectando gommennasai";
@@ -12,9 +10,7 @@ if (!$mysqli) {
 if (!$base) {
   echo "Erick no se encontro la base gommennasai";
 }*/
-
  //inserta pago de cuota
-
  if (!empty($_REQUEST['monto']) && !empty($_REQUEST['total']))  {
   $saldo= $_REQUEST['saldo'];
   $tipo= $_REQUEST['tipo'];
@@ -29,7 +25,7 @@ if (!$base) {
   $insertar="INSERT INTO pagos (saldo,tipo,numero,fechapago,atraso,mora,total,idPres,cuota) VALUES ('$saldo','$tipo','$numero','$_REQUEST[fe]','$atraso','$mora','$total','$idPre','$cuota')";
   $ejecutar=mysqli_query($mysqli,$insertar);
 echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/vistas/CuentasC/TodosClientes.php');
+header('Location: amortizar.php?btnbaja='.$idPre);
 }else{
 print '<script language="JavaScript">'; 
 print 'alert("Datos incorrectos");'; 

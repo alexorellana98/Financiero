@@ -2,20 +2,19 @@
 require 'conexion.php';
 
 //editar Credito
-if (!empty($_POST['nombcre']) && !empty($_POST['minip']) && !empty($_POST['inter']) && !empty($_POST['pmax']) && !empty($_POST['maxp']) && !empty($_POST['gara'])){
+if (!empty($_REQUEST['nombcre']) && !empty($_REQUEST['minip']) && !empty($_REQUEST['inter']) && !empty($_REQUEST['pmax']) && !empty($_REQUEST['maxp']) && !empty($_REQUEST['gara'])){
 
-$ide = $_POST['idCre'];
-	$nombe = $_POST['nombcre'];
-	$mini = $_POST['minip'];
-	$inte = $_POST['inter'];
-	$plazo = $_POST['pmax'];
-	$maxp = $_POST['maxp'];
+$ide = $_REQUEST['idCre'];
+	$nombe = $_REQUEST['nombcre'];
+	$mini = $_REQUEST['minip'];
+	$inte = $_REQUEST['inter'];
+	$plazo = $_REQUEST['pmax'];
+	$maxp = $_REQUEST['maxp'];
 	$ga = $_POST['gara'];
 
 $sql = " UPDATE creditos set tipo='$nombe',plazom='$plazo',cmax='$maxp',cmin='$mini',garantia='$ga',interes='$inte' WHERE idCre='$ide'";
 	$resultado = $mysqli->query($sql);
-echo ' <script type="text/javascript"> alert("Datos Guardados Correctamente"); </script>';
-header('Location: http://localhost/Financiero/siccif/vistas/CuentasC/creditos.php');
+header('Location: creditos.php');
 
 }
 

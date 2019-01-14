@@ -109,29 +109,39 @@ var fe=<?php echo json_encode($fideal); ?>;
                             <button type="submit"  class="btn btn-danger" data-dismiss="modal" id="btnbaja" name="btnbaja" value="<?php echo $fila['idCli']; ?>"><i class="fa fa-mail-reply"> </i>  Atras</button>
                         </form>
                     </div>
-<div class="row">
+<div class="col-md-12">
+<div class="panel panel-primary card-view" style="margin-top:20px;">
+                <div class="panel-wrapper collapse in">
+                    <div class="panel-body">
+                    
 <form  action="../CuentasC/guardaPago.php" method="get" class="form-register" >
+<div class="col-md-12">
+    <div class="alert alert-success alert-dismissable alert-style-1 text-center">
+                                <i class="fa fa-male"></i><h6 id="gestion" ><strong>Cliente:</strong> <?php echo $fila1['nombre']." ".$fila1["apellido"];?>
+                                                                            <br><strong>Monto Total:</strong>  $<?php echo $fila['monto'];?>
+                                                                            <br><strong>DUI:</strong> <?php echo $fila1['dui'];?></h6>
+                            </div>
+</div>
 <div class="col-md-1"></div>
 <div class="col-md-3">
-<label for="nomb">Cliente:</label>
-<div class="input-group">
-<input type="text" readonly="true" class="form-control" id="nomb" placeholder="Nombre" name="nomb" value="<?php echo $fila1['nombre'];?>">
-<div class="input-group-addon"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+<label for="nomb" hidden>Cliente:</label>
+<div class="input-group" hidden>
+<input type="hidden" readonly="true" class="form-control" id="nomb" placeholder="Nombre" name="nomb" value="<?php echo $fila1['nombre'];?>">
 </div>
 <label for="tipo">Tipo de pago: </label>
 <div class="input-group">
 <input type="text" readonly="true" class="form-control" id="tipo" placeholder="Ej:00000000-0" name="tipo">
-<div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
+<div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
 </div>
 <label for="cuota">Cuota:</label>
 <div class="input-group">
 <input type="text" readonly="true" class="form-control" id="cuota" placeholder="Ej:0000-0000" name="cuota" value="<?php echo $fila['cuota'];?>">
-<div class="input-group-addon"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
+<div class="input-group-addon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
 </div>
 <label for="atraso" >Dias de Retraso:</label>
 <div class="input-group">
 <input type="number" class="form-control" id="atraso" readonly="true"  placeholder="1000" name="atraso">
-<div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+<div class="input-group-addon"><span  class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
 </div>
 </div>
 
@@ -140,46 +150,45 @@ var fe=<?php echo json_encode($fideal); ?>;
 <label for="numero" >Numero de Cuota:</label>
 <div class="input-group">
 <input type="text" readonly="true" class="form-control" id="numero" placeholder="Ej:0000-0000" name="numero" >
-<div class="input-group-addon"><span  class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
+<div class="input-group-addon"><span  class="fa fa-hashtag" aria-hidden="true"></span></div>
 </div>
 <label for="mora">Mora: </label>
 <div class="input-group">
 <input type="text" readonly="true" class="form-control" id="mora" name="mora" placeholder="Ej:00000000-0">
-<div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
+<div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
 </div>
 <label for="anterior" >Saldo Anterior:</label>
 <div class="input-group">
 <input type="number" required="true" class="form-control" id="anterior" placeholder="Ej:0" name="anterior" value="<?php echo $monto;?>">
-<div class="input-group-addon"><span  class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span></div>
+<div class="input-group-addon"><span  class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
 </div>
-<label for="total">Total a Pagar:</label>
-<div class="input-group">
-<input type="text" class="form-control" id="total" readonly="true" name="total">
-<div class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></div>
-</div>
+
 </div>
 
 
 <div class="col-md-3">
-<label for="dui">DUI:</label>
+<label for="total">Total a Pagar:</label>
 <div class="input-group">
-<input type="text" readonly="true" class="form-control" id="dui" placeholder="Ej:00000000-0" name="dui" value="<?php echo $fila1['dui'];?>">
-<div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
+<input type="text" class="form-control" id="total" readonly="true" name="total">
+<div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
 </div>
-<label for="monto">Monto($):</label>
+<label for="dui" hidden>DUI:</label>
 <div class="input-group">
-<input type="text" class="form-control" id="monto" readonly="true" placeholder="Ej:0000-000000-000-0" name="monto" value="<?php echo $fila['monto'];?>">
-<div class="input-group-addon"><span class="glyphicon glyphicon-check"></span></div>
+<input type="hidden" readonly="true" class="form-control" id="dui" placeholder="Ej:00000000-0" name="dui" value="<?php echo $fila1['dui'];?>">
+</div>
+<label for="monto" hidden>Monto($):</label>
+<div class="input-group" hidden>
+<input type="hidden" class="form-control" id="monto" readonly="true" placeholder="Ej:0000-000000-000-0" name="monto" value="<?php echo $fila['monto'];?>">
 </div>
 <label for="fechap" >Fecha de Pago:</label>
 <div class="input-group">
 <input type="date" class="form-control" id="fechap" name="fechap" readonly="true" value="<?php echo date("Y-m-d");?>"  disabled>
-<div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+<div class="input-group-addon"><span  class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
 </div>
 <label for="saldo" >Saldo Nuevo:</label>
 <div class="input-group">
 <input type="text" class="form-control" id="saldo" required="true" readonly="true" placeholder="0.00" name="saldo">
-<div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
+<div class="input-group-addon"><span  class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
 </div>
 </div>
 
@@ -196,16 +205,15 @@ var fe=<?php echo json_encode($fideal); ?>;
 
 </form>
                     </div>
-                    
+    </div>
+    </div>
+                        </div>
                     </div>
                  </div>
                 </div>
       
                 
-                    
-                  
-                    
-                  
+                             
 
  
         

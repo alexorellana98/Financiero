@@ -11,14 +11,53 @@ require 'conexion.php';
       include "../Componentes/estilos.php";
   ?>
 
-  <script language="javascript">
-    function sele(){
-      var cond= $("#condi").val();
-      if (cond==1) {
-        window.location="creditos.php";
-      }
-    }
-  </script>
+<script language="javascript">
+function sele(){
+var cond= $("#condi").val();
+if (cond==1) {
+window.location="creditos.php";
+}
+}
+    function ajax_act(id,opcion) {
+if (window.XMLHttpRequest) {
+xmlhttp = new XMLHttpRequest();
+}
+else {
+xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+}
+xmlhttp.onreadystatechange = function () {
+if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+document.getElementById("actualizar").innerHTML = xmlhttp.responseText;    
+// Recarga Tabla con Nuevos Datos
+$('.tablaAct').DataTable();
+}
+}
+xmlhttp.open("post", "../../asset/ajax/cuentasXcobrar.php?id="+id+"&opcion="+opcion, true);
+xmlhttp.send();
+}
+
+function editarC(id,tabla){
+     if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("modalsE").innerHTML = xmlhttp.responseText;     
+                    //alert(xmlhttp.responseText);
+                    $("#ModalCreditoEditar").modal('show');
+                    $('.STipoGarantia').select2()
+                }
+            }
+            xmlhttp.open("post", "../Componentes/modalsEditar.php?actualiza=" +tabla + "&id=" + id, true);
+            xmlhttp.send();
+}
+window.onload = function() { 
+ajax_act('',"creditos");
+}
+</script>
 </head>
 <body>  
   <!--Preloader-->
@@ -53,53 +92,7 @@ require 'conexion.php';
                     </div>
                     <div class="row">
                   <div class="table-wrap">
-                    <div class="table-responsive">
-                      <table id="datable_1" class="table table-hover display  pb-30" >
-                        <thead>
-                          <tr >
-                            <th  WIDTH="50" HEIGHT='9' >N°</th>
-                            <th >Tipo</th>
-                            <th >Mínimo a Prestar</th>
-                            <th >Máximo a Prestar</th>
-                            <th >Interes Anual</th>
-                            <th >Plazo Máximo</th>
-                            <th  WIDTH="150" HEIGHT='9'>Opciones</th>
-                          </tr>
-                        </thead>
-                        
-                        <tbody >
-                          <?php
-                            $extraer="SELECT * FROM creditos";
-
-                             //$base=mysqli_select_db($con,'finanzas');
-                            $ejecutar=mysqli_query($mysqli,$extraer);
-
-
-                            while($ejecuta=mysqli_fetch_array($ejecutar))
-                            {
-                              $cont=$cont+1;
-
-                                ?>  
-                              <tr>
-                                <td><?php  echo $cont ?> </td>
-                                <td><?php echo $ejecuta['tipo']?></td>
-                                <td> <?php echo $ejecuta['cmin']?></td>
-                                <td> <?php echo $ejecuta['cmax']?></td>
-                                <td> <?php echo $ejecuta['interes']?>%</td>
-                                <td> <?php echo $ejecuta['plazom']?> meses</td>
-                                <td class="text-center">
-                                  <form   action="../CuentasC/editarCreditos.php" method="post" class="form-register" > 
-                                  <button   type="submit" class="btn btn-danger" id="btnEditar" name="btnEditar"  data-toggle="modal"  value="<?php echo $ejecuta['idCre']?>" ><i class="fa fa-edit"></i></button>
-                                </form>
-
-                                </td>
-                              </tr>
-
-                            <?php
-                            }
-                            ?> 
-                        </tbody>
-                      </table>
+                    <div class="table-responsive" id="actualizar">
                     </div>
                   </div>
                 </div>
@@ -128,7 +121,6 @@ require 'conexion.php';
 <div class="panel-wrapper collapse in">
     <div class="panel-body">
     <div class="row">
-
 <div class="col-md-6 ">
 <div class="form-group">
   <label for="nombcre" >Nombre de Credito:</label>
@@ -137,17 +129,13 @@ require 'conexion.php';
   <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
 </div>
 </div>
-
-
 <div class="form-group">
-
   <label for="minip" >Mínimo a Prestar:</label>
   <div class="input-group">
   <input type="number" required="true" min="1" autocomplete="off" class="form-control" id="minip" name="minip" placeholder="100">
   <div class="input-group-addon"><span  class="glyphicon glyphicon-pencil" aria-hidden="true"></span></div>
 </div>
 </div>
-
 
 <div class="form-group">
   <label for="inter">Interes Anual(%):</label>
@@ -157,11 +145,6 @@ require 'conexion.php';
   </div>
 </div>
 </div>
-
-
-
-
-
 
 <div class="col-md-6">
 
@@ -186,9 +169,11 @@ require 'conexion.php';
 <div class="form-group ">
   <label for="gara">Tipo de Garantía:</label>
   <br>
-  <select class="form-control STipoGarantia" data-live-search="true" name="gara" id="gara" >
+  <select class="form-control select2" data-live-search="true" name="gara" id="gara" >
     <option value="Aval">Aval</option>
-    <option value="Hipotecaria">Hipotecaria</option>
+    <option value="Hipoteca">Hipoteca</option>
+    <option value="Embargo">Embargo</option>
+    <option value="Seguro">Seguro</option>
   </select>  
 
 </div>
@@ -203,8 +188,7 @@ require 'conexion.php';
  
   
  <div class="modal-footer">
-        <button type="submit"  class="btn btn-info btn-lable-wrap left-label"> <span class="btn-label"><i class="fa fa-save"></i> </span><span class="btn-text">Guardar</span></button>
-        <button type="button"  class="btn btn-danger btn-lable-wrap left-label" data-dismiss="modal"> <span class="btn-label"><i class="fa fa-ban"></i> </span><span class="btn-text">Cerrar</span></button>
+<?php include '../Componentes/BtnGuardarCancelar.php'; ?>
         </div>
       </div>
       </div>
@@ -214,11 +198,9 @@ require 'conexion.php';
 
 <!--Fin modal Registrar Proveedor-->
         
-        <div class="col-md-1"></div>
-
-
         
       </div>
+      <div id="modalsE"></div>
     <!-- /#wrapper -->
         <!-- Footer -->
         <?php include '../Componentes/footer.php'; ?>
