@@ -81,14 +81,16 @@ require 'conexion.php';
 </div>
 
 <div class="col-md-6">
+  <div  id="divApellido" hidden>
+   <label for="ape" >Apellidos:</label>
+  <div class="input-group">
+  <input type="text" class="form-control" id="ape" placeholder="Apellidos" name="ape" required>
+  <div class="input-group-addon"><span  class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+</div>
+ </div>
   <label for="repre" >Representante Legal:</label>
   <div class="input-group">
   <input type="text" class="form-control" id="repre" placeholder="Nombre Representante" name="repre" required>
-  <div class="input-group-addon"><span  class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
-</div>
-  <label for="ape" >Apellidos:</label>
-  <div class="input-group">
-  <input type="text" class="form-control" id="ape" placeholder="Apellidos" name="ape" required>
   <div class="input-group-addon"><span  class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
 </div>
   <label for="dui" id="du">DUI:</label>
@@ -115,7 +117,7 @@ require 'conexion.php';
 </select>
   <label for="fecha">Fecha de registro:</label>
   <div class="input-group">
-  <input type="date" class="form-control" id="fecha" name="fecha" value="<?php echo date("d/m/Y"); ?>" required>
+  <input type="text" class="form-control" id="fecha" name="fecha" value="<?php echo date("d/m/Y"); ?>" required readonly>
   <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
   </div>
 </div>
@@ -142,6 +144,7 @@ require 'conexion.php';
 function per(){
 var val=document.getElementById("persona").value;
 if(val==0){
+$("#divApellido").show();
 document.querySelector('#noC').innerText="Nombre de Cliente:";
 document.querySelector('#du').innerText="DUI:";
 document.querySelector('#ni').innerText="NIT:";
@@ -150,6 +153,7 @@ document.getElementById('Ocup').placeholder="Ocupación Laboral";
 document.getElementById('a1').style.display='block';
 document.getElementById('a2').style.display='none';
 }else{
+$("#divApellido").hide();
 document.querySelector('#noC').innerText="Nombre de Empresa:";
 document.querySelector('#du').innerText="DUI de Representante:";
 document.querySelector('#ni').innerText="NIT de Empresa:";

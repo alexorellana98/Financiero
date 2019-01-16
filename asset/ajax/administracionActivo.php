@@ -1,11 +1,11 @@
-<table id="datable_1" class="table table-hover display  pb-30 tablaAct">
+<table  class="table-hover display  pb-30 tablaAct">
   <thead>
                           <tr >
                             <th  >N°</th>
                             <th >Código</th>
                             <th >Descripción</th>
                             <th >Categoria</th>
-                            <th >Subcategoria</th>
+                           <!-- <th >Subcategoria</th> -->
                             <th >Opciones</th>
                           </tr>
                         </thead>
@@ -51,16 +51,13 @@ if($actualiza==="reevaluar"){
                                $fila1 = mysqli_fetch_assoc($ejecutar2);
                                
                                ?>
-                                <td> <?php echo $fila1['nombre'];?></td>
+                                <!-- <td> <?php //echo $fila1['nombre'];?></td> -->
                                 
-                                <td style="margin:010px; padding:0px;">
+                                <td>
                                 <?php
                                 ?>
-                                <div class="col-md-4" style="margin:0px; padding:0px;">
+                                <div class="text-center">
                                   <button  type="submit" class="btn btn-success" id="btnId" name="btnId"  data-toggle="modal"  onclick="cargarModal('<?php echo $ejecuta['idAc']; ?>','activoDetalle');"><i class="glyphicon glyphicon-eye-open"></i> Ver</button>
-                                </div>                                                                
-                                  
-                                    <div class="col-md-8" style="margin:0px; padding:0px;">
                                  <button  type="submit" class="btn btn-warning" id="btnenvia" name="btnenvia" style="background-color: transparent border:0" data-toggle="modal"  onclick="editar('<?php echo $ejecuta['idAc']; ?>','ModalReevaluar')"><i class="glyphicon glyphicon-usd"></i>Reevaluar</button>
                                  </div>
 
@@ -99,21 +96,22 @@ if($actualiza==="reevaluar"){
                                $ejecutar2=mysqli_query($mysqli,$sentencia2);
                                $fila1 = mysqli_fetch_assoc($ejecutar2);
                                ?>
-                                <td> <?php echo $fila1['nombre'];?></td>
+                               <!--  <td> <?php //echo $fila1['nombre'];?></td> -->
                                 <td>
                                 <?php
                                 ?>
-                               
-                                  <div class="col-md-4" style="margin:0px; padding:0px;">
+                               <div class="row">
+                                 <div class="col-md-3"></div>
+                                  <div class="col-md-3" >
                                   <button  type="submit" class="btn btn-success" id="btnId" name="btnId"  data-toggle="modal"  onclick="cargarModal('<?php echo $ejecuta['idAc']; ?>','activoDetalle');"><i class="glyphicon glyphicon-eye-open"></i> Ver</button>
                                 </div>
                                 
-                                  <div class="col-md-4" style="margin-left:10px;">
+                                  <div class="col-md-3">
                                  <form action="ventaProcesar.php" method="post" class="form-register" > 
                                  <button  type="submit" class="btn btn-warning" id="btnenvia" name="btnenvia" style="background-color: transparent border:0" data-toggle="modal"  value="<?php echo $ejecuta['idAc']; ?>"><i class="glyphicon glyphicon-usd"></i>  Vender</button>
                                  </form>
                                     </div>
-
+</div>
                                  <?php }?>
 
                                 </td>
@@ -165,9 +163,9 @@ $sentencia2 = "SELECT * FROM subcategoria WHERE idSub=$aux2";
 $ejecutar2=mysqli_query($mysqli,$sentencia2);
 $fila1 = mysqli_fetch_assoc($ejecutar2);
 ?>
-<td>
-<?php echo $fila1['nombre'];?>
-</td>
+<!-- <td>
+<?php //echo $fila1['nombre'];?>
+</td> -->
 <td>
 <?php
 ?>
@@ -222,9 +220,11 @@ $sentencia2 = "SELECT * FROM subcategoria WHERE idSub=$aux2";
 $ejecutar2=mysqli_query($mysqli,$sentencia2);
 $fila1 = mysqli_fetch_assoc($ejecutar2);
 ?>
+<!--
 <td>
-<?php echo $fila1['nombre'];?>
+ <?php //echo $fila1['nombre'];?>
 </td>
+-->
 <td>
 <?php
 ?>
@@ -279,9 +279,9 @@ $sentencia2 = "SELECT * FROM subcategoria WHERE idSub=$aux2";
 $ejecutar2=mysqli_query($mysqli,$sentencia2);
 $fila1 = mysqli_fetch_assoc($ejecutar2);
 ?>
-<td>
-<?php echo $fila1['nombre'];?>
-</td>
+<!-- <td>
+<?php //echo $fila1['nombre'];?>
+</td> -->
 <td>
 <?php
 ?>

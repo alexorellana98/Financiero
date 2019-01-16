@@ -25,7 +25,7 @@
 </div>							 	
 </div>
 
-<table id="datable_1" class="table table-hover display  pb-30 tablaAct">
+<table class="table-hover display  pb-30 tablaAct">
 
 <?php 
 if($opcion==="categoria"){
@@ -208,12 +208,11 @@ if($opcion==="categoria"){
 	<?php } if($opcion=="compraactivo"){ ?>
 	 <thead>
                           <tr >
-                              <th  WIDTH="50" HEIGHT='9' >N°</th>
+                              <th >N°</th>
                               <th >Código</th>
                               <th >Descripción</th>
                               <th >Categoria</th>
-                              <th >Subcategoria</th>
-                              <th >Opciones</th>
+                              <th class="text-center">Opciones</th>
                             </tr>
                         </thead>
                         
@@ -245,21 +244,23 @@ if($opcion==="categoria"){
                                  $fila1 = mysqli_fetch_assoc($ejecutar2);
                                  
                                  ?>
-                                  <td> <?php echo $fila1['nombre'];?></td>
+                                 <!-- <td> <?php echo $fila1['nombre'];?></td> -->
                                   
-                                <td class="text-center">
+                                <td>
+                                <div class="col-md-12 text-center">
                                  <?php if($est==="1"){ ?>
-                                  <div class="col-md-6 text-center">
-                                   <button  type="submit" class="btn btn-danger" id="btnId" name="btnId" style="background-color: transparent border:0" data-toggle="modal"  onclick="cargarModal('<?php echo $ejecuta['idAc']; ?>','');" ><i class="fa fa-info"></i></button>
-                                  </div>
-                                  <div class="col-md-6 text-center">
-                                      <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idAc']; ?>','Desea dar de baja al Activo','compraactivo','0')"><i class="fa fa-arrow-circle-down"></i> </button>
-                                  </div> 
+                                   <button  type="submit" class="btn btn-danger" id="btnId" name="btnId" data-toggle="modal"  onclick="cargarModal('<?php echo $ejecuta['idAc']; ?>','');" ><i class="fa fa-info"></i></button>
+                                   
+                                  <button  type="submit" class="btn btn-primary" id="btnId" name="btnId"  data-toggle="modal"  onclick="editar('<?php echo $ejecuta['idAc']?>','modalEditarActivo');"  ><i class="fa fa-edit"></i></button>
+                                     
+                                      <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idAc']; ?>','Desea dar de baja al Activo','compraactivo','0')" ><i class="fa fa-arrow-circle-down"></i> </button>
+
                                   <?php }else if($est==='0'){ ?>
-                                      <div class="col-md-12 text-center">
+
                                       <button  type="button" class="btn btn-warning"  onClick="darBaja('<?php echo $ejecuta['idAc']; ?>','Desea dar de alta al Activo','compraactivo','1')"><i class="fa fa-arrow-circle-up"></i> </button>
-                                  </div> 
+     
                                   <?php } ?> 
+                                  </div>
                                   </td>
                                 </tr>
 
@@ -406,5 +407,100 @@ if($opcion==="categoria"){
                             }
                             ?> 
                         </tbody>
+                        <?php }else if($opcion==="verActivoDepreciar"){ 
+                          $aux2=$_REQUEST['id'];
+
+                         $sentencia2 = "SELECT * FROM detalle_activo WHERE activofijo_id='$aux2'"; 
+                         $ejecutar2=mysqli_query($mysqli,$sentencia2);
+                         $fila1 = mysqli_fetch_assoc($ejecutar2);
+   
+    
+                         $senten2 = "SELECT idCat FROM activo WHERE idAc=".$fila1['activofijo_id']; 
+                         $ejecu2=mysqli_query($mysqli,$senten2);
+                         $fil2 = mysqli_fetch_assoc($ejecu2);
+   
+                         $senten1 = "SELECT * FROM categoria WHERE idCat='$fil2[idCat]'"; 
+                         $ejecu1=mysqli_query($mysqli,$senten1);
+                         $fil1 = mysqli_fetch_assoc($ejecu1);
+
+                         $precio=$fila1['valor_historico'];
+                         $res=$fil1['val'];
+                         $residual=$precio*($res/100);
+                         $dep=$precio-$residual;
+                         ?>
+     <thead>
+                          <tr >
+                              <th  WIDTH="100" HEIGHT='9' >Valor</th>
+                              <th  WIDTH="300" HEIGHT='9'>Descripcion</th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody >
+                                                <tr>
+                         
+                          <td>Serie/Marca :</td>
+                          <td><?php echo $fila1['serie'];?></td>
+                        </tr>
+                        <tr>
+                      <?php
+                          $aux3=$fila1['marca_id'];
+                         $sentencia3 = "SELECT * FROM marca WHERE idMarca='$aux3'"; 
+                         $ejecutar3=mysqli_query($mysqli,$sentencia3);
+                         $fila3 = mysqli_fetch_assoc($ejecutar3);
+                         
+                         ?>
+                          
+                          <td> Proveedor :</td>
+                          <td><?php echo $fila3['nombre'];?></td>
+                        </tr>
+                       
+                      <tr>
+                         <td> Donacion :</td>
+                          <td><?php echo $fila1['donado'];?></td>
+                         </tr>
+                          <?php
+                          $aux4=$fila1['ubi_id'];
+                         $sentencia4 = "SELECT * FROM ubicacion WHERE idUb='$aux4'"; 
+                         $ejecutar4=mysqli_query($mysqli,$sentencia4);
+                         $fila4 = mysqli_fetch_assoc($ejecutar4);
+                         
+                         ?>
+                         <tr>
+                          <td> Ubicacion :</td>
+                          <td><?php echo $fila4['nombre'];?></td>
+                            </tr>
+                         <tr>
+                         <td> Fecha de adquisicion :</td>
+                          <td><?php echo $fila1['fecha_adqui'];?></td>
+                         </tr>
+
+                          <tr>
+                         <td> Fecha de Inicio :</td>
+                          <td><?php echo $fila1['fecha_inicio'];?></td>
+                         </tr>
+                           <tr>
+                          <td>Vida Util Restante :</td>
+                          <td><?php echo $fila1['vidautil_restante'];?></td>
+                        </tr>
+                        <tr>
+                          <td>Vida Economica :</td>
+                          <td><?php echo $fil1['vidaeco'];?></td>
+                        </tr>
+                          <tr>
+                         <td> Valor Historico :</td>
+                          <td><?php echo $fila1['valor_historico'];?></td>
+                         </tr>
+                        <tr>
+                          <td> Valor Residual :</td>
+                          <td><?php echo $residual;?></td>
+                         </tr>
+                      <tr>
+                          <td> Valor a Depreciar :</td>
+                          <td><?php echo $dep;?></td>
+                         </tr>
+
+                        </tbody>
+
+                        
                         <?php } ?>
 	</table>

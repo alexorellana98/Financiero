@@ -59,7 +59,8 @@ function actualizar(tabla){
             }
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-                    document.getElementById("actualizar").innerHTML = xmlhttp.responseText;  
+                    document.getElementById("actualizar").innerHTML = xmlhttp.responseText; 
+                    //alert(xmlhttp.responseText);
                     $('.tablaAct').DataTable();
                 }
             }

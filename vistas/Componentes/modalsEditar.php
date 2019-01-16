@@ -604,4 +604,263 @@ $aux=$id;
       </div>
 </div>
      
+<?php }else if($actualiza=="modalEditarActivo"){ ?>
+    <!--Modal  Registrar -->
+<div id="modalEditarActivo" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+<form  action="editar.php" method="post" class="form-register" > 
+    <div class="modal-content">
+       <div class="modal-body">
+<div class="panel panel-warning card-view">
+<div class="panel-heading text-center">
+    <div class="pull-center" >
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h2 class="panel-title panel-center txt-light"><i class="fa fa-edit"></i>  Editar Activo</h2>
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="panel-wrapper collapse in">
+    <div class="panel-body">
+<div id="nuevowitzar">
+<ul>
+<li><a href="#step-1">Registro<br /><small></small></a></li>
+<li><a href="#step-2">Finalizar<br /><small></small></a></li>
+</ul>
+
+<div>
+<div id="step-1" class="">
+<div class="row">
+<div class="col-md-12">
+<div class="col-md-6">
+<?php 
+$sentenciaC = "SELECT * FROM activo where idAc=".$id; 
+$ejecutarC=mysqli_query($mysqli,$sentenciaC);
+$filaActivo = mysqli_fetch_assoc($ejecutarC);
+     
+     
+     
+$sentencia = "SELECT * FROM activo  order by idAc desc"; 
+$ejecutar=mysqli_query($mysqli,$sentencia);
+$fila = mysqli_fetch_assoc($ejecutar);
+$sentencia2= "SELECT * FROM institucion "; 
+$ejecutar2=mysqli_query($mysqli,$sentencia2);
+$fila2 = mysqli_fetch_assoc($ejecutar2);
+?>
+<input type="hidden"  class="form-control" id="idIns" name="idIns" placeholder="Nombre" value="<?php echo $fila2['codigo'];?>">
+<input  type="hidden" class="form-control" id="idActivo" name="idActivo" placeholder="Nombre" value="<?php echo $id;?>">
+<div class="form-group">
+<label for="cat" >Categoria:</label>
+<select class="form-control SCategoriaE" data-live-search="true" id="cat" name="cat" onchange="cargarCodigoCategoria('cargarCodigoMarca');" disabled>
+<option>Seleccione</option>
+<?php
+$extraer = "SELECT * FROM categoria"; 
+$ejecutar=mysqli_query($mysqli,$extraer);
+while($ejecuta=mysqli_fetch_array($ejecutar))
+{
+if (($ejecuta['estado'])==1) {
+    if($ejecuta['idCat']===$filaActivo['idCat']){
+?>
+<option id="ide" value="<?php  echo $ejecuta['idCat'] ?>" selected><?php  echo ucwords(strtolower($ejecuta['nombre'])) ?> </option>
+<?php
+ }else{
+        ?>
+<option id="ide" value="<?php  echo $ejecuta['idCat'] ?>" ><?php  echo ucwords(strtolower($ejecuta['nombre'])) ?> </option>
+        <?php
+    } }  }  ?> 
+</select> 
+</div>
+<div class="form-group">
+<label for="ubica" >Ubicación:</label>
+<br>
+<select class="form-control SUbicacionE" data-live-search="true" id="ubica" name="ubica" required disabled>
+<option>Seleccione</option>
+<?php
+$extraer="SELECT * FROM ubicacion";
+$ejecutar=mysqli_query($mysqli,$extraer);
+while($ejecuta=mysqli_fetch_array($ejecutar))
+{
+if (($ejecuta['estado'])==1) {
+    if($ejecuta['idUb']===$filaActivo['idUb']){
+?>  
+<option id="ide" value="<?php  echo $ejecuta['codU'] ?>" selected><?php  echo $ejecuta['nombre'] ?> </option>             
+<?php
+                                              }else{
+        ?>
+<option id="ide" value="<?php  echo $ejecuta['codU'] ?>"><?php  echo $ejecuta['nombre'] ?> </option>       
+        <?php
+    }
+} 
+}
+?>                   
+</select> 
+</div>
+
+<br>
+<br>
+</div>
+<div class="col-md-6">
+<div class="form-group" hidden>
+<label for="sub" >Sub-Categoria:</label>
+<br>
+<select class="form-control SSubCategoriaE" data-live-search="true" id="sub" name="sub" >                    
+</select>              
+</div>
+<div class="form-group">
+<label for="des">Descripcion </label>
+<div class="input-group">
+<input type="text" class="form-control" id="des" placeholder="" name="des" required value="<?php echo $filaActivo['descrip']; ?>">
+<div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+</div>
+</div>
+<div class="form-group">
+<label for="codigo" >Código:</label>
+<div class="input-group">
+<input type="text" readonly="readonly" class="form-control" id="codigo"  name="codigo" required value="<?php echo $filaActivo['codAct']; ?>">
+<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true" ></span></div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div id="step-2" class="">
+<div class="col-lg-12">
+<div class="col-md-6">
+ <?php 
+$sentenciaD = "SELECT * FROM detalle_activo where activofijo_id=".$id; 
+$ejecutarD=mysqli_query($mysqli,$sentenciaD);
+$filaDetalleActivo = mysqli_fetch_assoc($ejecutarD);
+
+ ?>
+<input type="hidden" class="form-control" id="idDetalle" placeholder="Nombre" name="idDetalle"  value="<?php  echo $filaDetalleActivo['id']; ?>">
+<div class="form-group">
+<label for="serie" >Marca:</label>
+<select class="form-control SMarcaE" data-live-search="true" id="marca" name="marca" >
+<option>Ninguna</option>
+<?php
+$extraer="SELECT * FROM marca";
+$ejecutar=mysqli_query($mysqli,$extraer);
+while($ejecuta=mysqli_fetch_array($ejecutar))
+{
+    if($ejecuta['estado']==1){
+        if($ejecuta['idMarca']===$filaDetalleActivo['marca_id']){
+?>  
+<option id="ide" value="<?php  echo $ejecuta['idMarca'] ?>" selected><?php  echo $ejecuta['nombre'] ?> </option>              
+<?php
+}else{
+?>
+<option id="ide" value="<?php  echo $ejecuta['idMarca'] ?>" ><?php  echo $ejecuta['nombre'] ?> </option>    
+<?php
+
+}
+}
+}
+?>                   
+</select> 
+</div>
+<div class="form-group">
+<label for="serie" >Serie/Placa:</label>
+<div class="input-group">
+<input type="text" class="form-control" id="serie" placeholder="serie" name="serie" required value="<?php echo $filaDetalleActivo['serie']; ?>">
+<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true"></span></div>
+</div>
+</div>
+<div class="form-group">
+<label for="fecha">Fecha de inicio de uso:</label>
+<div class="input-group">
+<input type="date" class="form-control" id="fecha" name="fecha" required value="<?php echo $filaDetalleActivo['fecha_inicio']; ?>">
+<div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+</div>
+</div>
+
+
+
+<div class="form-group" style="margin-bottom:25px;">
+<label for="dona">Donación: </label>
+<div class="input-group">
+<?php 
+$sentenciaCO = "SELECT * FROM compras where codAct=".$id; 
+$ejecutarCO=mysqli_query($mysqli,$sentenciaCO);
+$filaDetalleCompra = mysqli_fetch_assoc($ejecutarCO);
+if($filaDetalleCompra['donado']==='SI'){ ?>
+<input type="checkbox" class="js-switch js-switch-1"  name="dona" id="dona"  value="1" data-color="#469408" data-size="small" style="margin-bottom:15px;" checked disabled/>
+<?php }else if($filaDetalleCompra['donado']=='NO'){ ?>
+<input type="checkbox" class="js-switch js-switch-1"  name="dona" id="dona"  value='0' data-color="#469408" data-size="small" style="margin-bottom:15px;"  disabled/>
+<?php } ?>
+</div>
+</div>
+<input type="hidden" class="form-control" id="idCompra" placeholder="Nombre" name="idCompra"  value="<?php  echo $filaDetalleCompra['idCom']; ?>">
+</div>
+
+
+<div class="col-md-6">
+<div class="form-group">
+<label for="prov" >Proveedor:</label>
+<select class="form-control SProveedorE" data-live-search="true" id="prov" name="prov">
+<option>Ninguno</option>
+<?php
+$extraer="SELECT * FROM proveedor";
+$ejecutar=mysqli_query($mysqli,$extraer);
+while($ejecuta=mysqli_fetch_array($ejecutar))
+{
+    if($ejecuta['estado']==1){
+        if($ejecuta['ide']==$filaDetalleCompra['idProv']){
+?>  
+<option id="ide" value="<?php  echo $ejecuta['ide'] ?>" selected><?php  echo $ejecuta['nombre'] ?> </option>                    
+<?php
+}else {
+    ?><option id="ide" value="<?php  echo $ejecuta['ide'] ?>"><?php  echo $ejecuta['nombre'] ?> </option><?php
+        }
+    }
+}
+?>                    
+</select> 
+</div>
+<div class="form-group">
+<label for="prec">Precio: </label>
+<div class="input-group">
+<input type="number" class="form-control" id="prec" placeholder="" name="prec" min="0" onchange="total()" required  value="<?php echo $filaDetalleActivo['valor_historico']; ?>" disabled>
+<div class="input-group-addon"><span class="glyphicon glyphicon-usd"></span></div>
+</div>
+</div>
+<div class="form-group">
+<label for="condi">Condición: </label>
+<select class="form-control SCondicionE" id="condi" name="condi" onchange="condic(this.value)" disabled>
+<?php if($filaDetalleCompra['condicion']==='Nuevo'){ ?>
+<option value="Nuevo" selected>Nuevo </option>
+<option value="Usado">Usado </option>
+<?php }else if($filaDetalleCompra['condicion']==='Usado'){ ?>
+<option value="Nuevo">Nuevo </option>
+<option value="Usado" selected>Usado </option>
+<?php } ?>
+</select>
+</div>
+<div class="form-group" id="hi">
+<label for="cant" >Vida util: </label>
+<div class="input-group">
+<input type="number" class="form-control" id="vi" placeholder="" name="vi" min="0" required disabled value="<?php echo $filaDetalleActivo['vidautil_restante']; ?>">
+<div class="input-group-addon"><span  class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+    </div>
+    </div>
+    </div>
+ </div>
+ <div class="modal-footer">
+       <?php include '../Componentes/BtnGuardarCancelar.php'; ?>
+        </div>
+    </div>
+      </form>
+      </div>
+</div>
 <?php } ?>

@@ -20,14 +20,15 @@ function envia(){
   $("#gestion").text("Administración Clientes: "+MaysPrimera(cambio));
   var cond= $("#condi").val();
   var tipo= $("#condi2").val();
-  ajax_act('','cliente',cond,tipo);
+var persona= $("#condi3").val();
+  ajax_act('','cliente',cond,tipo,persona);
 }
 function MaysPrimera(string){
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
     window.onload = function() {
         $("#condi").val('2');
-        $("#condi2").val('3');
+        $("#condi2").val('4');
         $("#condi").change();
         $("#condi2").change();
     };
@@ -57,16 +58,17 @@ function MaysPrimera(string){
                     <div class="panel-body">
                     
                     <div class="row">
-                    <div class="col-md-5" >
+                    <div class="col-md-12 text-center" >
                             <div class="alert alert-success alert-dismissable alert-style-1">
                                 <i class="fa fa-gear"></i><h6 id="gestion">Administración de Clientes</h6>
                             </div>
                         </div>
-                        <div class="col-md-1"></div>
+                        </div>
+                        <div class="row">
                          <div class="col-md-1"> <button class="btn  btn-default btn-outline">Estado:</button></div>
-                        <div class="col-md-2 ">
+                        <div class="col-md-3 ">
                             <div class="form-group">
-                                <select class="form-control SEstado" data-live-search="true" id="condi" name="condi" onchange="sele()">
+                                <select class="form-control selectpicker" data-live-search="true" id="condi" name="condi" onchange="sele()">
                                     <option value="1">Activo</option>
                                     <option value="0">Inactivo</option>
                                     <option value="2">Todos</option>
@@ -74,16 +76,27 @@ function MaysPrimera(string){
                             </div>
                         </div>
                          <div class="col-md-1"> <button class="btn  btn-default btn-outline">Cartera:</button></div>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <select class="form-control SCartera" data-live-search="true" id="condi2" name="condi2" onchange="sele()" style="width: 100%;">
-                                    <option value="0">Normales</option>
-                                    <option value="1">Morosos</option>
-                                    <option value="2">Incobrables</option>
-                                    <option value="3">Todos los clientes</option>
+                                <select class="form-control selectpicker" data-live-search="true" id="condi2" name="condi2" onchange="sele()" style="width: 100%;">
+                                    <option value="1">Normales</option>
+                                    <option value="2">Morosos</option>
+                                    <option value="3">Incobrables</option>
+                                    <option value="4">Todos los clientes</option>
                                 </select>
                             </div>
                         </div>
+                         <div class="col-md-1"> <button class="btn  btn-default btn-outline">Personas:</button></div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <select class="form-control selectpicker" data-live-search="true" id="condi3" name="condi3" onchange="sele()" style="width: 100%;">
+                                    <option value="0">Naturales</option>
+                                    <option value="1">Juridicas</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        
                     </div>
                     </div>
                 </div>

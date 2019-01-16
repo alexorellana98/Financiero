@@ -113,7 +113,7 @@ function envia(){
   <?php }?>
   <label for="dui">DUI:</label>
   <div class="input-group">
-  <input type="text" class="form-control" id="dui" placeholder="00000000-0" name="dui" value="<?php echo $fila['dui'];?>" required>
+  <input type="text" class="form-control" id="dui" placeholder="00000000-0" name="dui" value="<?php echo $fila['dui'];?>" required data-mask="99999999-9">
    <div class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span></div>
   </div>
   <label for="depa">Departamento:</label>

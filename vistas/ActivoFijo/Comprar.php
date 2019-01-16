@@ -30,21 +30,31 @@ $('#codi').val(v2);
 }
 function recibe()
 {
-var dep= $("#dep1").val();
 var ins= $("#idIns").val();
 var act= $("#idActivo").val();
-var sub= $("#sub").val();
+var cat= $("#categoriaCodigo").val();
 var ub= $("#ubica").val();
-if (dep=="" || sub==null || ub=="") {
+if (cat=='' || cat===null || ub=="") {
 alerta('Error','Complete los campos...','red');
 }
 else{
-$('#codigo').val(ins+"-"+ub+"-"+sub+"-"+"00"+act);
-var v1= $("#cat ").val();
-$('#idcat').val(v1);
-$('#ubica2').val(ub);
-$('#codi').val(ins+"-"+ub+"-"+sub+"-"+"00"+act);
+
+    $.ajax({
+    url: "../../asset/ajax/codigoActivo.php"
+    , data: {"opcion":'codigoActivo',"institucion":ins,"ubicacion":ub,"categoria":cat,"activo":act}
+    , success: function (result) {
+        $('#codigo').val(result);
+        var v1= $("#cat ").val();
+        $('#idcat').val(v1);
+        $('#ubica2').val(ub);
+        $("#codi").val(result);
+        //alert(result);
+    }
+    });  
+//$('#codi').val(ins+"-"+ub+"-"+cat+"-"+"00"+act);
 }
+    
+    
 }
 
 function ajax_ac(opcion,id,formulario){
@@ -57,7 +67,7 @@ data={'id': id , 'opcion': 'subcategoria' }
 if(opcion=="guardar"){
 url="insert.php";
 data=$("form#"+formulario).serialize();
-alert(data);
+//alert(data);
 }
 
 $.ajax({
@@ -72,6 +82,16 @@ else
 });
 }
 
+function cargarCodigoCategoria(opcion){
+    var id=$("#cat").val();
+    $.ajax({
+    url: "../../asset/ajax/actualizarCombos.php"
+    , data: {"opcion":opcion,"id":id}
+    , success: function (result) {
+        $("#codigocat").html(result);
+    }
+    });
+}
 function alerta(titulo,contenido,tipo){
 $.confirm({
 title: titulo,
@@ -91,7 +111,7 @@ action: function(){
 
 function guardar(){
     var categoria=$('#cat').val();
-    var subcategoria=$('#sub').val();
+    //var subcategoria=$('#sub').val();
     var condicion=$('#condi').val();
     var ubicacion=$('#ubica').val();
     var codigo=$('#codigo').val();
@@ -101,7 +121,7 @@ function guardar(){
     var prec=$('#prec').val();
     var vida=$('#vi').val();
     
-    if(categoria=='Seleccione' || subcategoria==null || ubicacion=="Seleccione" || codigo=="" || descrpcion=="" || serie=="" || fecha=="" || prec=="")
+    if(categoria=='Seleccione' || ubicacion=="Seleccione" || codigo=="" || descrpcion=="" || serie=="" || fecha=="" || prec=="")
         alerta("Error","Complete los campos",'red');
     else{
         ajax_ac('guardar','','muebles');
@@ -132,7 +152,7 @@ function cargarModal(id,opcion){
             xmlhttp.onreadystatechange = function () {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     document.getElementById("cargarModal").innerHTML = xmlhttp.responseText;  
-                    alert(xmlhttp.responseText);
+                    //alert(xmlhttp.responseText);
                     $('.tablaDetalle').DataTable();
                     $("#modalDetalleCompra").modal('show');
                 }
@@ -141,6 +161,29 @@ function cargarModal(id,opcion){
             xmlhttp.send();
 }
 
+    function editar(id,tabla){
+     if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    document.getElementById("modalsE").innerHTML = xmlhttp.responseText;   
+                    $('#nuevowitzar').smartWizard();
+                    $('.SCategoriaE').select2()
+                    $('.SSubCategoriaE').select2()
+                    $('.SUbicacionE').select2()
+                    $('.SMarcaE').select2()
+                    $('.SProveedorE').select2()
+                    $('.SCondicionE').select2()
+                    $("#"+tabla).modal('show');
+                }
+            }
+            xmlhttp.open("post", "../Componentes/modalsEditar.php?actualiza=" +tabla + "&id=" + id, true);
+            xmlhttp.send();
+}
 </script>
 </head>
 <body>  
@@ -213,6 +256,8 @@ include "../Componentes/menu.php";
 <br>
 <br>
 </div>
+
+<div id="modalsE"></div>
 </div>
 </div>
 </div> 
@@ -266,7 +311,7 @@ $fila2 = mysqli_fetch_assoc($ejecutar2);
 <input  type="hidden" class="form-control" id="idActivo" name="idActivo" placeholder="Nombre" value="<?php echo $fila['idAc']+1;?>">
 <div class="form-group">
 <label for="cat" >Categoria:</label>
-<select class="form-control SCategoria" data-live-search="true" id="cat" name="cat" onchange="ajax_ac('comboSubCategoria','')" >
+<select class="form-control SCategoria" data-live-search="true" id="cat" name="cat" onchange="cargarCodigoCategoria('cargarCodigoMarca');" >
 <?php
 $a1=$_POST['cat'];             
 if (!empty($a1)) {
@@ -312,13 +357,7 @@ if (($ejecuta['estado'])==1) {
 ?>                   
 </select> 
 </div>
-<div class="form-group">
-<label for="codigo" >Código:</label>
-<div class="input-group">
-<input type="text" readonly="readonly" class="form-control" id="codigo"  name="codigo" required >
-<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true" ></span></div>
-</div>
-</div>
+
 <br>
 <br>
 </div>
@@ -326,10 +365,10 @@ if (($ejecuta['estado'])==1) {
 <input type="hidden" class="form-control" id="ubica2" placeholder="Nombre" name="ubica2" >
 <input type="hidden" class="form-control" id="idcat" placeholder="Nombre" name="idcat" >
 <input  type="hidden" class="form-control" id="codi" placeholder="Nombre" name="codi" >
-<div class="form-group">
+<div class="form-group" hidden>
 <label for="sub" >Sub-Categoria:</label>
 <br>
-<select class="form-control SSubCategoria" data-live-search="true" id="sub" name="sub" required >                    
+<select class="form-control SSubCategoria" data-live-search="true" id="sub" name="sub" >                    
 </select>              
 </div>
 <div class="form-group">
@@ -337,6 +376,13 @@ if (($ejecuta['estado'])==1) {
 <div class="input-group">
 <input type="text" class="form-control" id="des" placeholder="" name="des" required>
 <div class="input-group-addon"><span class="glyphicon glyphicon-pencil"></span></div>
+</div>
+</div>
+<div class="form-group">
+<label for="codigo" >Código:</label>
+<div class="input-group">
+<input type="text" readonly="readonly" class="form-control" id="codigo"  name="codigo" required >
+<div class="input-group-addon"><span  class="glyphicon glyphicon-barcode" aria-hidden="true" ></span></div>
 </div>
 </div>
 </div>
@@ -359,7 +405,7 @@ if (($ejecuta['estado'])==1) {
    $sentencia = "SELECT count(*) as cuenta FROM activo  order by idAc desc"; 
    $ejecutar=mysqli_query($mysqli,$sentencia);
     $fila = mysqli_fetch_assoc($ejecutar);
-    if($fila['cuenta']<='0'){
+    if(intval($fila['cuenta'])<=0 || $fila['cuenta']==""){
         $id=1;
     }
     else{
@@ -379,10 +425,11 @@ $extraer="SELECT * FROM marca";
 $ejecutar=mysqli_query($mysqli,$extraer);
 while($ejecuta=mysqli_fetch_array($ejecutar))
 {
+    if($ejecuta['estado']==1){
 ?>  
 <option id="ide" value="<?php  echo $ejecuta['idMarca'] ?>" ><?php  echo $ejecuta['nombre'] ?> </option>              
 <?php
-}
+} }
 ?>                   
 </select> 
 </div>
@@ -409,12 +456,8 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 <input type="checkbox" class="js-switch js-switch-1"  name="dona" id="dona"  value="1" data-color="#469408" data-size="small" style="margin-bottom:15px;"/>
 </div>
 </div>
-
-
-
-
-
 </div>
+
 
 <div class="col-md-6">
 <div class="form-group">
@@ -426,10 +469,11 @@ $extraer="SELECT * FROM proveedor";
 $ejecutar=mysqli_query($mysqli,$extraer);
 while($ejecuta=mysqli_fetch_array($ejecutar))
 {
+    if($ejecuta['estado']==1){
 ?>  
 <option id="ide" value="<?php  echo $ejecuta['ide'] ?>" ><?php  echo $ejecuta['nombre'] ?> </option>                    
 <?php
-}
+} }
 ?>                    
 </select> 
 </div>
@@ -443,8 +487,8 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 <div class="form-group">
 <label for="condi">Condición: </label>
 <select class="form-control selectpicker" id="condi" name="condi" onchange="condic(this.value)">
-<option value="Nuevo">Nuevo </option>
-<option value="Usado">Usado </option>
+<option value="Nuevo">Nuevo</option>
+<option value="Usado">Usado</option>
 </select>
 </div>
 <div class="form-group" id="hi" style="display:none;">
@@ -478,6 +522,7 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
 </div>
 </div>    
 </div>
+<div id="codigocat"><input type="hidden" id="categoriaCodigo" value="" /></div>
 <div id="cargarModal"></div>
 <!-- /#wrapper -->
 <!-- Footer -->

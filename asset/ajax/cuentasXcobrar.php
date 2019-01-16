@@ -1,4 +1,4 @@
-<table id="datable_1" class="table table-hover display  pb-30 tablaAct">
+<table class="table-hover display  pb-30 tablaAct">
 <?php 
       	$mysqli = new mysqli('localhost', 'root', '', 'siccif');
 		$opcion=$_REQUEST['opcion'];	
@@ -11,6 +11,7 @@ if($opcion==="cliente"){
     <th  WIDTH="50" HEIGHT='9' >N°</th>
     <th >Nombre</th>
     <th >NIT</th>
+    <th>Persona</th>
     <th >Ocupacion o Giro</th>
     <th >Departamento</th>
     <th >Tipo</th>
@@ -19,14 +20,20 @@ if($opcion==="cliente"){
   </thead>
   <tbody  class="contenidobusqueda">
   <?php
-    if ($est=='2' && $tipoCliente=='3')
-        $extraer="SELECT * FROM cliente";
-    else if($est=='2' && $tipoCliente!=='3')
-        $extraer="select * from cliente where tipo=".$tipoCliente;
-    else if($est!=='2' && $tipoCliente=='3')
-        $extraer="select * from cliente where estado=".$est;
+    $persona=$_REQUEST['persona'];
+    if($persona=="0")
+        $sumaleConsulta=' repre=""';
+    else if($persona=="1")
+        $sumaleConsulta="repre!=''";
+    if ($est=='2' && $tipoCliente=='4')
+        $extraer="SELECT * FROM cliente where ".$sumaleConsulta;
+    else if($est=='2' && $tipoCliente!=='4')
+        $extraer="select * from cliente where tipo=".$tipoCliente." and ".$sumaleConsulta;
+    else if($est!=='2' && $tipoCliente=='4')
+        $extraer="select * from cliente where estado=".$est." and ".$sumaleConsulta;
     else
-        $extraer="select * from cliente where estado='$est' and tipo=".$tipoCliente;
+        $extraer="select * from cliente where estado='$est' and tipo=".$tipoCliente." and ".$sumaleConsulta;
+    
 $ejecutar=mysqli_query($mysqli,$extraer);
 while($ejecuta=mysqli_fetch_array($ejecutar))
 {
@@ -37,6 +44,7 @@ while($ejecuta=mysqli_fetch_array($ejecutar))
     <td><?php  echo $cont ?> </td> 
     <td><?php  echo $ejecuta['nombre']." ".$ejecuta['apellido'] ?> </td>
     <td> <?php echo $ejecuta['nit']?></td>
+    <td> <?php if($ejecuta['repre']===""){echo 'Natural';}else{echo 'Juridica';} ?></td>
     <td> <?php echo $ejecuta['ocupacion']?></td>
     <td> <?php echo $ejecuta['depa']?></td>
     <td> <?php if($tipo==1){echo 'Normal';} if($tipo==2){echo 'Moroso';} if($tipo==3){echo 'Incobrable';} ?></td>
@@ -133,6 +141,8 @@ $fila1 = mysqli_fetch_assoc($ejecutar2);
 <td><?php echo $fila1['fecha'];?></td>
 </tr>
 </tbody>
+
+
 <?php }else if($opcion=='Prestamos'){ ?>
 <thead>
                           <tr >
@@ -197,6 +207,7 @@ $aux7=$_REQUEST['cliente'];
 $sentencia = "SELECT * FROM prestamo WHERE idPres='$aux'"; 
 $ejecutar=mysqli_query($mysqli,$sentencia);
 $fila = mysqli_fetch_assoc($ejecutar);
+    
 $sentencia1 = "SELECT * FROM cliente WHERE idCliente='$aux7'";
 $ejecutar1=mysqli_query($mysqli,$sentencia1);
 $fila1 = mysqli_fetch_assoc($ejecutar1);

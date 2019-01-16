@@ -121,18 +121,20 @@ header('Location: gestionRegistros.php?paso=subcategoria&tipo=agregar&resultado=
 
 
 //inserta Activo
-if (!empty($_REQUEST['codi']) && !empty($_REQUEST['idcat']) && !empty($_REQUEST['sub']) && !empty($_REQUEST['des']) && !empty($_REQUEST['ubica2']))  {
+if (!empty($_REQUEST['codi']) && !empty($_REQUEST['idcat'])  && !empty($_REQUEST['des']) && !empty($_REQUEST['ubica2']))  {
 //echo 'entra a registro de activo';
   $va2=1;
-  $aux=$_REQUEST['sub'];
+  /*
+    $aux=$_REQUEST['sub'];
    $sentencia = "SELECT * FROM subcategoria WHERE codigo='$aux'"; 
    $ejecutar=mysqli_query($mysqli,$sentencia);
    $fila = mysqli_fetch_assoc($ejecutar);
+    */
     $aux2=$_REQUEST['ubica2'];
    $sentencia2 = "SELECT * FROM ubicacion WHERE codU='$aux2'"; 
    $ejecutar2=mysqli_query($mysqli,$sentencia2);
    $fila2 = mysqli_fetch_assoc($ejecutar2);
-$insertar="INSERT INTO activo (codAct,descrip,idCat,idSub,estado,idUb) VALUES ('$_REQUEST[codi]','$_REQUEST[des]','$_REQUEST[idcat]','$fila[idSub]','$va2','$fila2[idUb]')";
+$insertar="INSERT INTO activo (codAct,descrip,idCat,idSub,estado,idUb) VALUES ('$_REQUEST[codi]','$_REQUEST[des]','$_REQUEST[idcat]','','$va2','$fila2[idUb]')";
 $ejecutar=mysqli_query($mysqli,$insertar);
 }
 
@@ -164,21 +166,37 @@ if ($aux3=="Nuevo"){
   }else{
     $vidautil=$_REQUEST['vi'];
   }
-
+////////////////////////
+$sentencia = "SELECT count(*) as cuenta FROM activo  order by idAc desc"; 
+   $ejecutar=mysqli_query($mysqli,$sentencia);
+    $fila = mysqli_fetch_assoc($ejecutar);
+    if(intval($fila['cuenta'])<=0 || $fila['cuenta']==""){
+        $id=1;
+    }
+    else{
+       $sentencia = "SELECT * FROM activo  order by idAc desc"; 
+       $ejecutar=mysqli_query($mysqli,$sentencia);
+       $fila = mysqli_fetch_assoc($ejecutar);
+       $id=$fila['idAc'];
+    }
+//////////////////////
+    
 $sentencia5 = "SELECT idUb FROM activo WHERE idAc='$aux'"; 
    $ejecutar5=mysqli_query($mysqli,$sentencia5);
    $fila5 = mysqli_fetch_assoc($ejecutar5);    
     $ubicacion=$fila5['idUb'];
-$insertar="INSERT INTO compras (idProv,fecha,condicion,precioUni,codAct,donado,estado) VALUES ('$_REQUEST[prov]','$tfecha','$_REQUEST[condi]','$_REQUEST[prec]','$_REQUEST[idac]','$dona','$est')";
+$insertar="INSERT INTO compras (idProv,fecha,condicion,precioUni,codAct,donado,estado) VALUES ('$_REQUEST[prov]','$tfecha','$_REQUEST[condi]','$_REQUEST[prec]','$id','$dona','$est')";
 $ejecutar=mysqli_query($mysqli,$insertar);
 $va=1;
 $sql = " UPDATE activo set estadoBoton='$va' WHERE idAc='$aux'";
 $resultado = $mysqli->query($sql);
-$idActivo=$_REQUEST['idac'];
+    
+
+   
 //insertar en tabla detalle de activo
-$insertar2="INSERT INTO detalle_activo (serie,fecha_adqui,fecha_inicio,valor_historico,donado,vidautil_restante,marca_id,ubi_id,activofijo_id) VALUES ('$_REQUEST[serie]','$tfecha','$Hoy','$_REQUEST[prec]','$dona','$vidautil','$_REQUEST[marca]','$ubicacion','$idActivo')";
+$insertar2="INSERT INTO detalle_activo (serie,fecha_adqui,fecha_inicio,valor_historico,donado,vidautil_restante,marca_id,ubi_id,activofijo_id) VALUES ('$_REQUEST[serie]','$Hoy','$tfecha','$_REQUEST[prec]','$dona','$vidautil','$_REQUEST[marca]','$ubicacion','$id')";
 $ejecutar3=mysqli_query($mysqli,$insertar2);
-header('Location: Comprar.php');
+header('Location: Comprar.php?condicion='.$aux3);
 }
 
 echo $_REQUEST['idAc'].$_REQUEST['condiM'].$_REQUEST['nfac'].$_REQUEST['fech'].$_REQUEST['prec'];

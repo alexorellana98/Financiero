@@ -1,5 +1,5 @@
 ////  Cuentas Por Cobrar
-function ajax_act(str,tbld, estado,tipoCliente) {
+function ajax_act(str,tbld, estado,tipoCliente,persona) {
     //alert("Estado:  "+estado);
     //alert("Tipo:   "+tipoCliente);
     if(tipoCliente==='0'){ $("#titulo").html("Clientes Normales");    }
@@ -20,7 +20,7 @@ function ajax_act(str,tbld, estado,tipoCliente) {
             $('.tablaAct').DataTable();
         }
     }
-    xmlhttp.open("post", "../../asset/ajax/cuentasXcobrar.php?estado=" + estado+"&opcion="+tbld+"&tipoCliente="+tipoCliente, true);
+    xmlhttp.open("post", "../../asset/ajax/cuentasXcobrar.php?estado=" + estado+"&opcion="+tbld+"&tipoCliente="+tipoCliente+"&persona="+persona, true);
     xmlhttp.send();
 }
 
